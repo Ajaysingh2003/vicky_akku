@@ -1,5 +1,4 @@
 @import "tailwindcss";
-/* @import "tw-animate-css"; */
 
 @custom-variant dark (&:is(.dark *));
 
@@ -102,10 +101,12 @@ body {
   color: var(--foreground-text);
   background: var(--foreground);
 }
+
 .bg-hero {
   background-image: url("/image/hero_background.png");
-  /* background-repeat: no-repeat; */
-  background-position: 19% 25%;
+  background-position: 19% -25%;
+
+  /* z-index: -1; */
 }
 
 @media (min-width: 641px) {
@@ -166,6 +167,7 @@ body {
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background;
   }
@@ -178,6 +180,7 @@ body {
     rgba(223, 242, 238, 0) 90.51%
   );
 }
+
 .scrollbar-none::-webkit-scrollbar {
   display: none;
 }
@@ -221,7 +224,6 @@ body {
   box-sizing: border-box;
 }
 
-/* Headings */
 .tutorial-desc h1,
 .tutorial-desc h2,
 .tutorial-desc h3,
@@ -312,4 +314,60 @@ body {
   .fix-margin {
     margin-top: -20vh;
   }
+}
+
+.custom-datepicker {
+  border: none;
+  font-family: inherit;
+}
+
+.react-datepicker {
+  border: none;
+  border-radius: 16px;
+  padding: 8px;
+}
+
+.react-datepicker__header {
+  background: transparent;
+  border-bottom: none;
+}
+
+.react-datepicker__day--selected,
+.react-datepicker__time-list-item--selected {
+  background-color: black !important;
+  color: white !important;
+  border-radius: 8px;
+}
+
+.react-datepicker__day:hover,
+.react-datepicker__time-list-item:hover {
+  background-color: #f3f4f6;
+  border-radius: 8px;
+}
+
+.react-datepicker__time-container {
+  border-left: 1px solid #eee;
+}
+
+.bg-review {
+  background: linear-gradient(262.81deg, #dff2eee6 46.14%, #dff2ee00 90.51%);
+  backdrop-filter: blue(42px);
+}
+
+.swiper {
+  width: 100%;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.swiper-slide {
+  background-position: center;
+  background-size: cover;
+  width: 200px;
+  height: 200px;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
 }

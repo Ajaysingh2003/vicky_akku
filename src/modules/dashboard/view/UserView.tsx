@@ -161,7 +161,9 @@ function ListItem({
 function UserView({ id }: { id: string }) {
   const trpc = useTRPC();
   const { data } = useSuspenseQuery(trpc.user.getUser.queryOptions({ id }));
+
   console.log(data, 556);
+
   const user = data;
   const isAdmin = user.role === "ADMIN";
   const totalSpent = (user.orders ?? [])
@@ -179,13 +181,13 @@ function UserView({ id }: { id: string }) {
           {user.avatar ? (
             <img
               src={user.avatar}
-              alt={user.name}
+              alt={user.name ?? ""}
               className="w-20 h-20 rounded-full object-cover border-4 border-violet-100"
             />
           ) : (
             <div className="w-20 h-20 rounded-full bg-gradient-to-br from-violet-600 to-violet-400 flex items-center justify-center border-4 border-violet-100">
               <span className="text-2xl font-bold text-white tracking-wider">
-                {getInitials(user.name)}
+                {getInitials(user.name ?? "")}
               </span>
             </div>
           )}
@@ -217,19 +219,19 @@ function UserView({ id }: { id: string }) {
           <p className="text-xs text-gray-400">
             Joined{" "}
             <span className="text-gray-700 font-semibold">
-              {formatDate(user.createdAt)}
+              {formatDate(user.createdAt ?? "" )}
             </span>
           </p>
           <p className="text-xs text-gray-400">
             Last login{" "}
             <span className="text-gray-700 font-semibold">
-              {formatDateTime(user.lastLoginAt)}
+              {formatDateTime(user.lastLoginAt ?? "")}
             </span>
           </p>
           <p className="text-xs text-gray-400">
             Updated{" "}
             <span className="text-gray-700 font-semibold">
-              {formatDate(user.updatedAt)}
+              {formatDate(user.updatedAt ?? "")}
             </span>
           </p>
         </div>
@@ -266,13 +268,13 @@ function UserView({ id }: { id: string }) {
           <SectionHeader title="Account Details" />
           <div className="px-5 py-4">
             <InfoRow label="User ID" value={`${user.id.slice(0, 18)}…`} />
-            <InfoRow label="Role" value={user.role} />
-            <InfoRow label="Phone" value={user.phone} />
+            <InfoRow label="Role" value={user.role ?? ""} />
+            <InfoRow label="Phone" value={user.phone ?? ""} />
             <InfoRow label="Email" value={user.email || "—"} />
-            <InfoRow label="Created" value={formatDateTime(user.createdAt)} />
+            <InfoRow label="Created" value={formatDateTime(user.createdAt ?? "")} />
             <InfoRow
               label="Last Login"
-              value={formatDateTime(user.lastLoginAt)}
+              value={formatDateTime(user.lastLoginAt ?? "")}
             />
           </div>
         </div>
@@ -321,7 +323,7 @@ function UserView({ id }: { id: string }) {
                   <ListItem
                     key={e.id}
                     primary={`${e.workshop&&e.workshop.title.slice(0, 22)}…`}
-                    secondary={formatDate(e.createdAt)}
+                    secondary={formatDate(e.createdAt ?? "")}
                     status="Enrolled"
                   />
                 ))}

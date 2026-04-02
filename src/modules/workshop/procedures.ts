@@ -9,28 +9,27 @@ import axios from "axios";
 import { cookies } from "next/headers";
 import { regularClassSchema } from "../regular-classes/server/procedures";
 
- export  const LocationSchema = z.object({
+export const LocationSchema = z.object({
   id: z.string(),
   place: z.string(),
   name: z.string(),
   address: z.string(),
   city: z.string(),
   state: z.string(),
-  image:z.string(),
+  image: z.string(),
   country: z.string(),
   pincode: z.string().nullable(),
   createdAt: z.coerce.date(),
 });
-
 
 const locationSchema = z.object({
   id: z.string(),
   name: z.string(),
   address: z.string(),
   city: z.string(),
-  place:z.string().nullable(),
+  place: z.string().nullable(),
   state: z.string(),
-  image:z.string(),
+  image: z.string(),
   country: z.string(),
   pincode: z.string().nullable(),
   createdAt: z.string(),
@@ -38,39 +37,37 @@ const locationSchema = z.object({
 const LocationListSchema = z.array(LocationSchema);
 export const roleEnum = z.enum(["STUDENT", "ADMIN"]);
 
-const userSchema=z.object({
-    id: z.string(),
-    name: z.string(),
-    email: z.string(),
-    phone: z.string().min(10, "Phone must be at least 10 digits"),
-    role: roleEnum,
-    avatar: z.string().url().optional().nullable(),
-    createdAt: z.string(),
-    updatedAt: z.string(),
-    lastLoginAt: z.string(),
-  })
-  
-export const enrollmentSchema=z.object({
-  id:z.string(),
-  userId:z.string(),
-  workshopId:z.string(),
-  createdAt:z.string(),
-  user:userSchema
-})
+const userSchema = z.object({
+  id: z.string(),
+  name: z.string(),
+  email: z.string(),
+  phone: z.string().min(10, "Phone must be at least 10 digits"),
+  role: roleEnum,
+  avatar: z.string().url().optional().nullable(),
+  createdAt: z.string(),
+  updatedAt: z.string(),
+  lastLoginAt: z.string(),
+});
 
+export const enrollmentSchema = z.object({
+  id: z.string(),
+  userId: z.string(),
+  workshopId: z.string(),
+  createdAt: z.string(),
+  user: userSchema,
+});
 
 export const workshopSchema = z.object({
   id: z.string(),
   title: z.string(),
   description: z.string(),
   price: z.number(),
-  slug: z.string(),
   thumbnail: z.string(),
   eventDate: z.string(),
   createdAt: z.string(),
   locationId: z.string(),
   location: locationSchema.optional().nullable(),
-  enrollment:z.array(enrollmentSchema).optional().nullable()
+  enrollment: z.array(enrollmentSchema).optional().nullable(),
 });
 
 const paginationSchema = z.object({
@@ -84,21 +81,20 @@ const getWorkshopsOutputSchema = z.object({
   workshops: z.array(workshopSchema),
 });
 
-const studentsSchema=z.array(
+const studentsSchema = z.array(
   z.object({
-    id:z.string(),
-    workshopId:z.string(),
-    userId:z.string(),
-    createdAt:z.string(),
-    user:userSchema
-  })
-)
+    id: z.string(),
+    workshopId: z.string(),
+    userId: z.string(),
+    createdAt: z.string(),
+    user: userSchema,
+  }),
+);
 
-
-const getStudentSchema=z.object({
+const getStudentSchema = z.object({
   pagination: paginationSchema,
-  students:studentsSchema
-})
+  students: studentsSchema,
+});
 
 export const workshopRouter = createTRPCRouter({
   upcomingWorkshop: baseProcedure
@@ -107,7 +103,7 @@ export const workshopRouter = createTRPCRouter({
         page: z.number().min(1, "page can't below 1"),
         limit: z.number().min(1, "limit can't below 1"),
         location: z.string(),
-        type:z.string().default("upcoming"),
+        type: z.string().default("upcoming"),
       }),
     )
     .output(getWorkshopsOutputSchema)
@@ -150,7 +146,7 @@ export const workshopRouter = createTRPCRouter({
             withCredentials: true,
           },
         );
-        console.log(res.data,"hii")
+        console.log(res.data, "hii");
         return res.data;
       } catch (error: any) {
         console.log(error?.response as any, "a error occuried");
@@ -183,7 +179,7 @@ export const workshopRouter = createTRPCRouter({
             withCredentials: true,
           },
         );
-        console.log(res.data,"finaltest")
+        console.log(res.data, "finaltest");
         return res.data;
       } catch (error: any) {
         console.log(error?.response as any, "a error occuried");
@@ -200,39 +196,38 @@ export const workshopRouter = createTRPCRouter({
   createWorkshop: baseProcedure
     .input(
       z.object({
-      title:       z.string().min(3, "At least 3 characters"),
-      slug:        z.string().min(3).regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, "Lowercase + hyphens only"),
-      description: z.string().min(20, "Write at least 20 characters"),
-      thumbnail:   z.string().min(1, "Thumbnail required"),
-      price:       z.string(),
-      eventDate:   z.date(),
-      locationId:  z.string().min(1, "Select a location"),
+        title: z.string().min(3, "At least 3 characters"),
+        description: z.string().min(20, "Write at least 20 characters"),
+        thumbnail: z.string().min(1, "Thumbnail required"),
+        price: z.string(),
+        eventDate: z.date(),
+        locationId: z.string().min(1, "Select a location"),
       }),
     )
     .output(
       z.object({
-        message:z.string(),
-        data:workshopSchema,
-        success:z.boolean()
-      })
+        message: z.string(),
+        data: workshopSchema,
+        success: z.boolean(),
+      }),
     )
     .mutation(async ({ ctx, input }) => {
       try {
-          const cookieStore = await cookies();
-          const access_token = await cookieStore.get("access_token")?.value;
-          
+        const cookieStore = await cookies();
+        const access_token = await cookieStore.get("access_token")?.value;
+
         const res = await axios.post(
           `${process.env.BASE_API}/v1/workshop/create`,
-          {...input},
+          { ...input },
           {
             headers: {
               "Content-Type": "application/json",
-              Authorization:`Bearer ${access_token}`
+              Authorization: `Bearer ${access_token}`,
             },
             withCredentials: true,
           },
         );
-        console.log(res.data,"finaltest")
+        console.log(res.data, "finaltest");
         return res.data;
       } catch (error: any) {
         console.log(error?.response as any, "a error occuried");
@@ -248,45 +243,45 @@ export const workshopRouter = createTRPCRouter({
     }),
   updateWorkshop: baseProcedure
     .input(
-    z.object({
-    id: z.string(),
+      z.object({
+        id: z.string(),
 
-    title: z.string().min(3).optional(),
-    isActive:z.boolean().optional(),
-    slug: z
-      .string()
-      .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, "Lowercase + hyphens only")
-      .optional(),
+        title: z.string().min(3).optional(),
+        isActive: z.boolean().optional(),
+        slug: z
+          .string()
+          .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, "Lowercase + hyphens only")
+          .optional(),
 
-    description: z.string().min(20).optional(),
+        description: z.string().min(20).optional(),
 
-    thumbnail: z.string().min(1).optional(),
+        thumbnail: z.string().min(1).optional(),
 
-    price: z.string().optional(),
+        price: z.string().optional(),
 
-    eventDate: z.date().optional(),
+        eventDate: z.date().optional(),
 
-    locationId: z.string().min(1).optional(),
-  })
-)
-    
+        locationId: z.string().min(1).optional(),
+      }),
+    )
+
     .mutation(async ({ ctx, input }) => {
       try {
-          const cookieStore = await cookies();
-          const access_token = await cookieStore.get("access_token")?.value;
-          
+        const cookieStore = await cookies();
+        const access_token = await cookieStore.get("access_token")?.value;
+
         const res = await axios.patch(
           `${process.env.BASE_API}/v1/workshop/update/${input.id}`,
-          {...input},
+          { ...input },
           {
             headers: {
               "Content-Type": "application/json",
-              Authorization:`Bearer ${access_token}`
+              Authorization: `Bearer ${access_token}`,
             },
             withCredentials: true,
           },
         );
-        console.log(res.data,"finaltest")
+        console.log(res.data, "finaltest");
         return res.data;
       } catch (error: any) {
         console.log(error?.response as any, "a error occuried");
@@ -300,7 +295,7 @@ export const workshopRouter = createTRPCRouter({
         throw error;
       }
     }),
-    
+
   getWorkshopAdmin: protectedProcedure(["ADMIN"])
     .input(
       z.object({
@@ -310,20 +305,19 @@ export const workshopRouter = createTRPCRouter({
     .output(workshopSchema)
     .query(async ({ ctx, input }) => {
       try {
-        
-          const cookieStore = await cookies();
-          const access_token = await cookieStore.get("access_token")?.value;
+        const cookieStore = await cookies();
+        const access_token = await cookieStore.get("access_token")?.value;
         const res = await axios.get(
           `${process.env.BASE_API}/v1/workshop/getWorkshop/${input.id}`,
           {
             headers: {
               "Content-Type": "application/json",
-              Authorization:`Bearer ${access_token}`
+              Authorization: `Bearer ${access_token}`,
             },
             withCredentials: true,
           },
         );
-        console.log(res.data,"testtesttest")
+        console.log(res.data, "testtesttest");
         return res.data;
       } catch (error: any) {
         console.log(error?.response as any, "a error occuried");
@@ -345,20 +339,19 @@ export const workshopRouter = createTRPCRouter({
     )
     .mutation(async ({ ctx, input }) => {
       try {
-        
-          const cookieStore = await cookies();
-          const access_token = await cookieStore.get("access_token")?.value;
+        const cookieStore = await cookies();
+        const access_token = await cookieStore.get("access_token")?.value;
         const res = await axios.delete(
           `${process.env.BASE_API}/v1/workshop/delete/${input.id}`,
           {
             headers: {
               "Content-Type": "application/json",
-              Authorization:`Bearer ${access_token}`
+              Authorization: `Bearer ${access_token}`,
             },
             withCredentials: true,
           },
         );
-        console.log(res.data,"testtesttest")
+        console.log(res.data, "testtesttest");
         return res.data;
       } catch (error: any) {
         console.log(error?.response as any, "a error occuried");
@@ -376,33 +369,34 @@ export const workshopRouter = createTRPCRouter({
     .input(
       z.object({
         name: z.string(),
-    address: z.string(),
-    city: z.string(),
-    state: z.string(),
-    country: z.string(),
-    pincode: z.string().optional(),
-    place: z.string().optional()
+        address: z.string(),
+        city: z.string(),
+        state: z.string(),
+        country: z.string(),
+        pincode: z.string().optional(),
+        place: z.string().optional(),
+        image: z.string().optional(),
       }),
     )
     .mutation(async ({ ctx, input }) => {
       try {
-        
-          const cookieStore = await cookies();
-          const access_token = await cookieStore.get("access_token")?.value;
+        console.log(input, "test log");
+        const cookieStore = await cookies();
+        const access_token = await cookieStore.get("access_token")?.value;
         const res = await axios.post(
           `${process.env.BASE_API}/v1/workshop/location/create`,
           {
-            ...input
+            ...input,
           },
           {
             headers: {
               "Content-Type": "application/json",
-              Authorization:`Bearer ${access_token}`
+              Authorization: `Bearer ${access_token}`,
             },
             withCredentials: true,
           },
         );
-        console.log(res.data,"testtesttest")
+        console.log(res.data, "testtesttest");
         return res.data;
       } catch (error: any) {
         console.log(error?.response as any, "a error occuried");
@@ -420,29 +414,28 @@ export const workshopRouter = createTRPCRouter({
     .input(
       z.object({
         page: z.number(),
-        limit:z.number(),
-        productId:z.string().optional()
+        limit: z.number(),
+        productId: z.string().optional(),
       }),
     )
     .output(getStudentSchema)
     .query(async ({ ctx, input }) => {
       try {
-        
-                const cookieStore = await cookies();
-                const access_token = await cookieStore.get("access_token")?.value;
+        const cookieStore = await cookies();
+        const access_token = await cookieStore.get("access_token")?.value;
         const res = await axios.get(
           `${process.env.BASE_API}/v1/workshop/getStudents?page=${input.page}&limit=${input.limit}&productId=${input.productId}`,
           {
             headers: {
               "Content-Type": "application/json",
-              Authorization:`Bearer ${access_token}`
+              Authorization: `Bearer ${access_token}`,
             },
             withCredentials: true,
           },
         );
 
-        console.log(res.data,"testtesttest")
-        
+        console.log(res.data, "testtesttest");
+
         return res.data;
       } catch (error: any) {
         console.log(error?.response as any, "a error occuried");
@@ -456,5 +449,4 @@ export const workshopRouter = createTRPCRouter({
         throw error;
       }
     }),
-    
 });

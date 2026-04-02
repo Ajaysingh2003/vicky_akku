@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import { loadDashboardUserFilter } from "@/modules/dashboard/hooks/useDashboardClient";
 import UsersView from "@/modules/dashboard/view/UsersView";
 import { caller, getQueryClient, trpc } from "@/trpc/server";

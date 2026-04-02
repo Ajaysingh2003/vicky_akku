@@ -31,6 +31,7 @@ import TheStory from "./TheStory";
 import Teaching from "./Teaching";
 import Wrapper from "./Wrapper";
 import ExperienceSection from "./Experience";
+import CarouselAbout from "./CarouselAbout";
 
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 50, filter: "blur(8px)" },
@@ -65,8 +66,9 @@ function ScrollReveal({
 
 function AboutUs() {
   return (
-    <div className="w-full h-full overflow-hidden relative">
 
+    <div className="w-full h-full overflow-hidden relative">
+      
       {/* Subtle drifting background orbs */}
       <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
         <motion.div
@@ -103,6 +105,10 @@ function AboutUs() {
 
         <ScrollReveal delay={0.05}>
           <ExperienceSection />
+        </ScrollReveal>
+
+        <ScrollReveal delay={0.6}>
+          <CarouselAbout/>
         </ScrollReveal>
       </div>
 

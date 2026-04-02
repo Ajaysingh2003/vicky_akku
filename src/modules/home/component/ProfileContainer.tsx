@@ -21,13 +21,14 @@ function ProfileContainer() {
   }
   // Handle case where subscription might be empty to prevent crash
   const subscription = data.userSubscription?.[0];
-  const activeCheck=new Date(subscription?.class.endDate) < new Date()
+  const endDate = subscription?.class?.endDate;
+  const activeCheck = endDate ? new Date(endDate) < new Date() : false;
 
   const isActive = subscription
     ? activeCheck
     : !activeCheck;
 
-  console.log(isActive,new Date(subscription?.class.endDate) < new Date(), "aj");
+  console.log(isActive, endDate ? new Date(endDate) < new Date() : false, "aj");
   return (
     <div className="pt-24 md:pt-32 pb-24 px-4 max-w-7xl mx-auto">
       <div className="bg-[#FFFBF4] py-6 rounded-[30px] lg:min-h-96 mb-12">
@@ -82,7 +83,7 @@ function ProfileContainer() {
             <div className="flex items-center gap-6 pt-2">
               <div className="flex items-center gap-3">
                 <div className="bg-[#977DAE] text-white font-semibold flex items-center justify-center size-12 md:size-16 rounded-xl md:rounded-3xl text-sm md:text-lg">
-                  {data.enrollments.length}
+                  {data.enrollments?.length || 0}
                 </div>
                 <div className="flex flex-col leading-tight text-xs md:text-base">
                   <p>Workshop</p>
@@ -92,7 +93,7 @@ function ProfileContainer() {
 
               <div className="flex items-center gap-3">
                 <div className="bg-[#977DAE] text-white font-semibold flex items-center justify-center size-12 md:size-16 rounded-xl md:rounded-3xl text-sm md:text-lg">
-                  {data.tutorialAccess.length}
+                  {data.tutorialAccess?.length || 0}
                 </div>
                 <div className="flex flex-col leading-tight text-xs md:text-base">
                   <p>Purchased</p>
@@ -141,7 +142,7 @@ function ProfileContainer() {
           </div>
 
           <TabsContent value="workshops">
-            {data.enrollments.length == 0 ? (
+            {!data.enrollments || data.enrollments.length == 0 ? (
               <div className="rounded-[30px] h-64 bg-[#FFFBF4] flex items-center justify-center">
                 <div className="flex flex-col items-center gap-4 text-center">
                   <CalendarX className="w-10 h-10 text-gray-400" />
@@ -163,10 +164,10 @@ function ProfileContainer() {
             ) : (
               <div className="grid grid-cols-1 gap-4">
                 {data.enrollments.map((e, i) => {
-                  const formattedDate = format(
-                    new Date(e.workshop.eventDate),
-                    "do MMM yyyy | h b",
-                  ).toUpperCase();
+                  const eventDate = e.workshop?.eventDate;
+                  const formattedDate = eventDate 
+                    ? format(new Date(eventDate), "do MMM yyyy | h b").toUpperCase()
+                    : "N/A";
                   return (
                     <div
                       key={i}
@@ -214,7 +215,7 @@ function ProfileContainer() {
           </TabsContent>
 
           <TabsContent value="online tutorial">
-            {data.tutorialAccess.length == 0 ? (
+            {!data.tutorialAccess || data.tutorialAccess.length == 0 ? (
               <div className="rounded-[30px] h-64 bg-[#FFFBF4] flex items-center justify-center">
                 <div className="flex flex-col items-center gap-4 text-center">
                   <CalendarX className="w-10 h-10 text-gray-400" />
@@ -267,7 +268,7 @@ function ProfileContainer() {
           </TabsContent>
 
           <TabsContent value="Regular Class">
-            {data.userSubscription.length == 0 ? (
+            {!data.userSubscription || data.userSubscription.length == 0 ? (
               <div className="rounded-[30px] h-64 bg-[#FFFBF4] flex items-center justify-center">
                 <div className="flex flex-col items-center gap-4 text-center">
                   <CalendarX className="w-10 h-10 text-gray-400" />
@@ -291,10 +292,10 @@ function ProfileContainer() {
             ) : (
               <div className="grid grid-cols-1 gap-4">
                 {data.userSubscription.map((e, i) => {
-                  const formattedDate = format(
-                    new Date(e?.class.startDate),
-                    "do MMM yyyy | h b",
-                  ).toUpperCase();
+                  const startDate = e?.class?.startDate;
+                  const formattedDate = startDate
+                    ? format(new Date(startDate), "do MMM yyyy | h b").toUpperCase()
+                    : "N/A";
                   return (
                     <div
                       key={i}

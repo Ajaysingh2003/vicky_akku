@@ -1,4 +1,4 @@
-// export const dynamic = "force-dynamic";
+export const dynamic = "force-dynamic";
 import HeroSkeleton from '@/component/HeroLoader';
 import HomeView from '@/modules/home/view/HomeView'
 import {  getQueryClient, trpc } from '@/trpc/server'

@@ -18,6 +18,7 @@ import { ColumnDef } from "@tanstack/react-table";
 import { getUser, getUsers } from "@/trpc/type";
 import { format } from "date-fns";
 import Link from "next/link";
+import { useDashboardUserFilters } from "../hooks/useDashboardClasses";
 
 export const userColumn: ColumnDef<getUsers[number]>[] = [
   {
@@ -58,10 +59,9 @@ export const userColumn: ColumnDef<getUsers[number]>[] = [
     header: "Last Login",
     cell: ({ row }) => {
 
-      const formattedDate = format(
-          row.original.lastLoginAt,
-          "do MMM yyyy , h b",
-        ).toUpperCase();
+     const formattedDate = row.original.lastLoginAt
+  ? format(new Date(row.original.lastLoginAt), "do MMM yyyy, h b").toUpperCase()
+  : "N/A";
       return (
         <div>
           <p className={`font-semibold  text-[12px]`}>{formattedDate}</p>
@@ -110,27 +110,30 @@ export const userColumn: ColumnDef<getUsers[number]>[] = [
       //     `the following action will remove all  associated  meetings`
       //   );
       const trpc = useTRPC();
-
+      const [filters, setFilters] = useDashboardUserFilters();
+      
       const queryClient = useQueryClient();
-      //   const deleteRoom = useMutation(
-      // trpc.user.deleteUser.mutationOptions({
-      //   onSuccess: async () => {
-      //     await queryClient.invalidateQueries(trpc.user.get.queryOptions());
-      //     toast.success("Room deleted successfully");
-      //   },
-      //   onError: (error) => {
-      //     toast.error(`Error deleting room: ${error.message}`);
-      //   }
-      // })
-      //   );
 
-      // const handleDelete = async (e: React.MouseEvent<HTMLDivElement>) => {
-      //   e.stopPropagation();
+        const mutate = useMutation(
+      trpc.user.deleteUser.mutationOptions({
+        onSuccess: async () => {
+          await queryClient.invalidateQueries(trpc.user.getAllUser.queryOptions({...filters}));
+          toast.success("User deleted Successfully");
+        },
+        onError: (error) => {
+          toast.error(`Error deleting user: ${error.message}`);
+        }
+      })
+        );
 
-      //   // const ok = await confirm();
+      const handleDelete = async (e: React.MouseEvent<HTMLDivElement>) => {
+        e.stopPropagation();
 
-      //   // if (!ok) return;
-      // };
+        await mutate.mutateAsync({id:row.original.id})
+        // const ok = await confirm();
+
+        // if (!ok) return;
+      };
       return (
         <>
           {/* <ConfirmDialog /> */}
@@ -143,12 +146,17 @@ export const userColumn: ColumnDef<getUsers[number]>[] = [
             <DropdownMenuContent>
               <DropdownMenuLabel>Manage Room</DropdownMenuLabel>
               <DropdownMenuSeparator />
-              {/* <DropdownMenuItem onClick={(e) => handleDelete(e)}>
+              <DropdownMenuItem onClick={(e) => handleDelete(e)}>
                 Delete
-              </DropdownMenuItem> */}
+              </DropdownMenuItem>
               <DropdownMenuItem >
                 <Link href={`/dashboard/users/${row.original.id}`}>
                   View Detail's
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem >
+                <Link href={`/dashboard/users/updateUser/${row.original.id}`}>
+                  Update User
                 </Link>
               </DropdownMenuItem>
             </DropdownMenuContent>

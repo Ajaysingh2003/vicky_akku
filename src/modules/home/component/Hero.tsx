@@ -11,7 +11,7 @@ function Hero() {
   const mobileHeroImgRef = React.useRef<HTMLDivElement | null>(null);
   const isInView = useInView(headerRef, { once: true });
   const mobileHeroImgInView = useInView(mobileHeroImgRef, { once: true });
-  const router=useRouter()
+  const router = useRouter();
   return (
     <div className=" bg-hero min-h-[150vh] relative w-full">
       <div className="w-full  h-full relative">
@@ -48,11 +48,11 @@ function Hero() {
               </motion.h1>
             </div>
             <div className=" w-full">
-              <div className=" relative  w-full md:w-fit md:absolute right-[0%] md:right-[45%]">
-                <p className="text-center font-normal uppercase md:text-starst p  text-white font-passion-one text-[40px] md:text-8xl">
-                  Dance classes
+              <div className=" relative  w-full md:w-fit ">
+                <p className="text-center font-normal uppercase md:text-starst p  text-white font-passion-one text-[40px] md:text-8xl md:ml-28">
+                  Choreographers
                 </p>
-                <div className="max-w-42 mt-10 w-full absolute md:relative left-1/2 md:left-0 -translate-x-1/2  md:translate-x-0 space-y-3 flex items-center md:items-start justify-center flex-col">
+                <div className="max-w-42 mt-10 w-full absolute md:relative left-1/2 md:left-0 -translate-x-1/2  md:translate-x-0 space-y-3 flex items-center md:items-start justify-center flex-col  md:ml-28">
                   <h4 className="text-[#777873] font-semibold text-center md:text-start text-lg md:text-2xl">
                     Where dance feels like hapiness
                   </h4>
@@ -61,7 +61,10 @@ function Hero() {
                     animate={{ y: "0", opacity: 1 }}
                     transition={{ duration: 0.6, ease: "anticipate" }}
                   >
-                    <Button onClick={()=>router.push(`/workshop`)} className="rounded-full text-lg px-4 py-6 md:text-md font-open-sauce cursor-pointer uppercase w-full max-wa-36">
+                    <Button
+                      onClick={() => router.push(`/workshop`)}
+                      className="rounded-full text-lg px-4 py-6 md:text-md font-open-sauce cursor-pointer uppercase w-full max-wa-36"
+                    >
                       Start Today
                     </Button>
                   </motion.div>

@@ -5,16 +5,18 @@ import React, { useState } from 'react'
 import { format } from 'date-fns'
 import {
   MapPin, Calendar, DollarSign, Users, Tag, ToggleRight,
-  ToggleLeft, Mail, Phone, Shield, Clock, ChevronRight,
-  ImageIcon, Hash
+  Mail, Phone, Shield, Clock, ChevronRight,
+  ImageIcon
 } from 'lucide-react'
 import Link from 'next/link'
 
+// --- Updated Types ---
+
 type User = {
   id: string
-  name: string
-  email: string
-  phone: string
+  name: string | null
+  email: string | null
+  phone: string | null
   role: string
   avatar?: string | null
   createdAt: string
@@ -29,8 +31,8 @@ type Subscription = {
   status: string
   createdAt: string
   user: User
-  class?:{
-    endDate?:string
+  class?: {
+    endDate?: string
   }
 }
 
@@ -42,12 +44,19 @@ type RegularClassAdmin = {
   City: string
   price: number
   isActive: boolean
-  perfectFor: { tag: string }[]
+  // Changed to match the .name access in your JSX
+  perfectFor: { name: string }[] 
   startDate: string
   endDate: string
   createdAt: string
   subscriptions: Subscription[]
+  // Added missing _count property used in the JSX
+  _count: {
+    subscriptions: number
+  }
 }
+
+// --- Components ---
 
 function StatCard({ icon: Icon, label, value, accent }: {
   icon: React.ElementType
@@ -87,29 +96,28 @@ function SubscriptionRow({ sub, index }: { sub: Subscription; index: number }) {
     cancelled: 'bg-red-50 text-red-600 ring-red-200',
     expired: 'bg-slate-100 text-slate-500 ring-slate-200',
   }
-  const isExpired =
-  sub.class?.endDate &&
-  new Date() > new Date(sub.class.endDate);
+
+  const isExpired = sub.class?.endDate && new Date() > new Date(sub.class.endDate);
   
-  console.log(isExpired,sub.class?.endDate,"singhsingh")
-  const status=isExpired ? "EXPIRED":"ACTIVE"
+  const status = isExpired ? "EXPIRED" : (sub.status.toUpperCase() || "ACTIVE");
   const color = statusColor[status.toLowerCase()] ?? 'bg-slate-100 text-slate-500 ring-slate-200'
+  
   return (
     <div className="flex items-center gap-4 px-4 py-3 rounded-xl hover:bg-slate-50 transition-colors group">
       <span className="text-xs font-mono text-slate-300 w-5 shrink-0 text-right">{index + 1}</span>
       <div className="size-9 rounded-full bg-gradient-to-br from-slate-200 to-slate-300 flex items-center justify-center shrink-0 overflow-hidden">
         {sub.user.avatar
-          ? <img src={sub.user.avatar} alt={sub.user.name} className="size-full object-cover" />
-          : <span className="text-sm font-bold text-slate-500">{sub.user.name[0]?.toUpperCase()}</span>
+          ? <img src={sub.user.avatar} alt={sub.user.name ?? 'User'} className="size-full object-cover" />
+          : <span className="text-sm font-bold text-slate-500">{sub.user.name?.[0]?.toUpperCase() ?? '?'}</span>
         }
       </div>
       <div className="flex-1 min-w-0">
-        <p className="text-sm font-semibold text-slate-800 truncate">{sub.user.name}</p>
+        <p className="text-sm font-semibold text-slate-800 truncate">{sub.user.name ?? 'Unknown User'}</p>
         <p className="text-xs text-slate-400 truncate">{sub.user.email}</p>
       </div>
       <div className="hidden sm:flex items-center gap-1 text-xs text-slate-400">
         <Phone className="size-3" />
-        {sub.user.phone}
+        {sub.user.phone ?? 'No phone'}
       </div>
       <span className={`hidden md:inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ring-1 ${color}`}>
         {status}
@@ -120,15 +128,15 @@ function SubscriptionRow({ sub, index }: { sub: Subscription; index: number }) {
       <Link href={`/dashboard/users/${sub.userId}`}>
         <ChevronRight className="size-4 text-slate-300 group-hover:text-slate-500 transition-colors shrink-0" />
       </Link>  
-      
     </div>
   )
 }
 
 function RegularClassView({ id }: { id: string }) {
   const trpc = useTRPC()
+  // Note: Ensure your tRPC router return type matches RegularClassAdmin
   const { data } = useSuspenseQuery(trpc.regularClasses.getClassAdmin.queryOptions({ id }))
-  const cls = data
+  const cls = data as RegularClassAdmin
   const [imgError, setImgError] = useState(false)
 
   const startDate = format(new Date(cls.startDate), 'MMM d, yyyy')
@@ -155,7 +163,6 @@ function RegularClassView({ id }: { id: string }) {
         )}
         <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent" />
 
-        {/* Overlay Content */}
         <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
           <div className="flex items-end justify-between gap-4 max-w-6xl mx-auto">
             <div className="min-w-0">
@@ -177,10 +184,7 @@ function RegularClassView({ id }: { id: string }) {
         </div>
       </div>
 
-      {/* Main Content */}
       <div className="max-w-6xl mx-auto px-4 md:px-8 py-8 space-y-8">
-
-        {/* Stats Row */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           <StatCard icon={Users} label="Total Enrolled" value={cls.subscriptions.length} accent="bg-blue-200" />
           <StatCard icon={ToggleRight} label="Active Members" value={activeSubscriptions} accent="bg-emerald-200" />
@@ -188,21 +192,15 @@ function RegularClassView({ id }: { id: string }) {
           <StatCard icon={Calendar} label="Duration" value={`${Math.ceil((new Date(cls.endDate).getTime() - new Date(cls.startDate).getTime()) / (1000 * 60 * 60 * 24))}d`} accent="bg-rose-200" />
         </div>
 
-        {/* Two-col layout */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-
-          {/* Left: Details */}
           <div className="lg:col-span-1 space-y-5">
-
-            {/* About */}
             <div className="bg-white rounded-2xl border border-slate-100 shadow-sm p-6">
               <h3 className="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-3">About</h3>
               <div className="text-sm text-slate-600 leading-relaxed">
-                <div dangerouslySetInnerHTML={{__html:cls.description}}/>
+                <div dangerouslySetInnerHTML={{__html: cls.description}}/>
               </div>
             </div>
 
-            {/* Schedule */}
             <div className="bg-white rounded-2xl border border-slate-100 shadow-sm p-6 space-y-4">
               <h3 className="text-xs font-semibold uppercase tracking-widest text-slate-400">Schedule</h3>
               <div className="space-y-3">
@@ -222,7 +220,6 @@ function RegularClassView({ id }: { id: string }) {
               </div>
             </div>
 
-            {/* Tags */}
             {cls.perfectFor?.length > 0 && (
               <div className="bg-white rounded-2xl border border-slate-100 shadow-sm p-6">
                 <h3 className="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-3">Perfect For</h3>
@@ -231,7 +228,6 @@ function RegularClassView({ id }: { id: string }) {
                     <span key={i} className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-slate-50 rounded-lg text-xs font-medium text-slate-600 ring-1 ring-slate-200">
                       <Tag className="size-3 text-slate-400" />
                       {t.name}
-                      {/* {typeof t === 'string' ? t : (t as any).tag ?? t} */}
                     </span>
                   ))}
                 </div>
@@ -239,7 +235,6 @@ function RegularClassView({ id }: { id: string }) {
             )}
           </div>
 
-          {/* Right: Subscriptions Table */}
           <div className="lg:col-span-2 bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden">
             <div className="px-6 py-5 border-b border-slate-100 flex items-center justify-between">
               <div>
@@ -264,7 +259,6 @@ function RegularClassView({ id }: { id: string }) {
               </div>
             )}
           </div>
-
         </div>
       </div>
     </div>

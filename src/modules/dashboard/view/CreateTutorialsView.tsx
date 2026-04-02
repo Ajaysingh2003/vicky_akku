@@ -116,11 +116,7 @@ const createTutorialSchema = z.object({
     .url("Must be a valid URL")
     .min(1, "Thumbnail is required"),
   price: z.number().int("Whole number only").nonnegative("Cannot be negative"),
-  duration: z
-    .number()
-    .int("Whole number only")
-    .positive("Must be greater than 0")
-    .optional(),
+ 
   videos: z.array(videoEntrySchema).min(1, "Add at least one video"),
 });
 
@@ -818,7 +814,6 @@ function TutorialFormInner() {
       description: "",
       thumbnail: "",
       price: 0,
-      duration: 0,
       videos: [{ title: "", video: undefined as unknown as File }],
     },
   });
@@ -845,7 +840,7 @@ function TutorialFormInner() {
 
   const stepFields: (keyof CreateTutorialFormValues)[][] = [
     ["title", "description"],
-    ["thumbnail", "price", "duration"],
+    ["thumbnail", "price"],
     ["videos"],
   ];
 
@@ -971,7 +966,7 @@ function TutorialFormInner() {
                         render={({ field }) => (
                           <FormItem>
                             <FormLabel className="text-sm font-semibold text-neutral-800">
-                              Image
+                              Thumbnail
                             </FormLabel>
                             <FormControl>
                               <ThumbnailUploader
@@ -1015,15 +1010,15 @@ function TutorialFormInner() {
                                   />
                                 </div>
                               </FormControl>
-                              <p className="text-xs text-neutral-400 mt-1">
+                              {/* <p className="text-xs text-neutral-400 mt-1">
                                 In cents — 2999 = $29.99. Blank = free.
-                              </p>
+                              </p> */}
                               <FormMessage className="text-xs text-red-500" />
                             </FormItem>
                           )}
                         />
 
-                        <FormField
+                        {/* <FormField
                           control={form.control}
                           name="duration"
                           render={({ field }) => (
@@ -1061,7 +1056,7 @@ function TutorialFormInner() {
                               <FormMessage className="text-xs text-red-500" />
                             </FormItem>
                           )}
-                        />
+                        /> */}
                       </div>
                     </div>
                   )}

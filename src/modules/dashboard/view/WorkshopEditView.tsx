@@ -6,7 +6,8 @@ import { z } from "zod";
 import { useTRPC } from "@/trpc/client";
 import { useMutation, useSuspenseQuery } from "@tanstack/react-query";
 import { format } from "date-fns";
-
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 // Tiptap
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
@@ -75,10 +76,10 @@ import toast from "react-hot-toast";
 
 const schema = z.object({
   title: z.string().min(3, "At least 3 characters"),
-  slug: z
-    .string()
-    .min(3)
-    .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, "Lowercase + hyphens only"),
+  // slug: z
+  //   .string()
+  //   .min(3)
+  //   .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, "Lowercase + hyphens only"),
   description: z.string().min(20, "Write at least 20 characters"),
   thumbnail: z.string().min(1, "Thumbnail required"),
   price: z.string(),
@@ -576,7 +577,7 @@ function SectionTitle({
 // ─── Step Sidebar ─────────────────────────────────────────────────────────────
 
 const STEPS = [
-  { label: "Content", sub: "Title, slug & description" },
+  { label: "Content", sub: "Title & description" },
   { label: "Media", sub: "Thumbnail & pricing" },
   { label: "Scheduling", sub: "Date & venue" },
 ];
@@ -658,7 +659,6 @@ export default function WorkshopEditView({ id }: { id: string }) {
     resolver: zodResolver(schema),
     defaultValues: {
       title: workshop.title,
-      slug: workshop.slug,
       description: workshop.description,
       thumbnail: workshop.thumbnail,
       price: String(workshop.price),
@@ -666,22 +666,8 @@ export default function WorkshopEditView({ id }: { id: string }) {
       eventDate:new Date(workshop.eventDate)
     },
   });
-//   console.log(workshop, "check");
-  const autoSlug = (val: string) => {
-    form.setValue(
-      "slug",
-      val
-        .toLowerCase()
-        .trim()
-        .replace(/[^\w\s-]/g, "")
-        .replace(/\s+/g, "-")
-        .replace(/--+/g, "-"),
-      { shouldValidate: form.formState.isSubmitted },
-    );
-  };
-
   const stepFields: (keyof FormValues)[][] = [
-    ["title", "slug", "description"],
+    ["title", "description"],
     ["thumbnail", "price"],
     ["eventDate", "locationId"],
   ];
@@ -755,7 +741,7 @@ export default function WorkshopEditView({ id }: { id: string }) {
                                 {...field}
                                 onChange={(e) => {
                                   field.onChange(e);
-                                  autoSlug(e.target.value);
+                                  // autoSlug(e.target.value);
                                 }}
                               />
                             </FormControl>
@@ -765,7 +751,7 @@ export default function WorkshopEditView({ id }: { id: string }) {
                       />
 
                       {/* Slug */}
-                      <FormField
+                      {/* <FormField
                         control={form.control}
                         name="slug"
                         render={({ field }) => (
@@ -796,7 +782,7 @@ export default function WorkshopEditView({ id }: { id: string }) {
                             <FormMessage className="text-xs text-red-500" />
                           </FormItem>
                         )}
-                      />
+                      /> */}
 
                       {/* Description — Tiptap */}
                       <FormField
@@ -921,13 +907,27 @@ export default function WorkshopEditView({ id }: { id: string }) {
                                 className="w-auto p-0 rounded-2xl border-neutral-200 shadow-xl"
                                 align="start"
                               >
-                                <Calendar
+
+                                <DatePicker
+                                  selected={field.value}
+                                  onChange={field.onChange}
+                                  showTimeSelect
+                                  inline
+                                  timeFormat="HH:mm"
+                                  timeIntervals={15}
+                                  dateFormat="PPP p"
+                                  calendarClassName="custom-datepicker"
+                                />
+
+                                         
+
+                                {/* <Calendar
                                   mode="single"
                                   selected={field.value}
                                   onSelect={field.onChange}
                                   disabled={(d) => d < new Date()}
                                   initialFocus
-                                />
+                                /> */}
                               </PopoverContent>
                             </Popover>
                             <FormMessage className="text-xs text-red-500" />
@@ -1047,7 +1047,11 @@ export default function WorkshopEditView({ id }: { id: string }) {
                   {step < 2 ? (
                     <button
                       type="button"
-                      onClick={goNext}
+                     onClick={(e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    goNext();
+  }}
                       className="h-10 px-6 rounded-xl bg-neutral-900 hover:bg-neutral-800 active:scale-[0.98] text-sm font-bold text-white transition-all shadow-sm flex items-center gap-2"
                     >
                       Continue <ChevronRight className="w-4 h-4" />

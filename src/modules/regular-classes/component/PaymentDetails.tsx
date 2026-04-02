@@ -6,16 +6,28 @@ import { Button } from "@/components/ui/button";
 import { useTRPC } from "@/trpc/client";
 import { useQuery, useSuspenseQuery } from "@tanstack/react-query";
 import { usePayment } from "@/hooks/usePayment";
+import { useRouter } from "next/navigation";
 
 function PaymentDetails({ data }: { data: getClasses }) {
   const trpc = useTRPC();
   const { data: user } = useQuery(trpc.user.profile.queryOptions());
+  const router = useRouter();
+  const { startPayment, isLoading } = usePayment();
 
-    const { startPayment, isLoading } = usePayment();
-  
   const handlePayment = () => {
+    console.log(data.AffiliateLinks, "45645");
+    if (data.AffiliateLinks) {
+      let url = data.AffiliateLinks;
+
+      // if (!url.startsWith("http")) {
+      //   url = "https://" + url
+      // }
+      
+      window.location.href = url;
+      return
+    }
+
     startPayment(data.id, "CLASS");
-    
   };
 
   const startDate = format(data.startDate, "do MMM yyyy").toUpperCase();
@@ -62,15 +74,14 @@ function PaymentDetails({ data }: { data: getClasses }) {
               Build strong foundations and grow with every session
             </p>
             <Button
-            disabled={isLoading}
+              disabled={isLoading}
               onClick={handlePayment}
               className="rounded-full cursor-pointer py-3 md:py-6 text-md px-10 md:max-w-56 max-w-full"
-      //         "tracking-wider py-3 px-6 text-xs md:py-4 md:text-sm md:px-6-p0|?
-      // }): cursor-pointer w-fit font-open-sauce font-semibold rounded-full bg-primary text-white"
+              //         "tracking-wider py-3 px-6 text-xs md:py-4 md:text-sm md:px-6-p0|?
+              // }): cursor-pointer w-fit font-open-sauce font-semibold rounded-full bg-primary text-white"
             >
               Make Payment
             </Button>
-            
           </div>
         </div>
       </div>

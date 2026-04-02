@@ -36,6 +36,7 @@ function WorkshopView({ id }: { id: string }) {
         {/* Hero Card */}
         <div className="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm">
           <div className="relative h-56 bg-gray-100">
+
             {data?.thumbnail ? (
               <img src={data.thumbnail} alt={data.title} className="w-full h-full object-cover" />
             ) : (
@@ -45,6 +46,7 @@ function WorkshopView({ id }: { id: string }) {
                 </svg>
               </div>
             )}
+            
             <div className="absolute top-4 right-4">
               <span className="bg-white text-gray-900 font-bold text-sm px-4 py-1.5 rounded-full shadow-md border border-gray-100">
                 ₹{data?.price?.toLocaleString('en-IN') ?? '—'}
@@ -74,11 +76,11 @@ function WorkshopView({ id }: { id: string }) {
                   {data.location.name}, {data.location.city}
                 </div>
               )}
-              {data?.slug && (
+              {/* {data?.slug && (
                 <div className="flex items-center gap-1.5 bg-gray-100 text-gray-500 border border-gray-200 px-3 py-1.5 rounded-lg text-xs font-mono">
                   /{data.slug}
-                </div>
-              )}
+                </div> */}
+              {/* )} */}
             </div>
           </div>
         </div>

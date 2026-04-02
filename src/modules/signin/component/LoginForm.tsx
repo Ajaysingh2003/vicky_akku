@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { loginSchema } from "@/schema/schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import React, { useState } from "react";
@@ -32,7 +32,7 @@ import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 
 function LoginForm() {
-  const trpc=useTRPC()
+  const trpc = useTRPC();
   const form = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
@@ -40,9 +40,9 @@ function LoginForm() {
       phone: "",
     },
   });
-  const name=form.getValues("name")
-  
-  const  phone=form.getValues("phone")
+  const name = form.getValues("name");
+
+  const phone = form.getValues("phone");
   const [countryCode, setCountryCode] = useState<{
     name: string;
     dial_code: string;
@@ -54,29 +54,33 @@ function LoginForm() {
   //   };
   const [isOpen, setIsOpen] = useState(false);
   console.log(countryCode.dial_code, 7878);
-  const router=useRouter()
-  const mutate=useMutation(trpc.user.requestOtp.mutationOptions({
-    onSuccess:(data)=>{
-      // console.log(data,"miss you")
-      router.push(`/verify-otp?name=${data.data.name}&phone=${ encodeURIComponent(data.data.phone)}`)
-      toast.success("OTP sent Successfully.")
-    },
-    onError:(error)=>{
-      console.log(error)
-      toast.error("Something went wrong")
-    }
-  }))
+  const router = useRouter();
+  const mutate = useMutation(
+    trpc.user.requestOtp.mutationOptions({
+      onSuccess: (data) => {
+        // console.log(data,"miss you")
+        router.push(
+          `/verify-otp?name=${data.data.name}&phone=${encodeURIComponent(data.data.phone)}`,
+        );
+        toast.success("OTP sent Successfully.");
+      },
+      onError: (error) => {
+        console.log(error);
+        toast.error("Something went wrong");
+      },
+    }),
+  );
 
-  const handleSubmit=async(data:z.infer<typeof loginSchema>)=>{
+  const handleSubmit = async (data: z.infer<typeof loginSchema>) => {
     // console.log(name)
-    const updatedData={...data,phone:countryCode.dial_code+data.phone}
-    console.log(updatedData,"from test")
-    await mutate.mutateAsync({...updatedData})
-  }
+    const updatedData = { ...data, phone: countryCode.dial_code + data.phone };
+    console.log(updatedData, "from test");
+    await mutate.mutateAsync({ ...updatedData });
+  };
   return (
     <div className="flex flex-col mt-5">
       <div className="md:max-w-[80%]">
-        <form onSubmit={form.handleSubmit(handleSubmit)} >
+        <form onSubmit={form.handleSubmit(handleSubmit)}>
           <div className="flex flex-col gap-4">
             <FieldGroup>
               <Controller
@@ -91,7 +95,7 @@ function LoginForm() {
                       your good name
                     </FieldLabel>
                     <Input
-                      className="bg-white rounded-full py-6 placeholder:text-[#A6A6A6]"
+                      className="bg-white rounded-full px-6 py-6 placeholder:text-[#A6A6A6]"
                       {...field}
                       id="name-field"
                       aria-invalid={fieldState.invalid}
@@ -129,6 +133,7 @@ function LoginForm() {
                         <DropdownMenuContent side="bottom" className="h-56">
                           {code.map((e) => (
                             <DropdownMenuItem
+                            key={e.code}
                               role="button"
                               className={`${e.code == countryCode.code && "opacity-50"}`}
                               onClick={() => setCountryCode(e)}
@@ -156,7 +161,7 @@ function LoginForm() {
             </FieldGroup>
             {/* <div className="flex items-center justify-center md:justify-normal"> */}
             <Button className=" rounded-full cursor-pointer py-6 text-md px-10 md:max-w-56 max-w-full">
-              Send Otp
+              Send OTP
             </Button>
             {/* </div> */}
           </div>

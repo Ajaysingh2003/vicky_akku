@@ -15,27 +15,27 @@ export const roleEnum = z.enum(["STUDENT", "ADMIN"]);
 
 export const normalUser = z.object({
   id: z.string(),
-  name: z.string(),
-  email: z.string(),
+  name: z.string().optional().nullable(),
+  email: z.string().optional().nullable(),
   
-  phone: z.string().min(10, "Phone must be at least 10 digits"),
+  phone: z.string().min(10, "Phone must be at least 10 digits").optional().nullable(),
 
-  role: roleEnum.default("STUDENT"),
+  role: roleEnum.default("STUDENT").optional().nullable(),
 
   avatar: z.string().url().optional().nullable(),
 
-  createdAt: z.string(),
+  createdAt: z.string().optional().nullable(),
 
-  updatedAt: z.string(),
+  updatedAt: z.string().optional().nullable(),
 
-  lastLoginAt: z.string(),
+  lastLoginAt: z.string().optional().nullable(),
 });
 
 export const enrollmentSchema = z.object({
   id: z.string(),
   userId: z.string(),
   workshopId: z.string(),
-  createdAt: z.string(),
+  createdAt: z.string().optional().nullable(),
   user: normalUser.optional().nullable(),
   workshop: workshopSchema.optional().nullable(),
 });
@@ -43,21 +43,21 @@ export const enrollmentSchema = z.object({
 export const userSchema = z.object({
   id: z.string(),
 
-  name: z.string().min(1, "Name is required"),
+  name: z.string().min(1, "Name is required").optional().nullable(),
 
-  email: z.string(),
+  email: z.string().optional().nullable(),
 
-  phone: z.string().min(10, "Phone must be at least 10 digits"),
+  phone: z.string().min(10, "Phone must be at least 10 digits").optional().nullable(),
 
-  role: roleEnum.default("STUDENT"),
+  role: roleEnum.default("STUDENT").optional().nullable(),
 
   avatar: z.string().url().optional().nullable(),
 
-  createdAt: z.string(),
+  createdAt: z.string().optional().nullable(),
 
-  updatedAt: z.string(),
-
-  lastLoginAt: z.string(),
+  updatedAt: z.string().optional().nullable(),
+  
+  lastLoginAt: z.string().optional().nullable(),
 
   // Relations (usually optional in validation layer)
   // orders: z.array(z.any()).optional(),
@@ -69,19 +69,19 @@ export const userSchema = z.object({
 export const userSchemaForAdmin = z.object({
   id: z.string(),
 
-  name: z.string().min(1, "Name is required"),
+  name: z.string().min(1, "Name is required").optional().nullable(),
 
-  email: z.string(),
-  phone: z.string().min(10, "Phone must be at least 10 digits"),
-  role: roleEnum.default("STUDENT"),
+  email: z.string().optional().nullable(),
+  phone: z.string().min(10, "Phone must be at least 10 digits").optional().nullable(),
+  role: roleEnum.default("STUDENT").optional().nullable(),
   avatar: z.string().url().optional().nullable(),
-  createdAt: z.string(),
-  updatedAt: z.string(),
-  lastLoginAt: z.string(),
-  orders: z.array(z.any()).optional(),
-  enrollments: z.array(enrollmentSchema).optional(),
-  userSubscription: z.array(z.any()).optional(),
-  tutorialAccess: z.array(z.any()).optional(),
+  createdAt: z.string().optional().nullable(),
+  updatedAt: z.string().optional().nullable(),
+  lastLoginAt: z.string().optional().nullable(),
+  orders: z.array(z.any()).optional().nullable(),
+  enrollments: z.array(enrollmentSchema).optional().nullable(),
+  userSubscription: z.array(z.any()).optional().nullable(),
+  tutorialAccess: z.array(z.any()).optional().nullable(),
 });
 
 const paginationSchema = z.object({
@@ -91,6 +91,7 @@ const paginationSchema = z.object({
 });
 
 const UsersSchema = z.array(userSchema);
+
 const getUsersOutputSchema = z.object({
   pagination: paginationSchema,
   users: UsersSchema,
@@ -174,6 +175,7 @@ export const userRouter = createTRPCRouter({
     try {
       
       return ctx.user;
+
     } catch (error) {
       if (axios.isAxiosError(error)) {
         if (error.response?.status === 400) {
@@ -357,4 +359,86 @@ export const userRouter = createTRPCRouter({
   throw new Error("Unknown error");
 }
     }),
+
+    deleteUser:protectedProcedure(["ADMIN"]).input(z.object({
+      id:z.string()
+    })).mutation(async({ctx,input})=>{
+      try {
+        const cookieStore = await cookies();
+        const access_token = await cookieStore.get("access_token")?.value;
+
+        const res = await axios.delete(
+          `${process.env.BASE_API}/v1/user/delete/${input.id}`,
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${access_token}`,
+            },
+            withCredentials: true,
+          },
+        );
+        console.log(res.data, "leah");
+        return res.data;
+      } catch (error: any) {
+        console.log(error?.response as any, "a error occuried");
+        if (axios.isAxiosError(error)) {
+          if (error.response?.status === 400) {
+            console.log("Bad request:", error.response.data);
+            return;
+          }
+        }
+
+        throw error;
+      }
+    }),
+    updateUser:protectedProcedure(["ADMIN"]).input(z.object({
+
+      id:z.string(),
+
+      name: z.string().min(1, "Name is required").optional(),
+
+       email: z.string().email("Invalid email").optional(),
+
+      phone: z
+      .string()
+      .min(10, "Phone must be at least 10 digits")
+      .max(15, "Phone too long")
+      .optional(),
+
+      role: z.enum(["STUDENT", "ADMIN"]).optional(),
+
+      password: z
+        .string()
+        .optional(),
+
+    })).mutation(async({ctx,input})=>{
+      try {
+        const cookieStore = await cookies();
+        const access_token = await cookieStore.get("access_token")?.value;
+
+        const res = await axios.patch(
+          `${process.env.BASE_API}/v1/user/update/${input.id}`,
+          {...input},
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${access_token}`,
+            },
+            withCredentials: true,
+          },
+        );
+        console.log(res.data, "leah");
+        return res.data;
+      } catch (error: any) {
+        console.log(error?.response as any, "a error occuried");
+        if (axios.isAxiosError(error)) {
+          if (error.response?.status === 400) {
+            console.log("Bad request:", error.response.data);
+            return;
+          }
+        }
+
+        throw error;
+      }
+    })
 });

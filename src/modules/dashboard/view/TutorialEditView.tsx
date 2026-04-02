@@ -1080,9 +1080,9 @@ function TutorialFormInner({ id }: { id: string }) {
                                   />
                                 </div>
                               </FormControl>
-                              <p className="text-xs text-neutral-400 mt-1">
-                                In cents — 2999 = $29.99. Blank = free.
-                              </p>
+                              {/* <p className="text-xs text-neutral-400 mt-1"> */}
+                                {/* In cents — 2999 = $29.99. Blank = free.
+                              </p> */}
                               <FormMessage className="text-xs text-red-500" />
                             </FormItem>
                           )}

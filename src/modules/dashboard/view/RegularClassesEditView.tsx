@@ -40,6 +40,7 @@ import toast from "react-hot-toast";
 
 const schema = z.object({
   title:       z.string().min(3, "Title must be at least 3 characters").max(150),
+  AffiliateLinks: z.string().nullable(),
   description: z.string().min(10, "Description is too short"),
   thumbnail:   z.string().url("Thumbnail must be a valid URL"),
   City:        z.string().min(2, "City is required"),
@@ -435,6 +436,7 @@ export default function RegularClassesEditView({id}:{id:string}) {
     resolver: zodResolver(schema),
     defaultValues: {
       title: classs.title,
+      AffiliateLinks:classs.AffiliateLinks,
       description: classs.description,
       thumbnail: classs.thumbnail,
       City: classs.City,
@@ -446,7 +448,7 @@ export default function RegularClassesEditView({id}:{id:string}) {
   });
 
   const stepFields: (keyof FormValues)[][] = [
-    ["title", "description"],
+    ["title", "AffiliateLinks" ,"description"],
     ["thumbnail", "price"],
     ["startDate", "endDate", "City", "perfectFor"],
   ];
@@ -463,6 +465,7 @@ export default function RegularClassesEditView({id}:{id:string}) {
   const onSubmit = async (v: FormValues) => mutate.mutateAsync({...v,id})
   
   return (
+
     <div className="min-h-screen bg-[#F5F4F0]">
       {/* Top bar */}
       <header className="h-14 bg-neutral-900 flex items-center px-6 gap-3">
@@ -499,6 +502,21 @@ export default function RegularClassesEditView({id}:{id:string}) {
                           <FormMessage className="text-xs text-red-500" />
                         </FormItem>
                       )} />
+
+                      <FormField control={form.control} name="AffiliateLinks" render={({ field }) => (
+                                              <FormItem>
+                                                <FormLabel><Label>Affiliate Link</Label></FormLabel>
+                                                <FormControl>
+                                                 <Input
+                        placeholder="link"
+                        className={fieldInput}
+                        {...field}
+                        value={field.value ?? ""}
+                      />
+                                                </FormControl>
+                                                <FormMessage className="text-xs text-red-500" />
+                                              </FormItem>
+                                            )} />
 
                       {/* Description — Tiptap */}
                       <FormField control={form.control} name="description" render={({ field }) => (
@@ -708,6 +726,8 @@ export default function RegularClassesEditView({id}:{id:string}) {
           </div>
         </main>
       </div>
+      
     </div>
+
   );
 }

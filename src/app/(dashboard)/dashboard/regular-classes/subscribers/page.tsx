@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import { loadDashboardUserFilter } from "@/modules/dashboard/hooks/useDashboardClient";
 import RegularClassesView from "@/modules/dashboard/view/RegularClassesView";
 import SubscribersView from "@/modules/dashboard/view/SubscribersView";

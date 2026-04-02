@@ -45,70 +45,183 @@ function usePlyr(videoEl: HTMLVideoElement | null, src: string) {
   const playerRef = useRef<any>(null);
 
   useEffect(() => {
-    if (!videoEl) return;
+  if (!videoEl) return;
 
-    const injectCSS = () => {
-      if (!document.querySelector('link[href*="plyr"]')) {
-        const l = document.createElement("link");
-        l.rel = "stylesheet";
-        l.href = "https://cdn.plyr.io/3.7.8/plyr.css";
-        document.head.appendChild(l);
-      }
-      if (!document.querySelector("#plyr-theme")) {
-        const s = document.createElement("style");
-        s.id = "plyr-theme";
-        s.textContent = `
-          :root {
-            --plyr-color-main: #e8a0b0;
-            --plyr-range-fill-background: #e8a0b0;
-            --plyr-video-control-color: #fff;
-            --plyr-video-control-color-hover: #e8a0b0;
-            --plyr-control-icon-size: 16px;
-            --plyr-font-size-base: 11px;
-            --plyr-control-radius: 4px;
-            --plyr-video-controls-background: linear-gradient(transparent, rgba(0,0,0,0.85));
-          }
-          .plyr--video .plyr__controls { padding: 12px 16px 14px; gap: 8px; }
-          .plyr--full-ui input[type=range] { color: #e8a0b0; }
-          .plyr__progress__buffer { color: rgba(232,160,176,0.2); }
-          .plyr__menu__container {
-            background: rgba(10,6,12,0.97);
-            border: 1px solid rgba(232,160,176,0.15);
-            border-radius: 8px;
-            backdrop-filter: blur(20px);
-          }
-          .plyr__menu__container .plyr__control { color: rgba(255,255,255,0.75); }
-          .plyr__menu__container .plyr__control--back { color: #e8a0b0; }
-          .plyr--video { border-radius: 0; }
-        `;
-        document.head.appendChild(s);
-      }
-    };
+  const injectCSS = () => {
+    // Plyr CSS
+    if (!document.querySelector('link[href*="plyr"]')) {
+      const l = document.createElement("link");
+      l.rel = "stylesheet";
+      l.href = "https://cdn.plyr.io/3.7.8/plyr.css";
+      document.head.appendChild(l);
+    }
 
-    const init = async () => {
-      injectCSS();
-      if (!window.Plyr) {
-        await new Promise<void>((res, rej) => {
-          const sc = document.createElement("script");
-          sc.src = "https://cdn.plyr.io/3.7.8/plyr.polyfilled.js";
-          sc.onload = () => res();
-          sc.onerror = () => rej();
-          document.head.appendChild(sc);
-        });
-      }
-      if (playerRef.current) playerRef.current.destroy();
-      playerRef.current = new (window as any).Plyr(videoEl, {
-        controls: ["play-large", "play", "progress", "current-time", "duration", "mute", "volume", "settings", "pip", "fullscreen"],
-        settings: ["quality", "speed"],
-        speed: { selected: 1, options: [0.5, 0.75, 1, 1.25, 1.5, 2] },
-        tooltips: { controls: true, seek: true },
-        keyboard: { focused: true, global: false },
+    // Custom Theme
+    if (!document.querySelector("#plyr-theme")) {
+      const s = document.createElement("style");
+      s.id = "plyr-theme";
+      s.textContent = `
+        :root {
+          --plyr-color-main: #ff4d6d;
+          --plyr-video-control-color: rgba(255,255,255,0.85);
+          --plyr-video-control-color-hover: #ffffff;
+          --plyr-control-icon-size: 18px;
+          --plyr-font-size-base: 12px;
+          --plyr-control-radius: 8px;
+        }
+
+        /* Container */
+        .plyr--video {
+          border-radius: 12px;
+          overflow: hidden;
+          background: #000;
+          box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+        }
+
+        /* Controls */
+        .plyr--video .plyr__controls {
+          padding: 14px 18px;
+          gap: 10px;
+          background: linear-gradient(
+            to top,
+            rgba(0,0,0,0.85),
+            rgba(0,0,0,0.4),
+            transparent
+          );
+          backdrop-filter: blur(10px);
+          opacity: 0;
+          transition: opacity 0.25s ease;
+        }
+
+        .plyr--video:hover .plyr__controls {
+          opacity: 1;
+        }
+
+        /* Buttons */
+        .plyr__control {
+          border-radius: 8px;
+          transition: background 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .plyr__control:hover {
+          background: rgba(255,255,255,0.1);
+        }
+
+        /* BIG CENTER PLAY BUTTON (FIXED - NO MOVEMENT) */
+        .plyr__control--overlaid {
+          background: rgba(0,0,0,0.6);
+          backdrop-filter: blur(10px);
+          border-radius: 50%;
+          padding: 18px;
+          transition: background 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .plyr__control--overlaid:hover {
+          background: rgba(255,77,109,0.95);
+          box-shadow: 0 8px 25px rgba(255,77,109,0.4);
+        }
+
+        /* Hide play button while playing */
+        .plyr--playing .plyr__control--overlaid {
+          opacity: 0;
+        }
+
+        /* Progress */
+        .plyr__progress__buffer {
+          color: rgba(255,255,255,0.2);
+        }
+
+        .plyr__progress input[type=range],
+        .plyr__volume input[type=range] {
+          color: #ff4d6d;
+        }
+
+        /* Time */
+        .plyr__time {
+          font-weight: 500;
+          letter-spacing: 0.3px;
+        }
+
+        /* Settings menu */
+        .plyr__menu__container {
+          background: rgba(15,15,20,0.95);
+          border: 1px solid rgba(255,255,255,0.08);
+          border-radius: 10px;
+          backdrop-filter: blur(20px);
+          padding: 6px;
+        }
+
+        .plyr__menu__container .plyr__control {
+          border-radius: 6px;
+          padding: 8px 10px;
+        }
+
+        .plyr__menu__container .plyr__control:hover {
+          background: rgba(255,255,255,0.08);
+        }
+
+        /* Tooltip */
+        .plyr__tooltip {
+          background: rgba(0,0,0,0.8);
+          border-radius: 6px;
+          font-size: 11px;
+          padding: 4px 8px;
+        }
+
+        /* Fullscreen fix */
+        .plyr--fullscreen-enabled.plyr--fullscreen-active {
+          border-radius: 0;
+        }
+      `;
+      document.head.appendChild(s);
+    }
+  };
+
+  const init = async () => {
+    injectCSS();
+
+    if (!(window as any).Plyr) {
+      await new Promise<void>((res, rej) => {
+        const sc = document.createElement("script");
+        sc.src = "https://cdn.plyr.io/3.7.8/plyr.polyfilled.js";
+        sc.onload = () => res();
+        sc.onerror = () => rej();
+        document.head.appendChild(sc);
       });
-    };
+    }
 
-    init().catch(console.error);
-    return () => { playerRef.current?.destroy(); playerRef.current = null; };
-  }, [videoEl]);
+    if (playerRef.current) playerRef.current.destroy();
+
+    playerRef.current = new (window as any).Plyr(videoEl, {
+      controls: [
+        "play-large",
+        "play",
+        "progress",
+        "current-time",
+        "duration",
+        "mute",
+        "volume",
+        "settings",
+        "pip",
+        "fullscreen"
+      ],
+      settings: ["quality", "speed"],
+      speed: {
+        selected: 1,
+        options: [0.5, 0.75, 1, 1.25, 1.5, 2],
+      },
+      tooltips: { controls: true, seek: true },
+      keyboard: { focused: true, global: false },
+    });
+  };
+
+  init().catch(console.error);
+
+  return () => {
+    playerRef.current?.destroy();
+    playerRef.current = null;
+  };
+}, [videoEl]);
 
   useEffect(() => {
     const p = playerRef.current;

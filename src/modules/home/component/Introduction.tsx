@@ -112,7 +112,7 @@ function Introduction() {
       viewport={{ once: true }}
     >
       <div className="w-[90%] mx-auto bg-[#C4B1D4] rounded-3xl">
-        <div className="w-full grid grid-cols-1 md:grid-cols-12 md:px-12 gap-y-5 py-8">
+        <div className="w-full grid grid-cols-1 md:grid-cols-12 gap-y-5 py-8 md:p-[45px_0px_30px_94px] ">
           {/* TEXT SIDE */}
           <div className="col-span-8 order-2 space-y-6 md:order-1">
             {/* TITLE */}
@@ -140,7 +140,16 @@ function Introduction() {
                 whileInView="visible"
                 viewport={{ once: true }}
               >
-                {[1, 2, 3, 4].map((i) => (
+                {[
+                  {
+                    icon: "/image/svg/insta.svg",
+                    url: "https://www.instagram.com/vickyakku/",
+                  },
+                  {
+                    icon: "/image/svg/youtube.svg",
+                    url: "https://www.instagram.com/vickyakku/",
+                  },
+                ].map((e, i) => (
                   <motion.div
                     key={i}
                     variants={{
@@ -148,15 +157,17 @@ function Introduction() {
                       visible: { opacity: 1, scale: 1 },
                     }}
                     transition={{ duration: 0.3 }}
-                    className="bg-[#4B4740CC] size-7 rounded-full flex items-center justify-center"
+                    className="bg-[#fff] size-7 rounded-full flex items-center justify-center"
                   >
-                    <Image
-                      src="/image/svg/social.svg"
-                      height={100}
-                      width={100}
-                      className="size-4"
-                      alt="social"
-                    />
+                    <Link href={e.url}>
+                      <Image
+                        src={e.icon}
+                        height={100}
+                        width={100}
+                        className="size-4"
+                        alt="social"
+                      />
+                    </Link>
                   </motion.div>
                 ))}
               </motion.div>
@@ -171,7 +182,7 @@ function Introduction() {
               viewport={{ once: true }}
             >
               <p className="text-[#4B4740] text-md">
-                Vicky Dadheech and Aakanksha Tripathi popularly known as
+                Vivek Dadheech and Aakanksha Tripathi popularly known as
                 Vicky-Akku are Mumbai based choreographers with over a decade of
                 experience in teaching and performing dance. Known for their
                 chemistry, expressive storytelling, and soulful teaching style,
@@ -200,7 +211,7 @@ function Introduction() {
           <div className="col-span-4 order-1 md:order-2">
             <div className="w-full flex items-center justify-center">
               <motion.div
-                className="relative w-56 h-56 md:w-72 md:h-84"
+                className="relative w-56 h-56 md:w-84 md:h-80"
                 initial={{ opacity: 0, scale: 0.85, x: 40 }}
                 whileInView={{ opacity: 1, scale: 1, x: 0 }}
                 transition={{ duration: 0.6 }}

@@ -15,7 +15,7 @@ function RegularClassDetails({ data }: { data: getClasses }) {
     <div className="py-3 flex w-full h-full items-center justify-center   lg:py-7">
       <div className="w-full space-y-3 md:space-y-6   m-auto px-4">
         <div className="title-place flex-wrap order-1">
-          <h3 className="text-4xl    md:text-left font-passion-one uppercase  text-[#4B4740]">
+          <h3 className="text-4xl wrap-break-word   md:text-left font-passion-one uppercase  text-[#4B4740]">
             {data.title} -{" "}
             <span className="text-4xl font-passion-one  uppercase text-center md:text-left text-[#827B70]">
               {data?.City}
@@ -24,7 +24,7 @@ function RegularClassDetails({ data }: { data: getClasses }) {
         </div>
         <div className="w-full h-full order-3 md:order-2 ">
           <div
-            className="workshop-desc flex flex-col gap-2 text-[#656565]"
+            className="workshop-desc wrap-break-word flex flex-col gap-2 text-[#656565]"
             dangerouslySetInnerHTML={{ __html: sanitizedDescription }}
           />
         </div>
@@ -52,7 +52,7 @@ function RegularClassDetails({ data }: { data: getClasses }) {
 
           <Button
             onClick={handleBook}
-            className="tracking-wider w-full py-3 px-6  md:text-md! md:py-6 text-md md:px-10 cursor-pointer md:w-fit font-open-sauce font-bold rounded-full bg-primary text-white text-xs lg:text-lg"
+            className="tracking-wider py-3 px-6 text-xs md:py-6 text-md md:px-10 cursor-pointer w-fit font-open-sauce font-bold rounded-full bg-primary text-white"
           >
             Pay & Book
           </Button>

@@ -70,7 +70,6 @@
 
 // export default Tutorials;
 
-
 "use client";
 
 import { Button } from "@/components/ui/button";
@@ -117,9 +116,7 @@ function TutorialCard({
       ref={ref}
       initial={{ opacity: 0, y: 48, scale: 0.96, filter: "blur(6px)" }}
       animate={
-        isInView
-          ? { opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }
-          : {}
+        isInView ? { opacity: 1, y: 0, scale: 1, filter: "blur(0px)" } : {}
       }
       transition={{
         duration: 0.75,
@@ -134,10 +131,9 @@ function TutorialCard({
       className="bg-white rounded-[30px] px-4 py-4 md:px-6 overflow-hidden"
     >
       <div className="flex flex-col gap-3">
-
         {/* Thumbnail */}
-        <div className="relative w-full h-64 sm:h-72 md:h-80 rounded-[30px] overflow-hidden lg:h-96">
 
+        <div className="relative w-full h-64 sm:h-72 md:h-80 rounded-[30px] overflow-hidden lg:h-96">
           {/* Play button overlay */}
           <div className="absolute z-50 w-full h-full bg-black/5 flex items-center justify-center">
             <motion.div
@@ -191,16 +187,20 @@ function TutorialCard({
             ease: [0.16, 1, 0.3, 1],
           }}
         >
-          <h2 className="text-[#4B4740] uppercase text-center text-xl font-passion-one md:text-3xl">
+          <h2 className="text-[#4B4740] line-clamp-1 md:line-clamp-2 uppercase text-center text-xl font-passion-one md:text-3xl">
             {e.title}
           </h2>
           <div className="w-full flex flex-col md:flex-row items-center px-6 md:px-0 justify-center gap-3 mt-2">
             <div className="bg-[#F2E9F9] w-full py-2 rounded-full px-6">
-              <p className="text-[#6B6B6B] text-normal text-center">
-                Fees-<strong>INR {Math.floor(e.price * 1.2)}</strong>
+              <p className="text-[#6B6B6B] text-normal text-center ">
+                Fees-
+                <strong className="line-through">
+                  INR {Math.floor(e.price * 1.2)}
+                </strong>
                 <strong> INR {e.price}/-</strong>
               </p>
             </div>
+
             <motion.div
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -215,7 +215,6 @@ function TutorialCard({
             </motion.div>
           </div>
         </motion.div>
-
       </div>
     </motion.div>
   );

@@ -77,15 +77,27 @@ import { useRegularClassesFilters } from "../hooks/hook/useRegularClasses";
 import ContainerBox from "@/modules/signin/component/ContainerBox";
 import RegularClassDetails from "../component/RegularClassDetails";
 import { GraduationCap } from "lucide-react";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
+
+import {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
 
 function RegularClassesView() {
-  const [filters] = useRegularClassesFilters();
+  const [filters,setFilters] = useRegularClassesFilters();
 
   const trpc = useTRPC();
   const { data } = useSuspenseQuery(
     trpc.regularClasses.getAllClasses.queryOptions({ ...filters })
   );
+
+  console.log(filters.page,45454545)
+
 
   return (
     <div className="h-full min-h-screen bg-hero relative">
@@ -105,7 +117,7 @@ function RegularClassesView() {
 
           {/* TITLE */}
           <motion.h1
-            className="font-passion-one font-bold text-center text-[#C77F90] text-4xl lg:text-8xl uppercase"
+            className="font-passion-one lg:max-w-6xl max-w-[300px] my-4 font-bold text-center text-[#C77F90] text-4xl lg:text-8xl uppercase"
             initial={{ opacity: 0, y: 60 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
@@ -153,20 +165,51 @@ function RegularClassesView() {
                   }
                 }}
               >
-                {data.classes.map((e) => (
-                  <motion.div
-                    key={e.id}
-                    variants={{
-                      hidden: { opacity: 0, y: 40 },
-                      show: { opacity: 1, y: 0 }
-                    }}
-                    transition={{ duration: 0.5 }}
-                  >
-                    <ContainerBox image={e.thumbnail}>
-                      <RegularClassDetails data={e} />
-                    </ContainerBox>
-                  </motion.div>
-                ))}
+
+                  <AnimatePresence mode="wait">
+                      {data.classes.map((e) => (
+                        <motion.div
+                          key={e.id}
+                          initial={{ opacity: 0, y: 40 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -40 }} 
+                          transition={{ duration: 0.3 }}
+                        >
+                          <ContainerBox image={e.thumbnail}>
+                            <RegularClassDetails data={e} />
+                          </ContainerBox>
+                        </motion.div>
+                      ))}
+                    </AnimatePresence>
+
+                {filters.limit < data.pagination.totalCount && (
+              <div className="w-full mt-10">
+                <Pagination>
+                  <PaginationContent>
+                    <PaginationItem>
+                      <PaginationPrevious href="#" />
+                    </PaginationItem>
+
+                    {Array.from({ length: data.pagination.totalPages }).map((_, i) => (
+                      <PaginationItem key={i}>
+                        <PaginationLink
+                          onClick={() => setFilters({ page: i + 1 })}
+                          className={`${
+                            filters.page === i + 1 && "bg-white/50"
+                          } cursor-pointer transition-all duration-300`}
+                        >
+                          {i + 1}
+                        </PaginationLink>
+                      </PaginationItem>
+                    ))}
+
+                    <PaginationItem>
+                      <PaginationNext href="#" />
+                    </PaginationItem>
+                  </PaginationContent>
+                </Pagination>
+              </div>
+            )}
               </motion.div>
 
             )}

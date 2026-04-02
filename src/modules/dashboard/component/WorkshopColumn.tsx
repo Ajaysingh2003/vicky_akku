@@ -31,6 +31,8 @@ import { format } from "date-fns";
 import Link from "next/link";
 import DeleteBox from "./DeleteBox";
 import { useWorkshopFilters } from "@/modules/workshop/useWorkshop";
+import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
 
 export const workshopColumn: ColumnDef<getWorkshopType[number]>[] = [
   {
@@ -180,6 +182,7 @@ export const workshopColumn: ColumnDef<getWorkshopType[number]>[] = [
       //     }
       //   ),
       // );
+      const router=useRouter()
 
       const handleDelete = async (e: React.MouseEvent) => {
         e.stopPropagation();
@@ -203,9 +206,9 @@ export const workshopColumn: ColumnDef<getWorkshopType[number]>[] = [
               handleDelete={handleDelete}
             />
             <DropdownMenuItem>
-              <Link href={`/dashboard/workshops/${row.original.id}/edit`}>
+              <Button onClick={()=>router.push(`/dashboard/workshops/${row.original.id}/edit`)}>
                 Edit
-              </Link>
+              </Button>
             </DropdownMenuItem>
             
             <DropdownMenuItem>

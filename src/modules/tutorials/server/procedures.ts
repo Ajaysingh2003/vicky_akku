@@ -127,7 +127,6 @@ export const tutorialsRouter = createTRPCRouter({
         title: z.string().min(1, "page can't below 1"),
         description: z.string().min(1, "limit can't below 1"),
         price: z.number().optional(),
-        duration: z.number().optional(),
         thumbnail: z.string().min(1, "thumbnail is required"),
         videos: z.array(
           z.object({

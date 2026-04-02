@@ -47,7 +47,7 @@ function Navbar({ isUserExist = false, locations }: NavbarProps) {
         </div>
 
         {/* Desktop Menu */}
-        <div className="hidden md:flex items-center gap-6 md:gap-24">
+        <div className="hidden lg:flex items-center gap-6 md:gap-24">
           {items.map((e, i) => (
             <div
               key={i}
@@ -95,7 +95,7 @@ function Navbar({ isUserExist = false, locations }: NavbarProps) {
         </div>
 
         {/* Mobile Menu */}
-        <div className="block md:hidden">
+        <div className="block lg:hidden">
           <Button
             onClick={() => setOpen((e) => !e)}
             className="cursor-pointer rounded-full hover:scale-105 transition-transform duration-300 shadow-md"
@@ -120,7 +120,7 @@ function Navbar({ isUserExist = false, locations }: NavbarProps) {
                   duration: 0.35,
                   ease: "easeInOut",
                 }}
-                className=" w-full bg-[#E8EFF4] rounded-[30px] shadow-lg overflow-hidden"
+                className=" w-full bg-[#E8EFF4] backdrop-blur-3xl rounded-[30px] shadow-lg overflow-hidden"
               >
                 <ul className="flex flex-col gap-2 max-w-[90%] mx-auto pt-[30px]">
                   {items.map((e, i) => (

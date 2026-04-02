@@ -116,7 +116,7 @@
 //               >
 //                 <Button
 //                   onClick={scrollLeft}
-//                   className="rounded-full bg-[#595959] size-10 md:size-12  cursor-pointer"
+//                   className="rounded-full bg-[#595959] size-10 md:size-10  cursor-pointer"
 //                 >
 //                   <ChevronLeft className="size-5 text-white" />
 //                 </Button>
@@ -129,7 +129,7 @@
 //               >
 //                 <Button
 //                   onClick={scrollRight}
-//                   className="rounded-full bg-[#595959] size-10 md:size-12  cursor-pointer"
+//                   className="rounded-full bg-[#595959] size-10 md:size-10  cursor-pointer"
 //                 >
 //                   <ChevronRight className="size-5 text-white" />
 //                 </Button>
@@ -180,7 +180,6 @@
 
 // export default ReviewSection;
 
-
 "use client";
 
 import { Button } from "@/components/ui/button";
@@ -190,7 +189,6 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 
 function ReviewSection() {
-
   const review = [
     {
       rating: 5,
@@ -242,14 +240,13 @@ function ReviewSection() {
 
   return (
     <motion.div
-      className="w-full bg-[#DFF2EE] mt-48 md:mt-18 h-full"
+      className="w-full bg-[#DFF2EE] mb-6 mt-48 md:mt-18 h-full"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 0.6 }}
       viewport={{ once: true }}
     >
       <div className="grid grid-cols-1 md:grid-cols-12 h-full">
-
         {/* LEFT TEXT */}
         <motion.div
           className="col-span-5 py-4 flex items-start md:items-end md:justify-end w-full h-full"
@@ -271,23 +268,24 @@ function ReviewSection() {
 
         {/* REVIEWS */}
         <div className="col-span-7 p-6 overflow-hidden">
-
           <div className="w-full relative">
-
             <Button
               onClick={scrollLeft}
-              className="absolute left-0 top-1/2 -translate-y-1/2 rounded-full bg-[#595959] size-10 md:size-12 z-20"
+              className="absolute -left-5 top-1/2 -translate-y-1/2 rounded-full bg-[#595959] size-10 md:size-10 z-20"
             >
               <ChevronLeft className="size-5 text-white" />
             </Button>
-
-            <Button
-              onClick={scrollRight}
-              className="absolute right-0 top-1/2 -translate-y-1/2 rounded-full bg-[#595959] size-10 md:size-12 z-20"
+            <div
+              className="h-full w-14 md:w-24 bg-review
+              absolute right-0 z-50 flex items-center justify-right"
             >
-              <ChevronRight className="size-5 text-white" />
-            </Button>
-
+              <Button
+                onClick={scrollRight}
+                className="absolute right-0 top-1/2 -translate-y-1/2 rounded-full bg-[#595959] size-10 md:size-10 z-20"
+              >
+                <ChevronRight className="size-5 text-white" />
+              </Button>
+            </div>
             <motion.div
               ref={sliderRef}
               className="flex gap-4 overflow-auto scrollbar-none"
@@ -321,7 +319,6 @@ function ReviewSection() {
                   </div>
 
                   <div className="flex items-center gap-4">
-
                     <div className="size-10">
                       <Image
                         className="rounded-full object-cover"
@@ -336,14 +333,11 @@ function ReviewSection() {
                       <h3 className="text-sm text-[#7B9691]">{e.user.name}</h3>
                       <p className="text-xs text-[#7B9691]">{e.user.place}</p>
                     </div>
-
                   </div>
                 </motion.div>
               ))}
             </motion.div>
-
           </div>
-
         </div>
       </div>
     </motion.div>

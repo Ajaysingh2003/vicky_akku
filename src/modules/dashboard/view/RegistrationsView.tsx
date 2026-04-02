@@ -38,12 +38,13 @@ import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
 import toast from "react-hot-toast";
+import DatePicker from "react-datepicker";
 
 // ─── Schema ───────────────────────────────────────────────────────────────────
 
 const schema = z.object({
   title:       z.string().min(3, "At least 3 characters"),
-  slug:        z.string().min(3).regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, "Lowercase + hyphens only"),
+  // slug:        z.string().min(3).regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, "Lowercase + hyphens only"),
   description: z.string().min(20, "Write at least 20 characters"),
   thumbnail:   z.string().min(1, "Thumbnail required"),
   price:       z.string(),
@@ -344,7 +345,7 @@ function SectionTitle({ step, label, subtitle }: { step: number; label: string; 
 // ─── Step Sidebar ─────────────────────────────────────────────────────────────
 
 const STEPS = [
-  { label: "Content",    sub: "Title, slug & description" },
+  { label: "Content",    sub: "Title & description" },
   { label: "Media",      sub: "Thumbnail & pricing" },
   { label: "Scheduling", sub: "Date & venue" },
 ];
@@ -395,18 +396,13 @@ export default function RegistrationsView() {
 
   const form = useForm<FormValues>({
     resolver: zodResolver(schema),
-    defaultValues: { title: "", slug: "", description: "", thumbnail: "", price: "0", locationId: "" },
+    defaultValues: { title: "", description: "", thumbnail: "", price: "0", locationId: "" },
   });
 
-  const autoSlug = (val: string) => {
-    form.setValue("slug",
-      val.toLowerCase().trim().replace(/[^\w\s-]/g, "").replace(/\s+/g, "-").replace(/--+/g, "-"),
-      { shouldValidate: form.formState.isSubmitted }
-    );
-  };
+  
 
   const stepFields: (keyof FormValues)[][] = [
-    ["title", "slug", "description"],
+    ["title", "description"],
     ["thumbnail", "price"],
     ["eventDate", "locationId"],
   ];
@@ -463,7 +459,7 @@ export default function RegistrationsView() {
                               placeholder="e.g. Advanced React Patterns"
                               className={fieldInput}
                               {...field}
-                              onChange={(e) => { field.onChange(e); autoSlug(e.target.value); }}
+                              onChange={(e) => { field.onChange(e) }}
                             />
                           </FormControl>
                           <FormMessage className="text-xs text-red-500" />
@@ -471,23 +467,7 @@ export default function RegistrationsView() {
                       )} />
 
                       {/* Slug */}
-                      <FormField control={form.control} name="slug" render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>
-                            <Label>
-                              URL Slug
-                              <span className="ml-1.5 text-xs text-neutral-400 font-normal">auto-generated</span>
-                            </Label>
-                          </FormLabel>
-                          <FormControl>
-                            <div className="relative flex items-center">
-                              <span className="absolute left-3 text-xs text-neutral-400 font-mono select-none pointer-events-none">/workshop/</span>
-                              <Input placeholder="advanced-react-patterns" className={cn(fieldInput, "pl-[5.5rem] font-mono")} {...field} />
-                            </div>
-                          </FormControl>
-                          <FormMessage className="text-xs text-red-500" />
-                        </FormItem>
-                      )} />
+                      
 
                       {/* Description — Tiptap */}
                       <FormField control={form.control} name="description" render={({ field }) => (
@@ -556,7 +536,16 @@ export default function RegistrationsView() {
                               </FormControl>
                             </PopoverTrigger>
                             <PopoverContent className="w-auto p-0 rounded-2xl border-neutral-200 shadow-xl" align="start">
-                              <Calendar mode="single" selected={field.value} onSelect={field.onChange} disabled={(d) => d < new Date()} initialFocus />
+                              <DatePicker
+  selected={field.value}
+  onChange={field.onChange}
+  showTimeSelect
+  inline
+  timeFormat="HH:mm"
+  timeIntervals={15}
+  dateFormat="PPP p"
+  calendarClassName="custom-datepicker"
+/>
                             </PopoverContent>
                           </Popover>
                           <FormMessage className="text-xs text-red-500" />

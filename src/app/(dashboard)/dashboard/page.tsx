@@ -8,7 +8,7 @@ import { redirect } from "next/navigation";
 export default async function DashboardPage() {
   
   const user = await caller.user.profile();
-
+  
   console.log(user);
 
   if (!user || user.role !== "ADMIN") {

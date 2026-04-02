@@ -63,7 +63,6 @@
 
 // export default OnlineTutorialDetails;
 
-
 "use client";
 
 import { getTutorial } from "@/trpc/type";
@@ -92,7 +91,7 @@ function OnlineTutorialDetails({ data }: { data: getTutorial }) {
   };
 
   return (
-    <div className="w-full h-full py-3 lg:py-7">
+    <div className="w-full h-full py-3 lg:py-7 wrap-break-word">
       <motion.div
         className="w-full flex flex-col items-center justify-center gap-2 md:gap-3 h-full m-auto px-4"
         initial="hidden"
@@ -150,9 +149,7 @@ function OnlineTutorialDetails({ data }: { data: getTutorial }) {
               <span className="font-bold line-through">
                 INR {Math.round(data.price) * 1.2}
               </span>{" "}
-              <span className="font-bold">
-                INR {Math.floor(data.price)}/-
-              </span>
+              <span className="font-bold">INR {Math.floor(data.price)}/-</span>
             </p>
           </div>
 

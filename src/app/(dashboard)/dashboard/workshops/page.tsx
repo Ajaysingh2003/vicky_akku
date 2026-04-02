@@ -1,4 +1,4 @@
-
+export const dynamic = "force-dynamic";
 import DashBoardWorkshopView from "@/modules/dashboard/view/DashBoardWorkshopView";
 
 import { loadWorkshopFilter } from "@/modules/workshop/searchParms";

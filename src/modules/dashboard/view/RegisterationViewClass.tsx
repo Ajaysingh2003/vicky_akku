@@ -40,6 +40,7 @@ import toast from "react-hot-toast";
 
 const schema = z.object({
   title:       z.string().min(3, "Title must be at least 3 characters").max(150),
+  AffiliateLinks: z.string().nullable(),
   description: z.string().min(10, "Description is too short"),
   thumbnail:   z.string().url("Thumbnail must be a valid URL"),
   City:        z.string().min(2, "City is required"),
@@ -434,6 +435,7 @@ export default function CreateClassView() {
     resolver: zodResolver(schema),
     defaultValues: {
       title: "",
+      AffiliateLinks:"",
       description: "",
       thumbnail: "",
       City: "",
@@ -445,7 +447,7 @@ export default function CreateClassView() {
   });
 
   const stepFields: (keyof FormValues)[][] = [
-    ["title", "description"],
+    ["title", "AffiliateLinks","description"],
     ["thumbnail", "price"],
     ["startDate", "endDate", "City", "perfectFor"],
   ];
@@ -499,6 +501,21 @@ export default function CreateClassView() {
                         </FormItem>
                       )} />
 
+                      <FormField control={form.control} name="AffiliateLinks" render={({ field }) => (
+                        <FormItem>
+                          <FormLabel><Label>Affiliate Link</Label></FormLabel>
+                          <FormControl>
+                           <Input
+  placeholder="link"
+  className={fieldInput}
+  {...field}
+  value={field.value ?? ""}
+/>
+                          </FormControl>
+                          <FormMessage className="text-xs text-red-500" />
+                        </FormItem>
+                      )} />
+                                                
                       {/* Description — Tiptap */}
                       <FormField control={form.control} name="description" render={({ field }) => (
                         <FormItem>

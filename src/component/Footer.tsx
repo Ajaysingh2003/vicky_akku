@@ -6,9 +6,12 @@ function Footer() {
   const items = [
     { label: "Workshops", url: "/workshop" },
     { label: "Online Tutorials", url: "/online-tutorials" },
-    { label: "Contact Us", url: "/Contact-us" },
+    { 
+  label: "Contact Us", 
+  url: "https://wa.me/9653251228?text=Hi%20I%20Have%20a%20query" 
+},
     { label: "Regular Classes", url: "/regular-classes" },
-    { label: "Gallery", url: "" },
+    // { label: "Gallery", url: "" },
   ];
   return (
     <div className="bg-[#977DAE]">

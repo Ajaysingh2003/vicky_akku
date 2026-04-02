@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import EnrollmentView from '@/modules/dashboard/view/EnrollmentView'
 import { caller } from '@/trpc/server';
 import { redirect } from 'next/navigation';

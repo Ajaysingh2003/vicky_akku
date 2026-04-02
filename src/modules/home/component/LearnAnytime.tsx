@@ -53,7 +53,6 @@
 
 // export default LearnAnytime;
 
-
 "use client";
 
 import { Button } from "@/components/ui/button";
@@ -73,29 +72,27 @@ function LearnAnytime() {
     >
       <div className="w-[90%] bg-[#EDE7EF] mx-auto rounded-2xl overflow-hidden">
         <div className="grid grid-cols-1 md:grid-cols-2">
-
           {/* TEXT SECTION */}
           <motion.div
-            className="w-full p-10 order-2 md:order-1 items-center md:items-start flex flex-col gap-4 md:gap-8"
+            className="w-full pt-2 md:pt-10 px-6 md:px-10 pb-10 order-2 md:order-1 items-center md:items-start flex flex-col gap-4 md:gap-8"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={{
               hidden: {},
               visible: {
-                transition: { staggerChildren: 0.2 }
-              }
+                transition: { staggerChildren: 0.2 },
+              },
             }}
           >
             <div className="flex flex-col">
-
               <motion.h2
                 variants={{
                   hidden: { opacity: 0, y: 40 },
-                  visible: { opacity: 1, y: 0 }
+                  visible: { opacity: 1, y: 0 },
                 }}
                 transition={{ duration: 0.5 }}
-                className="text-4xl md:text-6xl text-[#535353] text-center md:text-start font-passion-one uppercase max-w-md"
+                className="text-4xl md:text-5xl lg:text-7xl text-[#535353] text-center md:text-start font-passion-one uppercase max-w-md"
               >
                 Learn anytime anywhere
               </motion.h2>
@@ -103,7 +100,7 @@ function LearnAnytime() {
               <motion.p
                 variants={{
                   hidden: { opacity: 0, y: 30 },
-                  visible: { opacity: 1, y: 0 }
+                  visible: { opacity: 1, y: 0 },
                 }}
                 transition={{ duration: 0.5 }}
                 className="text-[#464646] capitalize text-md md:text-2xl font-semibold text-center md:text-start"
@@ -115,12 +112,12 @@ function LearnAnytime() {
             <motion.div
               variants={{
                 hidden: { opacity: 0, y: 40 },
-                visible: { opacity: 1, y: 0 }
+                visible: { opacity: 1, y: 0 },
               }}
               transition={{ duration: 0.5 }}
               className="max-w-xs flex flex-col gap-4"
             >
-              <p className="font-opensauce-one text-regular text-xs md:text-md leading-5 text-center md:text-start mx-auto">
+              <p className="font-opensauce-one text-regular text-sm md:text-[16px] leading-5 text-center md:text-start mx-auto">
                 Can’t attend in person? Our online tutorials bring the
                 Vicky–Akku experience to you step-by-step, expressive, and easy
                 to follow.
@@ -156,7 +153,6 @@ function LearnAnytime() {
               />
             </div>
           </motion.div>
-
         </div>
       </div>
     </motion.div>

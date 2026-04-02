@@ -22,8 +22,10 @@ export const regularClassSchema = z.object({
 
   description: z.string(),
 
+  AffiliateLinks:z.string().nullable(),
+  
   thumbnail: z.string(),
-
+  
   City: z.string(),
 
   price: z.number().positive("Price must be greater than 0"),
@@ -102,6 +104,8 @@ const subscriptionsSchema = z.object({
 
 export const createClassSchema = z.object({
   title: z.string().min(3, "Title must be at least 3 characters").max(150),
+
+  AffiliateLinks:z.string().nullable(),
 
   description: z.string().min(10, "Description is too short"),
 
@@ -252,14 +256,14 @@ export const classesRouter = createTRPCRouter({
         id:z.string(),
         title: z.string().min(3, "Title must be at least 3 characters").max(150).optional(),
         description: z.string().min(10, "Description is too short").optional(),
+        AffiliateLinks:z.string().nullable(),
+        thumbnail: z.string().url("Thumbnail must be a valid URL").optional(),
 
-          thumbnail: z.string().url("Thumbnail must be a valid URL").optional(),
+        City: z.string().min(2, "City is required").optional(),
 
-  City: z.string().min(2, "City is required").optional(),
+        price: z.number().min(0, "Price must be positive").optional(),
 
-  price: z.number().min(0, "Price must be positive").optional(),
-
-  startDate: z.string().optional(),
+        startDate: z.string().optional(),
   isActive:z.boolean().default(true).optional(),
   endDate: z.string().optional(),
 
@@ -346,7 +350,6 @@ export const classesRouter = createTRPCRouter({
         startDate: z.string(),
         endDate: z.string(),
         productId: z.string().optional(),
-
       }),
     )
     .output(subscriptionsSchema)

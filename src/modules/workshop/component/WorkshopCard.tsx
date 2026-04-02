@@ -18,22 +18,24 @@ interface workshopType {
 function WorkshopCard({ workshop }: { workshop: getWorkshopCard }) {
   const formattedDate =
     format(workshop.eventDate, "do MMM").toUpperCase() + " -";
-    
+
   return (
-    <motion.div initial="hidden"
-                variants={{
-      hidden: { clipPath: "inset(100% 0% 0% 0%)", opacity: 0 },
-      show: {
-        clipPath: "inset(0% 0% 0% 0%)",
-        opacity: 1,
-        transition: { duration: 1, ease: [0.16, 1, 0.3, 1] as const},
-      },
-    }}
-                style={{ perspective: 1000 }}
-                
-                whileInView="show"
-                viewport={{ once: true }}
-                whileHover={{ y: -8 }} className="w-full">
+    <motion.div
+      initial="hidden"
+      variants={{
+        hidden: { clipPath: "inset(100% 0% 0% 0%)", opacity: 0 },
+        show: {
+          clipPath: "inset(0% 0% 0% 0%)",
+          opacity: 1,
+          transition: { duration: 1, ease: [0.16, 1, 0.3, 1] as const },
+        },
+      }}
+      style={{ perspective: 1000 }}
+      whileInView="show"
+      viewport={{ once: true }}
+      whileHover={{ y: -8 }}
+      className="w-full"
+    >
       <div className="card flex flex-col gap-4">
         <div className=" relative rounded-3xl  overflow-hidden">
           <Image
@@ -48,7 +50,13 @@ function WorkshopCard({ workshop }: { workshop: getWorkshopCard }) {
         </div>
         <div className="card flex flex-col items-center md:items-start gap-3">
           <div className="title-place">
-            <h3 className="text-4xl font-passion-one uppercase  text-[#4B4740]">
+            <h3
+              className="text-2xl sm:text-3xl md:text-4xl 
+               max-w-sm sm:max-w-md md:max-w-lg 
+               break-words line-clamp-2 
+               font-passion-one uppercase 
+               text-[#4B4740]"
+            >
               {workshop.title}
             </h3>
             <p className="text-4xl font-passion-one text-center md:text-left uppercase text-[#827B70]">
@@ -72,7 +80,7 @@ function WorkshopCard({ workshop }: { workshop: getWorkshopCard }) {
             </div>
 
             <div className="w-full">
-              <Button className=" w-full md:w-fit  rounded-full bg-transparent border-[1px] border-[#656565] duration-500 text-regular transition-colors cursor-pointer hover:text-white">
+              <Button className=" w-full md:w-fit  rounded-full bg-transparent uppercase border-[1px] border-[#656565] duration-500 text-regular transition-colors cursor-pointer hover:text-white">
                 <Link href={`/workshop/${workshop.id}`}>Book</Link>
               </Button>
             </div>

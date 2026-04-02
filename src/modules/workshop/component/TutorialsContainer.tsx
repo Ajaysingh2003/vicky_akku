@@ -206,6 +206,7 @@ function TutorialsContainer({ data }: { data: getTutorials }) {
           <div className="w-full h-full">
             <Tutorials tutorials={data} />
 
+            
             {filters.limit < data.pagination.totalCount && (
               <div className="w-full mt-10">
                 <Pagination>
@@ -219,7 +220,7 @@ function TutorialsContainer({ data }: { data: getTutorials }) {
                         <PaginationLink
                           onClick={() => setFilters({ page: i + 1 })}
                           className={`${
-                            filters.page === i + 1 && "bg-white/50"
+                            filters.page === i + 1 && "bg-primary text-white"
                           } cursor-pointer transition-all duration-300`}
                         >
                           {i + 1}
@@ -234,6 +235,7 @@ function TutorialsContainer({ data }: { data: getTutorials }) {
                 </Pagination>
               </div>
             )}
+            
           </div>
         )}
       </div>

@@ -24,7 +24,12 @@ function RegularClassesView() {
   const { data } = useSuspenseQuery(
     trpc.regularClasses.getAllClasses.queryOptions({ ...filters }),
   );
+const nextPage =
+  data.pagination.totalPages > data.pagination.currentPage
+    ? filters.page + 1
+    : 1;
 
+const href = `?page=${nextPage}`;
   const totalPages = data.pagination.totalPages;
   return (
     <div className="w-full h-full">
@@ -66,14 +71,21 @@ function RegularClassesView() {
                     <PaginationItem key={i} className="">
                       <PaginationLink
                         onClick={() => setFilters({ page: i + 1 })}
-                        className={`${filters.page == i + 1 && "bg-white/50"} cursor-pointer transition-all duration-300 ease-in-out`}
+                        className={`${filters.page == i + 1 && "bg-primary text-white"} cursor-pointer transition-all duration-300 ease-in-out`}
                       >
                         {i + 1}
                       </PaginationLink>
                     </PaginationItem>
                   ))}
                   <PaginationItem>
-                    <PaginationNext href="#" />
+                   <PaginationNext
+  href={href}
+  onClick={() =>
+    setFilters({
+      page: nextPage,
+    })
+  }
+/>
                   </PaginationItem>
                 </PaginationContent>
               </Pagination>

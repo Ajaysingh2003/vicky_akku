@@ -20,7 +20,7 @@ function TutorialView({id}:{id:string}) {
         <div className="w-[85%] flex items-center flex-col mx-auto">
           <motion.h1  initial={{ opacity: 0, y: 60 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }} className="font-passion-one font-bold text-center  text-[#C77F90] text-4xl  lg:text-8xl uppercase">
+            transition={{ duration: 0.6 }} className="font-passion-one font-bold text-center wrap-break-word max-w-[300px] lg:max-w-6xl  text-[#C77F90] text-4xl  lg:text-8xl uppercase">
             {data.title}
           </motion.h1>
           <div className="w-full h-full">

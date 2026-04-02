@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import AddUserView from '@/modules/dashboard/component/AddUserView'
 import { caller } from '@/trpc/server';
 import { redirect } from 'next/navigation';

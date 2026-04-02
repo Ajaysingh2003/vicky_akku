@@ -125,7 +125,6 @@
 
 // export default WorkshopContainer;
 
-
 "use client";
 
 import React from "react";
@@ -134,7 +133,7 @@ import { getLocation, getWorkshop } from "@/trpc/type";
 import Image from "next/image";
 import { useWorkshopFilters } from "../useWorkshop";
 import { BookOpen } from "lucide-react";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 
 function WorkshopContainer({
   workshops,
@@ -147,13 +146,12 @@ function WorkshopContainer({
 
   return (
     <motion.div
-      className="h-full py-28"
+      className="h-full pt-28"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.6 }}
     >
       <div className="w-[85%] flex items-center gap-4 md:gap-12 flex-col mx-auto">
-
         {/* TITLE */}
         <motion.h1
           className="font-passion-one font-bold text-center text-[#C77F90] text-4xl lg:text-8xl uppercase"
@@ -165,7 +163,6 @@ function WorkshopContainer({
         </motion.h1>
 
         {workshops.pagination.totalCount == 0 ? (
-
           /* EMPTY STATE */
           <motion.div
             className="bg-[#FFFBF4] h-92 w-full rounded-[30px] flex flex-col items-center justify-center text-center gap-3"
@@ -186,12 +183,11 @@ function WorkshopContainer({
               </p>
             </div>
           </motion.div>
-
         ) : (
           <>
             {/* LOCATION FILTERS */}
             <motion.div
-              className="overflow-scroll overflow-y-hidden scroll-smooth hide-scrollbar pl-40 md:pl-0 max-w-screen flex items-center flex-nowrap justify-center gap-1 md:gap-2"
+              className="overflow-scroll pt-6 overflow-y-hidden scroll-smooth hide-scrollbar px-4 md:pl-0 max-w-screen flex items-center flex-nowrap justify-center gap-1 md:gap-2"
               initial="hidden"
               animate="visible"
               variants={{
@@ -201,10 +197,9 @@ function WorkshopContainer({
                 },
               }}
             >
-
               {/* ALL BUTTON */}
               <motion.div
-                className="rounded-2xl bg-[#FFFBF4] min-w-24 min-h-18 md:w-35.5 md:h-28.5 relative"
+                className="rounded-2xl  md:rounded-[39px] bg-[#FFFBF4] min-w-24 min-h-18 md:w-35.5 md:h-28.5 relative"
                 style={{ border: "3px solid #D2D2D2" }}
                 variants={{
                   hidden: { opacity: 0, y: 30 },
@@ -222,12 +217,12 @@ function WorkshopContainer({
 
                 <label
                   htmlFor={"all"}
-                  className={`flex flex-col rounded-2xl w-full h-full cursor-pointer items-center px-4 transition-all duration-500 py-2 ${
+                  className={`flex flex-col h-[67px] md:h-full rounded-2xl md:rounded-[39px] w-full cursor-pointer items-center px-4 transition-all duration-500 py-2 ${
                     "all" == filters.location ? "bg-[#977DAE] text-white" : ""
                   }`}
                 >
                   <span
-                    className={`capitalize text-[#777873] ${
+                    className={`capitalize line-clamp-1 overflow-hidden max-w-full text-[#777873] ${
                       "all" == filters.location && "text-white"
                     } text-xs md:text-[24px] tracking-wider`}
                   >
@@ -236,7 +231,7 @@ function WorkshopContainer({
 
                   <Image
                     src={"/image/1.png"}
-                    alt=""
+                    alt={"location"}
                     height={100}
                     className="max-w-18 md:max-w-24 absolute top-[20%]"
                     width={100}
@@ -248,7 +243,7 @@ function WorkshopContainer({
               {locations.map((e) => (
                 <motion.div
                   key={e.id}
-                  className="rounded-2xl bg-[#FFFBF4] w-24 h-18 md:w-35.5 md:h-28.5 relative"
+                  className="rounded-2xl md:rounded-[39px] bg-[#FFFBF4] w-24 h-18 md:w-35.5 md:h-28.5 relative"
                   style={{ border: "3px solid #D2D2D2" }}
                   variants={{
                     hidden: { opacity: 0, y: 30 },
@@ -268,14 +263,14 @@ function WorkshopContainer({
 
                   <label
                     htmlFor={e.city}
-                    className={`flex flex-col rounded-2xl w-full h-full cursor-pointer items-center px-4 transition-all duration-500 py-2 ${
+                    className={`flex flex-col rounded-2xl md:rounded-[39px] w-full h-full cursor-pointer items-center px-4 transition-all duration-500 py-2 ${
                       e.city == filters.location
                         ? "bg-[#977DAE] text-white"
                         : ""
                     }`}
                   >
                     <span
-                      className={`capitalize text-[#777873] ${
+                      className={`capitalize max-w-full wrap-break-word text-[#777873] ${
                         e.city == filters.location && "text-white"
                       } text-xs md:text-[24px] tracking-wider`}
                     >
@@ -296,7 +291,17 @@ function WorkshopContainer({
 
             {/* WORKSHOP CARDS */}
             <div className="w-full h-full">
-              <WorkshopcardWrapper workshops={workshops.workshops} />
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={`${filters.page}-${filters.location}`}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <WorkshopcardWrapper workshops={workshops.workshops} />
+                </motion.div>
+              </AnimatePresence>
             </div>
           </>
         )}

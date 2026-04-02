@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import { loadWorkshopFilter } from "@/modules/workshop/searchParms";
 import UpcomingWorkShop from "@/modules/workshop/view/UpcomingWorkShop";
 import UpcomingWorkShopSkeleton from "@/component/UpcomingWorkShopSkeleton";

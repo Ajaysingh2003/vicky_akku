@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import { loadDashboardUserFilter } from "@/modules/dashboard/hooks/useDashboardClient";
 import RegularClassesView from "@/modules/dashboard/view/RegularClassesView";
 import UsersView from "@/modules/dashboard/view/UsersView";
@@ -33,9 +34,7 @@ const queryClient = getQueryClient();
         }),
       );
     
-  return <HydrationBoundary state={dehydrate(queryClient)} >
-            <RegularClassesView/>
-        </HydrationBoundary> 
+          return  <RegularClassesView/>
 
 }
 

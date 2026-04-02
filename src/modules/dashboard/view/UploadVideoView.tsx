@@ -806,9 +806,10 @@ const UploadManager = () => {
   const activeItems = items.filter(
     (i) => !["done", "cancelled"].includes(i.status)
   );
+  
   const hasUploading = items.some((i) => i.status === "uploading");
   const hasPaused = items.some((i) => i.status === "paused");
-
+  
   return (
     <div className="w-full max-w-4xl mx-auto">
       <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
