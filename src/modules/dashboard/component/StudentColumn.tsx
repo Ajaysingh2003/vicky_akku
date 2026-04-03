@@ -136,6 +136,7 @@ export const studentsColumn: ColumnDef<any>[] = [
     accessorKey: "user.name",
     header: "User Name",
     cell: ({ row }) => {
+      
       return <p className="text-sm px-4 font-medium ">{row.original.user.name}</p>;
     },
   },

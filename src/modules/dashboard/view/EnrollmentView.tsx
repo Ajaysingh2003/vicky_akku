@@ -42,6 +42,9 @@ function EnrollmentView() {
         <div className="flex justify-between">
           <div className="font-semibold text-lg md:text-3xl text-[#656565]">
             Students
+             <p className="font-semibold text-md md:text-sm mt-1">
+              Total Count :{data.pagination.totalCount}
+            </p>
           </div>
           <div className="hidden">
             <Button className="bg-primary hidden text-xs md:text-sm capitalize px-4 lg:py-2">

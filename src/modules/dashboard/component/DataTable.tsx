@@ -36,6 +36,7 @@ interface DataTableProps<TData, TValue> {
   onRowClick: (strr: string) => void;
   onClick: (open: boolean) => void;
   name: string;
+  count?:number;
 }
 
 export function DataTable<TData, TValue>({
@@ -44,7 +45,7 @@ export function DataTable<TData, TValue>({
   onRowClick,
   onClick,
   name,
-
+  count,
 }: DataTableProps<TData, TValue>) {
   const table = useReactTable({
     data,

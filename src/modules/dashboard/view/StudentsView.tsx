@@ -34,11 +34,14 @@ function StudentsView() {
 
   return (
     <div className="w-full h-full">
-      
       <div className="w-full px-5 lg:px-20 py-5 ">
         <div className="flex justify-between">
-          <div className="font-semibold text-lg md:text-3xl text-[#656565]">
-            Students
+          <div className="font-semibold text-lg space-y-6 md:text-3xl text-[#656565]">
+            <span>Students</span>
+
+            <p className="font-semibold text-md md:text-sm mt-1">
+              Total Count :{data.pagination.totalCount}
+            </p>
           </div>
           <div className="">
             <Button className="bg-primary hidden text-xs md:text-sm capitalize px-4 lg:py-2">
@@ -49,6 +52,7 @@ function StudentsView() {
 
         <div className="mt-12">
           <DataTable
+            count={data.pagination.totalCount}
             columns={studentsColumn}
             data={data.students}
             name="users"
@@ -58,32 +62,32 @@ function StudentsView() {
         </div>
 
         <div className="absolute left-[50%]">
-        {filters.limit < data.pagination.totalCount && (
-          <div className="w-full mt-10">
-            <Pagination>
-              <PaginationContent>
-                <PaginationItem>
-                  <PaginationPrevious href="#" />
-                </PaginationItem>
-
-                {Array.from({ length: totalPages }).map((_, i) => (
-                  <PaginationItem key={i} className="">
-                    <PaginationLink
-                      onClick={() => setFilters({ page: i + 1 })}
-                      className={`${filters.page == i + 1 && "bg-white/50"} cursor-pointer transition-all duration-300 ease-in-out`}
-                    >
-                      {i + 1}
-                    </PaginationLink>
+          {filters.limit < data.pagination.totalCount && (
+            <div className="w-full mt-10">
+              <Pagination>
+                <PaginationContent>
+                  <PaginationItem>
+                    <PaginationPrevious href="#" />
                   </PaginationItem>
-                ))}
-                <PaginationItem>
-                  <PaginationNext href="#" />
-                </PaginationItem>
-              </PaginationContent>
-            </Pagination>
-          </div>
-        )}
-      </div>
+
+                  {Array.from({ length: totalPages }).map((_, i) => (
+                    <PaginationItem key={i} className="">
+                      <PaginationLink
+                        onClick={() => setFilters({ page: i + 1 })}
+                        className={`${filters.page == i + 1 && "bg-white/50"} cursor-pointer transition-all duration-300 ease-in-out`}
+                      >
+                        {i + 1}
+                      </PaginationLink>
+                    </PaginationItem>
+                  ))}
+                  <PaginationItem>
+                    <PaginationNext href="#" />
+                  </PaginationItem>
+                </PaginationContent>
+              </Pagination>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
