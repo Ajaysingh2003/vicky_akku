@@ -11,7 +11,10 @@ function Footer() {
   url: "https://wa.me/9653251228?text=Hi%20I%20Have%20a%20query" 
 },
     { label: "Regular Classes", url: "/regular-classes" },
-    // { label: "Gallery", url: "" },
+    { label: "Cancellation Policy", url: "/CancellationPolicy" },
+    { label: "Privacy Policy", url: "/PrivacyPolicy" },
+    { label: "Refund Policy", url: "/RefundPolicy" },
+    { label: "Terms Of Service", url: "/TermsOfService" },
   ];
   return (
     <div className="bg-[#977DAE]">

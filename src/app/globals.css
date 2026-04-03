@@ -371,3 +371,14 @@ body {
   display: block;
   width: 100%;
 }
+
+/* @media (min-height: 900px) {
+  .fix-margin {
+    margin-top: -76vh;
+  }
+} */
+@media (min-height: 1000px) {
+  .fix-margin {
+    margin-top: -76vh;
+  }
+}

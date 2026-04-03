@@ -43,7 +43,9 @@ export function AppSidebar() {
       {/* HEADER */}
       <SidebarHeader className="pl-6 py-2  md:py-2 border-b">
         <h3 className="text-xl text-primary italic font-open-sauce">
-          Vicky Akku Admin
+         <Link href={"/"}>
+           Vicky Akku Admin
+         </Link>
         </h3>
       </SidebarHeader>
 
