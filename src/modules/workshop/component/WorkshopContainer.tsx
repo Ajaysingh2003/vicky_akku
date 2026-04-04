@@ -187,7 +187,7 @@ function WorkshopContainer({
           <>
             {/* LOCATION FILTERS */}
             <motion.div
-              className="overflow-scroll pt-6 overflow-y-hidden scroll-smooth hide-scrollbar px-4 md:pl-0 max-w-screen flex items-center flex-nowrap justify-center gap-1 md:gap-2"
+              className="overflow-scroll pl-[12rem] md:pl-0 pt-6 overflow-y-hidden scroll-smooth hide-scrollbar px-4 md:pl-0 max-w-screen flex items-center flex-nowrap justify-center gap-1 md:gap-2"
               initial="hidden"
               animate="visible"
               variants={{
@@ -233,7 +233,7 @@ function WorkshopContainer({
                     src={"/image/1.png"}
                     alt={"location"}
                     height={100}
-                    className="max-w-18 md:max-w-24 absolute top-[20%]"
+                    className="max-w-18 md:max-w-24 max-h-[72px] absolute  md:bottom-[20%]"
                     width={100}
                   />
                 </label>
@@ -281,7 +281,7 @@ function WorkshopContainer({
                       src={e.image}
                       alt={e.city}
                       height={100}
-                      className="max-w-18 md:max-w-24 absolute top-[20%]"
+                      className="max-w-18 md:max-w-24 object-contain max-h-[47px] md:max-h-[72px] absolute top-[28%] bottom-[20%]"
                       width={100}
                     />
                   </label>
