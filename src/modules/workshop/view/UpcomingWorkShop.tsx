@@ -68,7 +68,7 @@ function UpcomingWorkShop() {
           </Pagination>
         </div>
       )}
-      <ClassDetails className={` mt-18 w-full  mx-auto  hidden md:block`} />
+      <ClassDetails className={` py-12 w-full  mx-auto  hidden md:block`} />
     </div>
   );
 }

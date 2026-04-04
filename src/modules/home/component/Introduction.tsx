@@ -146,8 +146,8 @@ function Introduction() {
                     url: "https://www.instagram.com/vickyakku/",
                   },
                   {
-                    icon: "/image/svg/youtube.svg",
-                    url: "https://www.instagram.com/vickyakku/",
+                    icon: "/image/youtube.png",
+                    url: "https://www.youtube.com/@VickyandAakankshaofficial/videos",
                   },
                 ].map((e, i) => (
                   <motion.div

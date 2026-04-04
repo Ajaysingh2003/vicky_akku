@@ -199,7 +199,7 @@ function WorkshopContainer({
             >
               {/* ALL BUTTON */}
               <motion.div
-                className="rounded-2xl  md:rounded-[39px] bg-[#FFFBF4] min-w-24 min-h-18 md:w-35.5 md:h-28.5 relative"
+                className="rounded-2xl  md:w-[162px] md:h-[142px]   md:rounded-[39px] bg-[#FFFBF4] min-w-24 min-h-18  relative"
                 style={{ border: "3px solid #D2D2D2" }}
                 variants={{
                   hidden: { opacity: 0, y: 30 },
@@ -243,7 +243,7 @@ function WorkshopContainer({
               {locations.map((e) => (
                 <motion.div
                   key={e.id}
-                  className="rounded-2xl md:rounded-[39px] bg-[#FFFBF4] w-24 h-18 md:w-35.5 md:h-28.5 relative"
+                  className="rounded-2xl md:rounded-[39px] bg-[#FFFBF4] w-24 md:w-[162px]  h-18 md:w-35.5 md:h-[142px] relative"
                   style={{ border: "3px solid #D2D2D2" }}
                   variants={{
                     hidden: { opacity: 0, y: 30 },

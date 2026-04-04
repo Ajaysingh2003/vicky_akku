@@ -49,11 +49,11 @@ function Hero() {
             </div>
             <div className=" w-full">
               <div className=" relative  w-full md:w-fit ">
-                <p className="text-center font-normal uppercase md:text-starst p  text-white font-passion-one text-[40px] md:text-8xl md:ml-28">
+                <p className="text-center font-normal uppercase md:text-starst p  text-white font-passion-one text-[40px] md:text-8xl md:ml-23">
                   Choreographers
                 </p>
-                <div className="max-w-42 mt-10 w-full absolute md:relative left-1/2 md:left-0 -translate-x-1/2  md:translate-x-0 space-y-3 flex items-center md:items-start justify-center flex-col  md:ml-28">
-                  <h4 className="text-[#777873] font-semibold text-center md:text-start text-lg md:text-2xl">
+                <div className="max-w-42 mt-10 w-full absolute md:relative left-1/2 md:left-0 -translate-x-1/2  md:translate-x-0 space-y-3 flex items-center md:items-start justify-center flex-col  md:ml-23">
+                  <h4 className="text-[#777873] lg:ml-[10px] font-semibold text-center md:text-start text-lg md:text-2xl">
                     Where dance feels like hapiness
                   </h4>
                   <motion.div
@@ -63,7 +63,7 @@ function Hero() {
                   >
                     <Button
                       onClick={() => router.push(`/workshop`)}
-                      className="rounded-full text-lg px-4 py-6 md:text-md font-open-sauce cursor-pointer uppercase w-full max-wa-36"
+                      className="rounded-full min-w-[165px] font-normal text-lg px-4 py-6 md:text-md font-open-sauce cursor-pointer uppercase w-full max-wa-36"
                     >
                       Start Today
                     </Button>

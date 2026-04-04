@@ -10,6 +10,11 @@ const nextConfig: NextConfig = {
         hostname: "pub-8a5942cb01e54d70af415184ac8ed7b9.r2.dev",
         pathname: "/uploads/**",
       },
+      {
+        protocol: "https",
+        hostname: "randomuser.me",
+        pathname: "/**",
+      },
     ],
   },
 };

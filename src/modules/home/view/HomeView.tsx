@@ -32,16 +32,16 @@ function HomeView() {
       {/* <div className="bg-hero"> */}
       <Hero />
       <div
-        className="-mt-[56vh]   fix-margin  pb-6 z-60 relative bg-hero"
+        className="-mt-[50vh]   fix-margin  pb-6 z-60 relative bg-hero"
         ref={ref}
       >
+
         <Suspense fallback={<CardLoader />}>
           {workshop?.workshops && (
             <UpcomingWorkshop workshops={workshop?.workshops} />
           )}
         </Suspense>
       </div>
-      {/* </div> */}
       <Introduction />
       <ClassDetails />
       <LearnAnytime />

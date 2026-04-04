@@ -23,17 +23,21 @@ function Footer() {
           <h2 className="text-4xl font-open-sauce max-w-24 text-white uppercase">
             Vicky akku
           </h2>
+          
           <div className="flex items-center gap-4">
             <div className="bg-white/80 size-7 rounded-full flex items-center justify-center">
-              <Image
-                src="/image/svg/youtube.svg"
+             <Link href={"https://www.youtube.com/@VickyandAakankshaofficial/videos"}>
+               <Image
+                src="/image/youtube.png"
                 height={100}
                 width={100}
                 className="size-4"
                 alt="social"
               />
+             </Link>
             </div>
             <div className="bg-white/80 size-7 rounded-full flex items-center justify-center">
+            <Link href={"https://www.instagram.com/vickyakku/"}>
               <Image
                 src="/image/svg/insta.svg"
                 height={100}
@@ -41,6 +45,7 @@ function Footer() {
                 className="size-4"
                 alt="social"
               />
+                </Link>
             </div>
           </div>
         </div>

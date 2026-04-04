@@ -189,39 +189,38 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 
 function ReviewSection() {
-  const review = [
-    {
-      rating: 5,
-      review:
-        "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer",
-      user: {
-        name: "Prashansa Agrawal",
-        image: "/image/user.png",
-        place: "Mumbai , India",
-      },
+ const review = [
+  {
+    rating: 5,
+    review:
+      "Amazing experience! The service was smooth and exceeded my expectations. Highly recommended.",
+    user: {
+      name: "Pratiksha",
+      image: "https://randomuser.me/api/portraits/women/32.jpg",
+      place: "Delhi, India",
     },
-    {
-      rating: 5,
-      review:
-        "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer",
-      user: {
-        name: "Prashansa Agrawal",
-        image: "/image/user.png",
-        place: "Mumbai , India",
-      },
+  },
+  {
+    rating: 5,
+    review:
+      "Great platform! Everything works perfectly and the UI is very user-friendly.",
+    user: {
+      name: "Sonali",
+      image: "https://randomuser.me/api/portraits/women/45.jpg",
+      place: "Delhi, India",
     },
-    {
-      rating: 5,
-      review:
-        "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer",
-      user: {
-        name: "Prashansa Agrawal",
-        image: "/image/user.png",
-        place: "Mumbai , India",
-      },
+  },
+  {
+    rating: 5,
+    review:
+      "Loved it! Fast performance and excellent support. Will definitely use again.",
+    user: {
+      name: "Vantika",
+      image: "https://randomuser.me/api/portraits/women/67.jpg",
+      place: "Delhi, India",
     },
-  ];
-
+  },
+];
   const sliderRef = React.useRef<HTMLDivElement>(null);
 
   const scrollRight = () => {
