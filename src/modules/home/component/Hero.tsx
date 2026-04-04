@@ -52,7 +52,7 @@ function Hero() {
                 <p className="text-center font-normal uppercase md:text-starst p  text-white font-passion-one text-[40px] md:text-8xl md:ml-23">
                   Choreographers
                 </p>
-                <div className="max-w-42 mt-10 w-full absolute md:relative left-1/2 md:left-0 -translate-x-1/2  md:translate-x-0 space-y-3 flex items-center md:items-start justify-center flex-col  md:ml-23">
+                <div className="max-w-42 mt-8 lg:mt-10 w-full absolute md:relative left-1/2 md:left-0 -translate-x-1/2  md:translate-x-0 space-y-3 flex items-center md:items-start justify-center flex-col  md:ml-23">
                   <h4 className="text-[#777873] lg:ml-[10px] font-semibold text-center md:text-start text-lg md:text-2xl">
                     Where dance feels like hapiness
                   </h4>
