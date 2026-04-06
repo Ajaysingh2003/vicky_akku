@@ -189,38 +189,38 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 
 function ReviewSection() {
- const review = [
-  {
-    rating: 5,
-    review:
-      "Amazing experience! The service was smooth and exceeded my expectations. Highly recommended.",
-    user: {
-      name: "Pratiksha",
-      image: "https://randomuser.me/api/portraits/women/32.jpg",
-      place: "Delhi, India",
+  const review = [
+    {
+      rating: 5,
+      review:
+        "Amazing experience! The service was smooth and exceeded my expectations. Highly recommended.",
+      user: {
+        name: "Pratiksha",
+        image: "https://randomuser.me/api/portraits/women/32.jpg",
+        place: "Delhi, India",
+      },
     },
-  },
-  {
-    rating: 5,
-    review:
-      "Great platform! Everything works perfectly and the UI is very user-friendly.",
-    user: {
-      name: "Sonali",
-      image: "https://randomuser.me/api/portraits/women/45.jpg",
-      place: "Delhi, India",
+    {
+      rating: 5,
+      review:
+        "Great platform! Everything works perfectly and the UI is very user-friendly.",
+      user: {
+        name: "Sonali",
+        image: "https://randomuser.me/api/portraits/women/45.jpg",
+        place: "Delhi, India",
+      },
     },
-  },
-  {
-    rating: 5,
-    review:
-      "Loved it! Fast performance and excellent support. Will definitely use again.",
-    user: {
-      name: "Vantika",
-      image: "https://randomuser.me/api/portraits/women/67.jpg",
-      place: "Delhi, India",
+    {
+      rating: 5,
+      review:
+        "Loved it! Fast performance and excellent support. Will definitely use again.",
+      user: {
+        name: "Vantika",
+        image: "https://randomuser.me/api/portraits/women/67.jpg",
+        place: "Delhi, India",
+      },
     },
-  },
-];
+  ];
   const sliderRef = React.useRef<HTMLDivElement>(null);
 
   const scrollRight = () => {
@@ -248,7 +248,7 @@ function ReviewSection() {
       <div className="grid grid-cols-1 md:grid-cols-12 h-full">
         {/* LEFT TEXT */}
         <motion.div
-          className="col-span-5 py-4 flex items-start md:items-end md:justify-end w-full h-full"
+          className="col-span-5 py-4 -pb-128 flex items-start md:items-end md:justify-end w-full h-full"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -259,7 +259,7 @@ function ReviewSection() {
               Loved by Dancers Everywhere
             </h2>
 
-            <p className="font-normal text-center md:text-start text-lg md:text-xl md:max-w-84 text-regular capitalize">
+            <p className="font-normal text-center md:text-start pb-8 text-lg md:text-xl md:max-w-84 text-regular capitalize">
               What students and professionals say about dancing with us.
             </p>
           </div>
@@ -312,7 +312,7 @@ function ReviewSection() {
                   <div className="flex flex-col gap-3">
                     <p>{e.rating}/5</p>
 
-                    <p className="capitalize text-sm md:text-md text-regular leading-5">
+                    <p className="capitalize text-sm md:text-xl text-regular leading-a5">
                       {e.review}
                     </p>
                   </div>
@@ -324,7 +324,7 @@ function ReviewSection() {
                         src={e.user.image}
                         height={100}
                         width={100}
-                        alt=""
+                        alt={e.user.name}
                       />
                     </div>
 

@@ -119,7 +119,7 @@ function LoginForm() {
                     >
                       Contact
                     </FieldLabel>
-                    <div className="w-full bg-white text-[#A6A6A6] shadow-xs transition-[color,box-shadow] border rounded-full py-2 flex gap-3 px-3 items-center h-fit">
+                    <div className="w-full bg-white text-[#A6A6A6] shadow-xs transition-[color,box-shadow] border rounded-full py-2 flex gap-0 px-3 items-center h-fit">
                       <DropdownMenu>
                         <DropdownMenuTrigger asChild className="w-fit">
                           <Button
@@ -133,7 +133,7 @@ function LoginForm() {
                         <DropdownMenuContent side="bottom" className="h-56">
                           {code.map((e) => (
                             <DropdownMenuItem
-                            key={e.code}
+                              key={e.code}
                               role="button"
                               className={`${e.code == countryCode.code && "opacity-50"}`}
                               onClick={() => setCountryCode(e)}
@@ -143,8 +143,9 @@ function LoginForm() {
                           ))}
                         </DropdownMenuContent>
                       </DropdownMenu>
+                      
                       <Input
-                        className=" placeholder:text-[#A6A6A6] border-none shadow-none    outline-none"
+                        className=" placeholder:text-[#A6A6A6] pl-0 border-none shadow-none    outline-none"
                         {...field}
                         id="name-field"
                         aria-invalid={fieldState.invalid}

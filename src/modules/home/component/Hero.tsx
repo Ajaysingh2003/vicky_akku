@@ -63,7 +63,7 @@ function Hero() {
                   >
                     <Button
                       onClick={() => router.push(`/workshop`)}
-                      className="rounded-full min-w-[165px] font-normal text-lg px-4 py-6 md:text-md font-open-sauce cursor-pointer uppercase w-full max-wa-36"
+                      className="rounded-full min-w-[165px] font-[300] text-lg px-4 py-6 md:text-md font-open-sauce cursor-pointer uppercase w-full max-wa-36"
                     >
                       Start Today
                     </Button>

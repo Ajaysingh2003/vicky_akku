@@ -114,7 +114,7 @@ function Introduction() {
       <div className="w-[90%] mx-auto bg-[#C4B1D4] rounded-3xl">
         <div className="w-full grid grid-cols-1 md:grid-cols-12 gap-y-5 py-8 md:p-[45px_0px_30px_94px] ">
           {/* TEXT SIDE */}
-          <div className="col-span-8 order-2 space-y-6 md:order-1">
+          <div className="col-span-8 order-2 flex lg:items-start justify-center flex-col space-y-6 md:order-1">
             {/* TITLE */}
             <motion.div
               className="flex items-center flex-col md:flex-row gap-4"
@@ -123,7 +123,7 @@ function Introduction() {
               transition={{ duration: 0.5 }}
               viewport={{ once: true }}
             >
-              <h3 className="text-4xl font-passion-one uppercase text-[#4B4740]">
+              <h3 className="text-4xl lg:text-5xl font-passion-one uppercase text-[#4B4740]">
                 Meet Vicky–Akku
               </h3>
 
@@ -175,13 +175,13 @@ function Introduction() {
 
             {/* DESCRIPTION */}
             <motion.div
-              className="max-w-175 px-14 text-center md:text-start md:px-0"
+              className=" px-14 text-center md:text-start md:px-0"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.5 }}
               viewport={{ once: true }}
             >
-              <p className="text-[#4B4740] text-md">
+              <p className="text-[#4B4740] text-md lg:text-[24px]">
                 Vivek Dadheech and Aakanksha Tripathi popularly known as
                 Vicky-Akku are Mumbai based choreographers with over a decade of
                 experience in teaching and performing dance. Known for their
@@ -200,7 +200,7 @@ function Introduction() {
               viewport={{ once: true }}
             >
               <motion.div whileHover={{ y: -3 }} whileTap={{ scale: 0.97 }}>
-                <Button className="uppercase rounded-full transition-all duration-500 cursor-pointer font-open-sauce text-sm md:text-lg text-white bg-[#4B4740] hover:bg-[#827B70] font-light">
+                <Button className="uppercase px-4 py-2  font-[300] rounded-full transition-all duration-500 cursor-pointer font-open-sauce text-sm md:text-lg text-white bg-[#4B4740] hover:bg-[#827B70] font-light">
                   <Link href={"/about-us"}>read their story</Link>
                 </Button>
               </motion.div>

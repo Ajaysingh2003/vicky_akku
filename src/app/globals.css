@@ -104,7 +104,7 @@ body {
 
 .bg-hero {
   background-image: url("/image/hero_background.png");
-  background-position: 19% -25%;
+  background-position: 28% 38%;
 
   /* z-index: -1; */
 }
@@ -112,7 +112,7 @@ body {
 @media (min-width: 641px) {
   .bg-hero {
     background-size: 150%;
-    background-position: center;
+    background-position: top center;
   }
 }
 
