@@ -105,7 +105,7 @@ import { motion } from "framer-motion";
 function Introduction() {
   return (
     <motion.div
-      className="w-full h-64 mt-10"
+      className="w-full h-64 mt-10 relative"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 0.6 }}
@@ -181,7 +181,7 @@ function Introduction() {
               transition={{ delay: 0.2, duration: 0.5 }}
               viewport={{ once: true }}
             >
-              <p className="text-[#4B4740] text-md lg:text-[24px]">
+              <p className="text-[#4B4740] text-md lg:text-[18px]">
                 Vivek Dadheech and Aakanksha Tripathi popularly known as
                 Vicky-Akku are Mumbai based choreographers with over a decade of
                 experience in teaching and performing dance. Known for their
@@ -200,7 +200,7 @@ function Introduction() {
               viewport={{ once: true }}
             >
               <motion.div whileHover={{ y: -3 }} whileTap={{ scale: 0.97 }}>
-                <Button className="uppercase px-4 py-2  font-[300] rounded-full transition-all duration-500 cursor-pointer font-open-sauce text-sm md:text-lg text-white bg-[#4B4740] hover:bg-[#827B70] font-light">
+                <Button className="uppercase px-4 py-2 md:py-3 lg:py-5  font-[300] rounded-full transition-all duration-500 cursor-pointer font-open-sauce text-sm md:text-lg text-white bg-[#4B4740] hover:bg-[#827B70] font-light">
                   <Link href={"/about-us"}>read their story</Link>
                 </Button>
               </motion.div>

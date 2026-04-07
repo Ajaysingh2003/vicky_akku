@@ -16,6 +16,7 @@ import { Button } from "@/components/ui/button";
 import { DataTable } from "../component/DataTable";
 import { regularClassColumns } from "../component/RegularClassColumn";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 function RegularClassesView() {
   const [filters, setFilters] = useRegularClassesFilters();
 
@@ -24,6 +25,11 @@ function RegularClassesView() {
   const { data } = useSuspenseQuery(
     trpc.regularClasses.getAllClasses.queryOptions({ ...filters }),
   );
+
+  const router=useRouter()
+  const register=()=>{
+    router.push(`/dashboard/regular-classes/registrations`)
+  }
 const nextPage =
   data.pagination.totalPages > data.pagination.currentPage
     ? filters.page + 1
@@ -54,7 +60,7 @@ const href = `?page=${nextPage}`;
             data={data.classes}
             name="regularclass"
             onRowClick={() => {}}
-            onClick={() => {}}
+            onClick={register}
           />
         </div>
 

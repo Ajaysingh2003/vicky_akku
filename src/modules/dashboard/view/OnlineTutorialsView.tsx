@@ -47,7 +47,7 @@ function OnlineTutorialsView() {
           </div>
           <div className="">
             <Button className="bg-primary text-xs md:text-sm capitalize px-4 lg:py-2">
-              <Link href={"dashboard/online-tutorials/create"}>Add Tutorial</Link>
+              <Link href={"/dashboard/online-tutorials/create"}>Add Tutorial</Link>
             </Button>
           </div>
         </div>

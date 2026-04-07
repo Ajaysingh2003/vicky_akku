@@ -116,13 +116,13 @@ export function DataTable<TData, TValue>({
                       <EmptyDescription>No {name} found</EmptyDescription>
                     </EmptyHeader>
                     <EmptyContent>
-                                  <Button
+                                  {/* <Button
                       className="sidebar-link sidebar-link-active"
                       onClick={() => onClick(true)}
                     >
                       <PlusIcon />
                       New {name}
-                    </Button>
+                    </Button> */}
                     </EmptyContent>
                   </Empty>
               </TableCell>

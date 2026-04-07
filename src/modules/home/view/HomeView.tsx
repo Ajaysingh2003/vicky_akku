@@ -32,7 +32,7 @@ function HomeView() {
       {/* <div className="bg-hero"> */}
       <Hero />
       <div
-        className="-mt-[50vh]   fix-margin  pb-6 z-60 relative bg-hero"
+        className="-mt-[50vh]   fix-margin  pb-6 z-60 relative bg-hero-2"
         ref={ref}
       >
 

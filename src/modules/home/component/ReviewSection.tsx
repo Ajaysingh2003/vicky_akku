@@ -259,7 +259,7 @@ function ReviewSection() {
               Loved by Dancers Everywhere
             </h2>
 
-            <p className="font-normal text-center md:text-start pb-8 text-lg md:text-xl md:max-w-84 text-regular capitalize">
+            <p className="font-normal text-center md:text-start lg:pb-8 text-lg md:text-xl md:max-w-84 text-regular capitalize">
               What students and professionals say about dancing with us.
             </p>
           </div>

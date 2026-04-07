@@ -35,26 +35,26 @@ function Hero() {
           </motion.div>
         </div>
         <div className=" absolute   top-[120px]  translate-x-1/2a rigaht-1/2  w-full ">
-          <div className="flex b  flex-col items-centers justify-centesr max-w-6xl mx-auto">
+          <div className="flex b  flex-col items-centers justify-centesr  lg:max-w-[1400px] mx-auto">
             <div className="px-4 md:px-0">
               <motion.h1
                 ref={headerRef}
                 initial={{ filter: "blur(20px)", opacity: 0 }}
                 animate={isInView ? { filter: "blur(0px)", opacity: 1 } : {}}
                 transition={{ duration: 0.4 }}
-                className=" uppercase   wrap-anywhere font-bold  whitespace-pre-wrap text-center leading-27 md:leading-56  text-[98px] md:text-[164px] md:line-clamp-1 font-open-sauce text-white italic"
+                className=" uppercase   wrap-anywhere font-bold  whitespace-pre-wrap text-center  lg:text-start leading-27 md:leading-56  text-[98px] md:text-[164px] lg:text-[210px] md:line-clamp-1 font-open-sauce text-white italic"
               >
                 Vicky Akku
               </motion.h1>
             </div>
             <div className=" w-full">
               <div className=" relative  w-full md:w-fit ">
-                <p className="text-center font-normal uppercase md:text-starst p  text-white font-passion-one text-[40px] md:text-8xl md:ml-23">
+                <p className="text-center font-normal uppercase md:text-starst p  text-white font-passion-one text-[40px] md:text-8xl md:ml-16">
                   Choreographers
                 </p>
-                <div className="max-w-42 mt-8 lg:mt-10 w-full absolute md:relative left-1/2 md:left-0 -translate-x-1/2  md:translate-x-0 space-y-3 flex items-center md:items-start justify-center flex-col  md:ml-23">
+                <div className="max-w-42 mt-8 lg:mt-10 w-full absolute md:relative left-1/2 md:left-0 -translate-x-1/2  md:translate-x-0 space-y-3 flex items-center md:items-start justify-center flex-col  md:ml-16">
                   <h4 className="text-[#777873] lg:ml-[10px] font-semibold text-center md:text-start text-lg md:text-2xl">
-                    Where dance feels like hapiness
+                    Where dance feels like happiness
                   </h4>
                   <motion.div
                     initial={{ y: "50px", opacity: 0 }}
