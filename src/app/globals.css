@@ -104,7 +104,7 @@ body {
 
 .bg-hero {
   background-image: url("/image/hero_background.png");
-  background-position: 28% 38%;
+  background-position: 28% -7%;
 }
 
 .bg-hero-2 {
@@ -116,6 +116,7 @@ body {
   .bg-hero {
     background-size: 300%;
     background-position: top center;
+    background-position: 28% 38%;
   }
   .bg-hero-2 {
     background-size: 300%;
