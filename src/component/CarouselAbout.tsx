@@ -1,17 +1,14 @@
 import React, { useRef, useState } from "react";
-// Import Swiper React components
+import { EffectCoverflow, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-
-// Import Swiper styles
+// Import Swiper React components
 import "swiper/css";
-import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
+import "swiper/css/effect-coverflow";
 
 // import './styles.css';
-
 // import required modules
-import { EffectCoverflow, Pagination } from "swiper/modules";
-
+// Import Swiper styles
 export default function CarouselAbout() {
   return (
     <div className="bg-[#ffffff] py-10">

@@ -120,7 +120,6 @@ body {
   }
   .bg-hero-2 {
     background-size: 300%;
-    /* object-position: 1230px 1300px; */
     background-position: top center;
   }
 }
