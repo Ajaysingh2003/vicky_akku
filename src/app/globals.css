@@ -87,8 +87,8 @@
   --radius-4xl: calc(var(--radius) + 16px);
 }
 
-.font-passion-one {
-  font-family: var(--font-passion-one);
+.font-borscha {
+  font-family: var(--font-borscha);
 }
 .font-open-sans {
   font-family: var(--font-open-sans);
@@ -390,3 +390,4 @@ body {
     margin-top: -76vh;
   }
 }
+

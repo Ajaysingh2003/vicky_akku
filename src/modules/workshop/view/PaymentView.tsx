@@ -22,7 +22,7 @@
 
 //       <div className="h-full  py-24">
 //         <div className="w-[85%] flex items-center flex-col mx-auto">
-//           <h1 className="font-passion-one font-bold text-center  text-[#C77F90] text-4xl  lg:text-8xl uppercase">
+//           <h1 className="font-borscha font-bold text-center  text-[#C77F90] text-4xl  lg:text-8xl uppercase">
 //             Pay To book your class
 //           </h1>
 //           <div className="w-full h-full">
@@ -75,7 +75,7 @@ function PaymentView({ id }: { id: string }) {
 
           {/* TITLE */}
           <motion.h1
-            className="font-passion-one font-bold text-center text-[#C77F90] text-4xl lg:text-8xl uppercase"
+            className="font-borscha font-bold text-center text-[#C77F90] text-4xl lg:text-8xl uppercase"
             initial={{ opacity: 0, y: 60 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}

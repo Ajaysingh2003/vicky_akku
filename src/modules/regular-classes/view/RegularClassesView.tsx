@@ -26,7 +26,7 @@
 
 //       <div className="h-full  py-24">
 //         <div className="w-[85%] flex items-center flex-col mx-auto">
-//           <h1 className="font-passion-one font-bold text-center  text-[#C77F90] text-4xl  lg:text-8xl uppercase">
+//           <h1 className="font-borscha font-bold text-center  text-[#C77F90] text-4xl  lg:text-8xl uppercase">
 //             Regular Classes
 //           </h1>
 //           <div className="w-full h-full flex flex-col gap-6 mt-5">
@@ -117,7 +117,7 @@ function RegularClassesView() {
 
           {/* TITLE */}
           <motion.h1
-            className="font-passion-one lg:max-w-6xl max-w-[300px] my-4 font-bold text-center text-[#C77F90] text-4xl lg:text-8xl uppercase"
+            className="font-borscha lg:max-w-6xl max-w-[300px] my-4 font-bold text-center text-[#C77F90] text-4xl lg:text-8xl uppercase"
             initial={{ opacity: 0, y: 60 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}

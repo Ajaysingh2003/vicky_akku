@@ -19,7 +19,7 @@
 //             />
 //           </div>
 //           <div className="col-span-8 p-6 flex items-center gap-4 pla-4">
-//             <h3 className="font-passion-one max-w-64 text-primary md:4xl lg:text-6xl uppercase">
+//             <h3 className="font-borscha max-w-64 text-primary md:4xl lg:text-6xl uppercase">
 //               Regular Dance classes
 //             </h3>
 //             <div className="max-w-84 flex flex-col gap-4">
@@ -86,7 +86,7 @@ function ClassDetails({
 
           {/* TEXT SIDE */}
           <motion.div
-            className="col-span-8 p-6 flex items-center gap-4"
+            className="col-span-8 p-6 flex items-center gap-4 md:gap-16"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
@@ -104,7 +104,7 @@ function ClassDetails({
                 visible: { opacity: 1, y: 0 },
               }}
               transition={{ duration: 0.5 }}
-              className="font-passion-one max-w-64 text-primary md:text-4xl lg:text-6xl uppercase"
+              className="font-borscha max-w-64 text-primary md:text-4xl lg:text-6xl uppercase"
             >
               Regular Dance classes
             </motion.h3>

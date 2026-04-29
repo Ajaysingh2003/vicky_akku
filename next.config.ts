@@ -15,6 +15,11 @@ const nextConfig: NextConfig = {
         hostname: "randomuser.me",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "media.vickyakku.com",
+        pathname: "/**",
+      },
     ],
   },
 };

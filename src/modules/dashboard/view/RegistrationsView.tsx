@@ -14,7 +14,7 @@ import Placeholder from "@tiptap/extension-placeholder";
 import Link from "@tiptap/extension-link";
 import Underline from "@tiptap/extension-underline";
 import TextAlign from "@tiptap/extension-text-align";
-
+import { Switch } from "@/components/ui/switch";
 // Icons
 import {
   CalendarIcon, MapPin, IndianRupee, UploadCloud, X,
@@ -49,6 +49,7 @@ const schema = z.object({
   thumbnail:   z.string().min(1, "Thumbnail required"),
   price:       z.string(),
   eventDate:   z.date(),
+  isOnline:z.boolean(),
   locationId:  z.string().min(1, "Select a location"),
 });
 
@@ -391,12 +392,12 @@ function Sidebar({ current }: { current: number }) {
 
 export default function RegistrationsView() {
   const trpc = useTRPC();
-  const { data: locations } = useSuspenseQuery(trpc.workshop.getAllLocation.queryOptions());
+  const { data: locations } = useSuspenseQuery(trpc.workshop.getAllLocationAdmin.queryOptions());
   const [step, setStep] = useState(0);
 
   const form = useForm<FormValues>({
     resolver: zodResolver(schema),
-    defaultValues: { title: "", description: "", thumbnail: "", price: "0", locationId: "" },
+    defaultValues: { title: "", description: "", thumbnail: "", price: "0", locationId: "",isOnline:false},
   });
 
   
@@ -419,6 +420,7 @@ export default function RegistrationsView() {
       toast.error("Something went wrong")
     }
   }))
+  
   const onSubmit = async(v: FormValues) => await mutate.mutateAsync(v)
 
   const selectedLocation = locations?.find((l) => l.id === form.watch("locationId"));
@@ -537,15 +539,15 @@ export default function RegistrationsView() {
                             </PopoverTrigger>
                             <PopoverContent className="w-auto p-0 rounded-2xl border-neutral-200 shadow-xl" align="start">
                               <DatePicker
-  selected={field.value}
-  onChange={field.onChange}
-  showTimeSelect
-  inline
-  timeFormat="HH:mm"
-  timeIntervals={15}
-  dateFormat="PPP p"
-  calendarClassName="custom-datepicker"
-/>
+                                selected={field.value}
+                                onChange={field.onChange}
+                                showTimeSelect
+                                inline
+                                timeFormat="HH:mm"
+                                timeIntervals={15}
+                                dateFormat="PPP p"
+                                calendarClassName="custom-datepicker"
+                              />
                             </PopoverContent>
                           </Popover>
                           <FormMessage className="text-xs text-red-500" />
@@ -576,6 +578,10 @@ export default function RegistrationsView() {
                         </FormItem>
                       )} />
 
+                      
+
+     
+
                       {/* Location preview */}
                       {selectedLocation && (
                         <div className="flex gap-4 p-4 rounded-xl bg-neutral-50 border border-neutral-200">
@@ -600,6 +606,39 @@ export default function RegistrationsView() {
                           </div>
                         </div>
                       )}
+
+                        <FormField
+  control={form.control}
+  name="isOnline"
+  render={({ field }) => (
+    <FormItem className="flex items-center justify-between rounded-xl border border-neutral-200 px-4 py-3">
+      
+      <div className="space-y-1">
+        <FormLabel>
+          <Label>Workshop Mode</Label>
+        </FormLabel>
+        <p className="text-xs text-neutral-400">
+          Toggle between online and offline workshop
+        </p>
+      </div>
+
+      <FormControl>
+        <div className="flex items-center gap-2">
+          <span className="text-xs text-neutral-500">
+            {field.value ? "Online" : "Offline"}
+          </span>
+
+          <Switch
+            checked={field.value}
+            onCheckedChange={field.onChange}
+          />
+        </div>
+      </FormControl>
+
+    </FormItem>
+  )}
+/>      
+
                     </div>
                   )}
                 </div>

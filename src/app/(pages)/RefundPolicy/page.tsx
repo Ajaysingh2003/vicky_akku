@@ -39,7 +39,7 @@ async function Page() {
     <div className="flex items-center flex-col min-h-screen  pb-24">
       {/* Header Section */}
       <div className="w-full flex flex-col items-center pt-6">
-        <h1 className="font-passion-one py-4 max-w-xs md:max-w-full font-bold text-center text-[#C77F90] text-6xl md:text-8xl lg:text-9xl uppercase leading-none">
+        <h1 className="font-borscha py-4 max-w-xs md:max-w-full font-bold text-center text-[#C77F90] text-6xl md:text-8xl lg:text-9xl uppercase leading-none">
           Refund Policy
         </h1>
         <p className="text-slate-400 font-medium tracking-widest uppercase text-xs mb-12">

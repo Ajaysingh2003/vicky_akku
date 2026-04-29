@@ -27,7 +27,7 @@
 //     <div className="h-full  py-28 overflow-hiddena">
 //       <div className="w-[85%] flex items-center gap-4 md:gap-12 flex-col mx-auto">
 //         {/* <div className="space-y-4 md:space-y-6">
-//           <h1 className="font-passion-one font-bold text-center  text-[#977DAE] text-4xl  lg:text-8xl uppercase">
+//           <h1 className="font-borscha font-bold text-center  text-[#977DAE] text-4xl  lg:text-8xl uppercase">
 //             vicky-akku online tutorials
 //           </h1>
 //           <p className="text-[#58555A] text-xs md:text-2xl text-center">
@@ -49,7 +49,7 @@
 //       }}
 //     >
 //       <motion.h1
-//         className="font-passion-one font-bold text-center text-[#977DAE] text-4xl lg:text-8xl uppercase"
+//         className="font-borscha font-bold text-center text-[#977DAE] text-4xl lg:text-8xl uppercase"
 //         variants={{
 //           hidden: { opacity: 0, y: 40 },
 //           visible: { opacity: 1, y: 0 },
@@ -164,7 +164,7 @@ function TutorialsContainer({ data }: { data: getTutorials }) {
           }}
         >
           <motion.h1
-            className="font-passion-one font-bold text-center text-[#977DAE] text-4xl lg:text-8xl uppercase"
+            className="font-borscha font-bold text-center text-[#977DAE] text-4xl lg:text-8xl uppercase"
             variants={{
               hidden: { opacity: 0, y: 40 },
               visible: { opacity: 1, y: 0 },

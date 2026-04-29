@@ -46,7 +46,7 @@
 //               />
 //             </div>
 //             <div className="w-full">
-//               <h2 className="text-[#4B4740] uppercase text-center text-xl font-passion-one md:text-3xl">
+//               <h2 className="text-[#4B4740] uppercase text-center text-xl font-borscha md:text-3xl">
 //                 {e.title}
 //               </h2>
 //               <div className="w-full flex flex-col md:flex-row items-center px-6 md:px-0 justify-center gap-3 mt-2">
@@ -187,7 +187,7 @@ function TutorialCard({
             ease: [0.16, 1, 0.3, 1],
           }}
         >
-          <h2 className="text-[#4B4740] line-clamp-1 md:line-clamp-2 uppercase text-center text-xl font-passion-one md:text-3xl">
+          <h2 className="text-[#4B4740] line-clamp-1 md:line-clamp-2 uppercase text-center text-xl font-borscha md:text-3xl">
             {e.title}
           </h2>
           <div className="w-full flex flex-col md:flex-row items-center px-6 md:px-0 justify-center gap-3 mt-2">

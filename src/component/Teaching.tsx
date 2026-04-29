@@ -5,7 +5,7 @@ function Teaching() {
     <div className="w-full h-full py-14">
       <div className="bg-[#C4B1D4] rounded-3xl flex flex-col md:flex-row items-center py-12 gap-2">
         <div className="md:w-[40%] flex items-center justify-center pl-8 pr-12">
-          <h2 className="uppercase font-passion-one text-center md:text-left w-fit text-4xl md:text-5xl lg:text-6xl  text-[#4B4740]">
+          <h2 className="uppercase font-borscha text-center md:text-left w-fit text-4xl md:text-5xl lg:text-6xl  text-[#4B4740]">
             Teaching Philosophy
           </h2>
         </div>

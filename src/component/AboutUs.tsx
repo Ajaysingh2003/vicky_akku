@@ -108,7 +108,7 @@ function AboutUs() {
         </ScrollReveal>
 
         <ScrollReveal delay={0.6}>
-          <CarouselAbout/>
+          <CarouselAbout fromHomePage={false}/>
         </ScrollReveal>
       </div>
 

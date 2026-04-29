@@ -42,6 +42,7 @@ import { getWorkshopType } from "@/trpc/type";
 import React from "react";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
+import WorkshopsHome from "./WorkshopHome";
 
 function UpcomingWorkshop({ workshops }: { workshops: getWorkshopType }) {
   const router = useRouter();
@@ -71,19 +72,7 @@ function UpcomingWorkshop({ workshops }: { workshops: getWorkshopType }) {
             </p>
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-          >
-            <Button
-              onClick={() => router.push("/workshop")}
-              className="border hidden md:block bg-transparent text-[#736e4e] uppercase cursor-pointer transition-all duration-300 rounded-full font-open-sauce  border-[#736E4E] hover:bg-[#736E4E] hover:text-white"
-            >
-              View more
-            </Button>
-          </motion.div>
+         
         </div>
 
         <motion.section
@@ -106,13 +95,13 @@ function UpcomingWorkshop({ workshops }: { workshops: getWorkshopType }) {
             }}
             transition={{ duration: 0.4 }}
           >
-            <Workshops data={workshops} />
+            <WorkshopsHome data={workshops} />
              
           </motion.div>
             <div className="w-full flex items-center justify-center mt-6">
                 <Button
               onClick={() => router.push("/workshop")}
-              className="border md:hidden block bg-transparent text-[#736e4e] uppercase cursor-pointer transition-all duration-300 rounded-full font-open-sauce  border-[#736E4E] hover:bg-[#736E4E] hover:text-white"
+              className="border  block bg-transparent text-[#736e4e] uppercase cursor-pointer transition-all duration-300 rounded-full font-open-sauce  border-[#736E4E] hover:bg-[#736E4E] hover:text-white"
             >
               View more
             </Button>

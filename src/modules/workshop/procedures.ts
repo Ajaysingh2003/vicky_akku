@@ -65,6 +65,7 @@ export const workshopSchema = z.object({
   thumbnail: z.string(),
   eventDate: z.string(),
   createdAt: z.string(),
+  isOnline:z.boolean(),
   locationId: z.string(),
   location: locationSchema.optional().nullable(),
   enrollment: z.array(enrollmentSchema).optional().nullable(),
@@ -120,6 +121,7 @@ export const workshopRouter = createTRPCRouter({
             withCredentials: true,
           },
         );
+        console.log(res.data,789789)
         return res.data;
       } catch (error: any) {
         console.log(error?.response as any, "a error occuried");
@@ -142,6 +144,37 @@ export const workshopRouter = createTRPCRouter({
           {
             headers: {
               "Content-Type": "application/json",
+            },
+            withCredentials: true,
+          },
+        );
+        console.log(res.data, "hii");
+        return res.data;
+      } catch (error: any) {
+        console.log(error?.response as any, "a error occuried");
+        if (axios.isAxiosError(error)) {
+          if (error.response?.status === 400) {
+            console.log("Bad request:", error.response.data);
+            return;
+          }
+        }
+
+        throw error;
+      }
+    }),
+  getAllLocationAdmin: baseProcedure
+    .output(LocationListSchema)
+    .query(async ({ ctx }) => {
+      try {
+        const cookieStore = await cookies();
+        const access_token = await cookieStore.get("access_token")?.value;
+
+        const res = await axios.get(
+          `${process.env.BASE_API}/v1/workshop/location/admin`,
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization:`Bearer ${access_token}`
             },
             withCredentials: true,
           },
@@ -200,6 +233,7 @@ export const workshopRouter = createTRPCRouter({
         description: z.string().min(20, "Write at least 20 characters"),
         thumbnail: z.string().min(1, "Thumbnail required"),
         price: z.string(),
+        isOnline:z.boolean(),
         eventDate: z.date(),
         locationId: z.string().min(1, "Select a location"),
       }),
@@ -254,13 +288,10 @@ export const workshopRouter = createTRPCRouter({
           .optional(),
 
         description: z.string().min(20).optional(),
-
+        isOnline:z.boolean().optional(),
         thumbnail: z.string().min(1).optional(),
-
         price: z.string().optional(),
-
         eventDate: z.date().optional(),
-
         locationId: z.string().min(1).optional(),
       }),
     )

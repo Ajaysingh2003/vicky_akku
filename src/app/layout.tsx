@@ -9,11 +9,11 @@ import { NuqsAdapter } from "nuqs/adapters/next/app";
 import Head from "next/head";
 import Script from "next/script";
 
-const passionOne = Passion_One({
-  variable: "--font-passion-one",
-  subsets: ["latin"],
-  weight: ["400"],
-});
+// const passionOne = Passion_One({
+//   variable: "--font-borscha",
+//   subsets: ["latin"],
+//   weight: ["400"],
+// });
 
 const inter = Inter({
   variable: "--font-inter",
@@ -40,7 +40,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${passionOne.variable} ${inter.className} ${openSauce.variable} ${openSans.variable} antialiased`}
+        className={` ${inter.className} ${openSauce.variable} ${openSans.variable} antialiased`}
       >
       <Script
           id="razorpay-checkout-js"

@@ -4,7 +4,7 @@ export default function ExperienceSection() {
   return (
     <section className="bg-[#EDE7EF] py-8 lg:py-16">
       <div className="max-w-6xl mx-auto px-4">
-        <h2 className=" text-5xl md:text-5xl lg:text-6xl font-passion-one text-[#4B4740]  text-center mb-12">
+        <h2 className=" text-5xl md:text-5xl lg:text-6xl font-borscha text-[#4B4740]  text-center mb-12">
           EXPERIENCE & WORK
         </h2>
 

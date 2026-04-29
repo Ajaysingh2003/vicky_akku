@@ -11,6 +11,7 @@ import { useTRPC } from "@/trpc/client";
 import { useQuery, useSuspenseQuery } from "@tanstack/react-query";
 import { useInView } from "motion/react";
 import CardLoader from "@/component/CardLoader";
+import CarouselAbout from "@/component/CarouselAbout";
 
 function HomeView() {
   const trpc = useTRPC();
@@ -19,7 +20,7 @@ function HomeView() {
   const { data: workshop } = useSuspenseQuery({
     ...trpc.workshop.upcomingWorkshop.queryOptions({
       page: 1,
-      limit: 3,
+      limit: 100,
       location: "all",
     }),
   });
@@ -42,6 +43,7 @@ function HomeView() {
           )}
         </Suspense>
       </div>
+      <CarouselAbout fromHomePage={true}/>
       <Introduction />
       <ClassDetails />
       <LearnAnytime />

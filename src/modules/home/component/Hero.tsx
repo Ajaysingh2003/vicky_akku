@@ -49,7 +49,7 @@ function Hero() {
             </div>
             <div className=" w-full">
               <div className=" relative  w-full md:w-fit ">
-                <p className="text-center font-normal uppercase md:text-starst p  text-white font-passion-one text-[40px] md:text-8xl md:ml-16">
+                <p className="text-center font-extrabold uppercase md:text-starst p  text-white font-borscha text-[40px] md:text-8xl md:ml-16">
                   Choreographers
                 </p>
                 <div className="max-w-42 mt-8 lg:mt-10 w-full absolute md:relative left-1/2 md:left-0 -translate-x-1/2  md:translate-x-0 space-y-3 flex items-center md:items-start justify-center flex-col  md:ml-16">

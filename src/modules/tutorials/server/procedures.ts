@@ -389,6 +389,7 @@ export const tutorialsRouter = createTRPCRouter({
             withCredentials: true,
           },
         );
+        console.log(res.data,"test before run")
         return res.data;
       } catch (error: any) {
         console.log(error?.response as any, "a error occuried");

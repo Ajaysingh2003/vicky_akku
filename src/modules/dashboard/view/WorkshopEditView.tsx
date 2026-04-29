@@ -71,18 +71,16 @@ import {
 } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
 import toast from "react-hot-toast";
+import { Switch } from "@/components/ui/switch";
 
 // ─── Schema ───────────────────────────────────────────────────────────────────
 
 const schema = z.object({
   title: z.string().min(3, "At least 3 characters"),
-  // slug: z
-  //   .string()
-  //   .min(3)
-  //   .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, "Lowercase + hyphens only"),
   description: z.string().min(20, "Write at least 20 characters"),
   thumbnail: z.string().min(1, "Thumbnail required"),
   price: z.string(),
+  isOnline:z.boolean(),
   eventDate: z.date(),
   locationId: z.string().min(1, "Select a location"),
 });
@@ -360,7 +358,7 @@ export function ThumbnailUploader({
     value ? { s: "done", url: value } : { s: "idle" },
   );
   const [drag, setDrag] = useState(false);
-
+  
   const trpc = useTRPC();
   const getUrls = useMutation(trpc.tutorials.getSignedUrl.mutationOptions());
 
@@ -384,6 +382,7 @@ export function ThumbnailUploader({
         ]);
         uploadUrl = res.files[0].uploadUrl;
         key = res.files[0].key;
+        console.log(uploadUrl,key,"test test net")
       } catch {
         setState({ s: "error", msg: "Could not get upload URL" });
         return;
@@ -397,6 +396,7 @@ export function ThumbnailUploader({
       xhr.onload = () => {
         if (xhr.status >= 200 && xhr.status < 300) {
           const url = `${process.env.NEXT_PUBLIC_R2_PUBLIC_URL}/${key}`;
+          console.log(url,"from url")
           setState({ s: "done", url });
           onChange(url);
         } else setState({ s: "error", msg: `Server error ${xhr.status}` });
@@ -648,7 +648,7 @@ function Sidebar({ current }: { current: number }) {
 export default function WorkshopEditView({ id }: { id: string }) {
   const trpc = useTRPC();
   const { data: locations } = useSuspenseQuery(
-    trpc.workshop.getAllLocation.queryOptions(),
+    trpc.workshop.getAllLocationAdmin.queryOptions(),
   );
   const { data: workshop } = useSuspenseQuery(
     trpc.workshop.getWorkshop.queryOptions({ id }),
@@ -659,6 +659,7 @@ export default function WorkshopEditView({ id }: { id: string }) {
     resolver: zodResolver(schema),
     defaultValues: {
       title: workshop.title,
+      isOnline:workshop.isOnline,
       description: workshop.description,
       thumbnail: workshop.thumbnail,
       price: String(workshop.price),
@@ -1012,6 +1013,38 @@ export default function WorkshopEditView({ id }: { id: string }) {
                           </div>
                         </div>
                       )}
+
+                         <FormField
+                        control={form.control}
+                        name="isOnline"
+                        render={({ field }) => (
+                          <FormItem className="flex items-center justify-between rounded-xl border border-neutral-200 px-4 py-3">
+                            
+                            <div className="space-y-1">
+                              <FormLabel>
+                                <Label>Workshop Mode</Label>
+                              </FormLabel>
+                              <p className="text-xs text-neutral-400">
+                                Toggle between online and offline workshop
+                              </p>
+                            </div>
+                      
+                            <FormControl>
+                              <div className="flex items-center gap-2">
+                                <span className="text-xs text-neutral-500">
+                                  {field.value ? "Online" : "Offline"}
+                                </span>
+                      
+                                <Switch
+                                  checked={field.value}
+                                  onCheckedChange={field.onChange}
+                                />
+                              </div>
+                            </FormControl>
+                      
+                          </FormItem>
+                        )}
+                      />      
                     </div>
                   )}
                 </div>

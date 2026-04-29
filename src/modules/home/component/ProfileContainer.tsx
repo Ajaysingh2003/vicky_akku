@@ -107,7 +107,7 @@ function ProfileContainer() {
 
       <div className="w-full">
         <motion.h2
-          className="font-passion-one text-3xl md:text-5xl text-[#DAA3B0] uppercase mb-6"
+          className="font-borscha text-3xl md:text-5xl text-[#DAA3B0] uppercase mb-6"
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}

@@ -15,9 +15,9 @@ function RegularClassDetails({ data }: { data: getClasses }) {
     <div className="py-3 flex w-full h-full items-center justify-center   lg:py-7">
       <div className="w-full space-y-3 md:space-y-6   m-auto px-4">
         <div className="title-place flex-wrap order-1">
-          <h3 className="text-4xl wrap-break-word   md:text-left font-passion-one uppercase  text-[#4B4740]">
+          <h3 className="text-4xl wrap-break-word   md:text-left font-borscha uppercase  text-[#4B4740]">
             {data.title} -{" "}
-            <span className="text-4xl font-passion-one  uppercase text-center md:text-left text-[#827B70]">
+            <span className="text-4xl font-borscha  uppercase text-center md:text-left text-[#827B70]">
               {data?.City}
             </span>
           </h3>

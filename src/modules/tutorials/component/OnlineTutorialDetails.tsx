@@ -25,7 +25,7 @@
 //     <div className="w-full h-full  py-3 lg:py-7">
 //       <div className="  w-full flex flex-col items-center justify-center gap-2 md:gap-3 h-full    m-auto px-4">
 //         <div className="title-place h-fit w-full">
-//           <h3 className="text-4xl text-left font-passion-one uppercase  text-[#4B4740]">
+//           <h3 className="text-4xl text-left font-borscha uppercase  text-[#4B4740]">
 //             {data.title}
 //           </h3>
 //         </div>
@@ -114,7 +114,7 @@ function OnlineTutorialDetails({ data }: { data: getTutorial }) {
           }}
           transition={{ duration: 0.5 }}
         >
-          <h3 className="text-4xl text-left font-passion-one uppercase text-[#4B4740]">
+          <h3 className="text-4xl text-left font-borscha uppercase text-[#4B4740]">
             {data.title}
           </h3>
         </motion.div>

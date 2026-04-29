@@ -10,7 +10,7 @@
 //         <div className="w-full grid grid-cols-1 md:grid-cols-12 md:px-12 gap-y-5 py-8">
 //           <div className=" col-span-8 order-2 space-y-6 md:order-1">
 //             <div className="flex items-center flex-col md:flex-row gap-4 ">
-//               <h3 className="text-4xl font-passion-one uppercase  text-[#4B4740]">
+//               <h3 className="text-4xl font-borscha uppercase  text-[#4B4740]">
 //                 Meet Vicky–Akku
 //               </h3>
 //               <div className="flex items-center gap-4">
@@ -123,7 +123,7 @@ function Introduction() {
               transition={{ duration: 0.5 }}
               viewport={{ once: true }}
             >
-              <h3 className="text-4xl lg:text-5xl font-passion-one uppercase text-[#4B4740]">
+              <h3 className="text-4xl lg:text-5xl font-borscha uppercase text-[#4B4740]">
                 Meet Vicky–Akku
               </h3>
 

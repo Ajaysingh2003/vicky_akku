@@ -29,7 +29,8 @@
 
 "use client";
 
-import React from "react";
+import { Pagination, Navigation } from 'swiper/modules';
+import React, { useState } from "react";
 import WorkshopCard from "./WorkshopCard";
 import { getWorkshopType } from "@/trpc/type";
 import { motion } from "framer-motion";
@@ -45,6 +46,7 @@ export type Workshop = {
 };
 
 function Workshops({ data }: { data: getWorkshopType }) {
+  // const [swiperRef, setSwiperRef] = useState<any>(null);
   return (
     <motion.div
       className="w-full h-full"
@@ -70,7 +72,10 @@ function Workshops({ data }: { data: getWorkshopType }) {
             }}
             transition={{ duration: 0.5, ease: "easeOut" }}
           >
+
+           
             <WorkshopCard workshop={e} />
+         
           </motion.div>
         ))}
       </div>

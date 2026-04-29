@@ -10,3 +10,14 @@ export const openSauce = localFont({
   variable: "--font-open-sauce",
   display: "swap",
 });
+
+export const borscha = localFont({
+  src: [
+    { path: "../../public/fonts/Borscha-Medium.ttf", weight: "500" },
+    { path: "../../public/fonts/Borscha-Light.ttf", weight: "300" },
+    { path: "../../public/fonts/Borscha-Bold.ttf", weight: "700" },
+    { path: "../../public/fonts/Borscha-BlackItalic.ttf", weight: "900" },
+  ],
+  variable: "--font-borscha",
+  display: "swap",
+});
