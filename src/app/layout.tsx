@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Passion_One, Inter, Open_Sans } from "next/font/google";
 import "./globals.css";
-import { openSauce } from "./font";
+import { openSauce,borscha } from "./font";
 import Footer from "@/component/Footer";
 import { TRPCProvider, TRPCReactProvider } from "@/trpc/client";
 import { Toaster } from "react-hot-toast";
@@ -40,7 +40,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={` ${inter.className} ${openSauce.variable} ${openSans.variable} antialiased`}
+        className={` ${inter.className} ${openSauce.variable} ${borscha.variable} ${openSans.variable} antialiased`}
       >
       <Script
           id="razorpay-checkout-js"

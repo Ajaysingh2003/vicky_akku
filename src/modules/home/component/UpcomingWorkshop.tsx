@@ -63,8 +63,8 @@ function UpcomingWorkshop({ workshops }: { workshops: getWorkshopType }) {
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
           >
-            <h3 className="uppercase text-center md:text-start font-passion-one text-secondary-color text-4xl md:text-6xl">
-              upcoming Workshops
+            <h3 className="uppercases text-center md:text-start font-borscha text-secondary-color text-4xl md:text-6xl">
+              Upcoming Workshops
             </h3>
 
             <p className="max-w-42 md:max-w-full text-center md:text-start capitalize text-[#777873] font-semibold text-sm md:text-xl tracking-wide">

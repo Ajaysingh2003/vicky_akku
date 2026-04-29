@@ -27,7 +27,7 @@ function WorkshopContainer({
       <div className="w-[85%] flex items-center gap-4 md:gap-12 flex-col mx-auto">
         {/* TITLE */}
         <motion.h1
-          className="font-borscha font-bold lg:my-3 text-center text-[#977DAE] text-4xl lg:text-8xl uppercase"
+          className="font-borscha font-medium lg:my-3 text-center text-[#977DAE] text-4xl lg:text-8xl capitalize"
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
