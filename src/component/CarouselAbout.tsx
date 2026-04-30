@@ -55,7 +55,7 @@ export default function CarouselAbout({
       className={`bg-[#ffffff] py-10 relative ${fromHomePage && "max-w-[90%] mx-auto rounded-[30px]"}`}
     >
       <div className="max-w-[90%] mx-auto">
-        <h3 className="text-[#4B4740] font-borscha md:max-w-full  text-5xl lg:text-7xl uppercase text-center md:text-left">
+        <h3 className="text-[#4B4740] font-borscha md:max-w-full  text-5xl lg:text-7xl  capitalize text-center md:text-left">
           Global presence
         </h3>
         <p className="text-[20px] capitalize text-[#535353] mb-6 text-center md:text-start">
@@ -92,7 +92,7 @@ export default function CarouselAbout({
                   height={100}
                   quality={50}
                 sizes="100vw"
-                  className="w-full h-72 md:h-92  object-cotain"
+                  className="w-full h-72 md:h-92  object-cover object-top"
                   loading="lazy"
                 />
               </SwiperSlide>

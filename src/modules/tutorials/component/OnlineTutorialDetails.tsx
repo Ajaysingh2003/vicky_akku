@@ -114,7 +114,7 @@ function OnlineTutorialDetails({ data }: { data: getTutorial }) {
           }}
           transition={{ duration: 0.5 }}
         >
-          <h3 className="text-4xl text-left font-borscha uppercase text-[#4B4740]">
+          <h3 className="text-4xl text-left font-borscha  capitalize text-[#4B4740]">
             {data.title}
           </h3>
         </motion.div>

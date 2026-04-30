@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Passion_One, Inter, Open_Sans } from "next/font/google";
 import "./globals.css";
-import { openSauce,borscha } from "./font";
+import { openSauce, borscha } from "./font";
 import Footer from "@/component/Footer";
 import { TRPCProvider, TRPCReactProvider } from "@/trpc/client";
 import { Toaster } from "react-hot-toast";
@@ -17,6 +17,12 @@ import Script from "next/script";
 
 const inter = Inter({
   variable: "--font-inter",
+  subsets: ["latin"],
+  weight: ["400"],
+});
+
+const PassionOne = Passion_One({
+  variable: "--font-passion-one",
   subsets: ["latin"],
   weight: ["400"],
 });
@@ -40,19 +46,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={` ${inter.className} ${openSauce.variable} ${borscha.variable} ${openSans.variable} antialiased`}
+        className={` ${inter.className} ${PassionOne.variable} ${openSauce.variable} ${borscha.variable} ${openSans.variable} antialiased`}
       >
-      <Script
+        <Script
           id="razorpay-checkout-js"
           src="https://checkout.razorpay.com/v1/checkout.js"
         />
         <Head>
-        <link
-          rel="preload"
-          as="image"
-          href="/image/hero_background.png"
-        />
-      </Head>
+          <link rel="preload" as="image" href="/image/hero_background.png" />
+        </Head>
         <TRPCReactProvider>
           <Toaster />
           <main className="min-h-screen">

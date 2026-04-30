@@ -354,7 +354,7 @@ function VideoPlayerView({ tutorialId, userId }: { userId: string; tutorialId: s
             <div className="h-px w-6 bg-rose-400/60" />
             <p className="text-rose-300/70 text-[10px] uppercase tracking-[0.25em] font-semibold">Course</p>
           </div>
-          <h1 className="font-borscha text-[#977dae] text-4xl md:text-6xl  uppercase tracking-wider leading-none">
+          <h1 className="font-borscha text-[#977dae] text-4xl md:text-6xl  capitalize tracking-wider leading-none">
             {data.tutorial.title}
           </h1>
 

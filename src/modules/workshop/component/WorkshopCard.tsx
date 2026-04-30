@@ -54,12 +54,12 @@ function WorkshopCard({ workshop }: { workshop: getWorkshopCard }) {
               className="text-2xl sm:text-3xl md:text-4xl 
                max-w-sm sm:max-w-md md:max-w-lg 
                break-words line-clamp-2 
-               font-borscha uppercase 
+               font-borscha  capitalize 
                text-[#4B4740]"
             >
               {workshop.title}
             </h3>
-            <p className="text-4xl font-borscha text-center md:text-left uppercase text-[#827B70]">
+            <p className="text-4xl font-borscha text-center md:text-left  capitalize text-[#827B70]">
               {workshop?.location?.city || "Dubai"}
             </p>
           </div>

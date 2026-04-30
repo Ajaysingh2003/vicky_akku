@@ -1,6 +1,6 @@
 "use client";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
-import React from "react";
+import React, { useEffect, useTransition } from "react";
 import WorkshopcardWrapper from "./WorkshopcardWrapper";
 import { getLocation, getWorkshop } from "@/trpc/type";
 import Image from "next/image";
@@ -17,6 +17,17 @@ function WorkshopContainer({
 }) {
   const [filters, setFilters] = useWorkshopFilters();
 
+   const [isPending, startTransition] = useTransition();
+
+  // Helper to handle filter changes safely
+  const handleLocationChange = (value: string) => {
+    startTransition(() => {
+      setFilters({ 
+        location: value, 
+        page: 1 
+      });
+    });
+  };
   return (
     <motion.div
       className="h-full pt-28"
@@ -84,7 +95,7 @@ function WorkshopContainer({
                   className="hidden"
                   type="radio"
                   id={"all"}
-                  onChange={(e) => setFilters({ location: e.target.value })}
+                  onChange={(e) => handleLocationChange(e.target.value)}
                   checked={filters.location == "all"}
                   value={"all"}
                 />
@@ -130,7 +141,7 @@ function WorkshopContainer({
                     className="hidden"
                     type="radio"
                     id={e.city}
-                    onChange={(e) => setFilters({ location: e.target.value })}
+                    onChange={(e) => handleLocationChange(e.target.value)}
                     checked={filters.location == e.city}
                     value={e.city}
                   />

@@ -75,7 +75,7 @@ function PaymentView({ id }: { id: string }) {
 
           {/* TITLE */}
           <motion.h1
-            className="font-borscha font-bold text-center text-[#C77F90] text-4xl lg:text-8xl uppercase"
+            className="font-borscha font-bold text-center text-[#C77F90] text-4xl lg:text-8xl capitalize"
             initial={{ opacity: 0, y: 60 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}

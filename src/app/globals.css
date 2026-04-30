@@ -391,3 +391,6 @@ body {
   }
 }
 
+.font-passion-one{
+  font-family: var(--font-passion-one);
+}

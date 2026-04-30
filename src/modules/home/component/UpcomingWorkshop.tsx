@@ -63,7 +63,7 @@ function UpcomingWorkshop({ workshops }: { workshops: getWorkshopType }) {
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
           >
-            <h3 className="uppercases text-center md:text-start font-borscha text-secondary-color text-4xl md:text-6xl">
+            <h3 className=" capitalize text-center md:text-start font-borscha text-secondary-color text-4xl md:text-6xl">
               Upcoming Workshops
             </h3>
 

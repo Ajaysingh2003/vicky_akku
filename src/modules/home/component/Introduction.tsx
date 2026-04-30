@@ -123,7 +123,7 @@ function Introduction() {
               transition={{ duration: 0.5 }}
               viewport={{ once: true }}
             >
-              <h3 className="text-4xl lg:text-5xl font-borscha uppercase text-[#4B4740]">
+              <h3 className="text-4xl lg:text-5xl font-borscha capitalize text-[#4B4740]">
                 Meet Vicky–Akku
               </h3>
 

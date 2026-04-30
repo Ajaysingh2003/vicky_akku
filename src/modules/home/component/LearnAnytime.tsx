@@ -37,7 +37,7 @@ function LearnAnytime() {
                   visible: { opacity: 1, y: 0 },
                 }}
                 transition={{ duration: 0.5 }}
-                className="text-4xl md:text-5xl lg:text-7xl text-[#535353] text-center md:text-start font-borscha uppercase max-w-md"
+                className="text-4xl md:text-5xl lg:text-7xl text-[#535353] text-center md:text-start font-borscha capitalize max-w-md"
               >
                 Learn anytime anywhere
               </motion.h2>
@@ -88,7 +88,7 @@ function LearnAnytime() {
           >
             <div className="relative p-6 flex items-center justify-center">
               <Image
-                className="w-full rounded-3xl h-56 md:h-84 lg:h-106 object-top object-fill transition-transform duration-700 hover:scale-[1.04]"
+                className="w-full rounded-3xl h-56 md:h-84 lg:h-106 object-center object-cover transition-transform duration-700 hover:scale-[1.04]"
                 src={"/image/learn.PNG"}
                 alt="details"
                 quality={75}

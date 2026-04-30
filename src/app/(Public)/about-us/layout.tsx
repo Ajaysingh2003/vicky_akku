@@ -11,7 +11,7 @@ function layout({ children }: { children: React.ReactNode }) {
       </div>
       <div className="h-full  pt-24">
         <div className="flex items-center flex-col">
-          <h1 className="font-borscha py-8 max-w-64 md:max-w-full font-bold text-center  text-[#C77F90] text-5xl  lg:text-8xl uppercase">
+          <h1 className="font-borscha py-8 max-w-64 md:max-w-full font-bold text-center  text-[#C77F90] text-5xl  lg:text-8xl capitalize">
             The story of Vicky-akku
           </h1>
           <div className="w-full h-full">{children}</div>

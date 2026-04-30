@@ -164,7 +164,7 @@ function TutorialsContainer({ data }: { data: getTutorials }) {
           }}
         >
           <motion.h1
-            className="font-borscha font-bold text-center text-[#977DAE] text-4xl lg:text-8xl uppercase"
+            className="font-borscha font-bold text-center text-[#977DAE] text-4xl lg:text-8xl capitalize"
             variants={{
               hidden: { opacity: 0, y: 40 },
               visible: { opacity: 1, y: 0 },

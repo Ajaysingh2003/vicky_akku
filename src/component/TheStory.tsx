@@ -7,7 +7,7 @@ function TheStory() {
       <div className="grid grid-cols-1 md:grid-cols-2 ">
         <div className="w-full p-10  justify-center  items-center md:items-start justifya-center flex flex-col gap-4 md:gap-3">
           <div className="w-full">
-            <h2 className="text-4xl md:text-6xl text-[#DAA3B0] text-center md:text-start font-borscha uppercase max-w-md ">
+            <h2 className="text-4xl md:text-6xl text-[#DAA3B0] text-center md:text-start font-borscha capitalize max-w-md ">
               Their journey
             </h2>
           </div>

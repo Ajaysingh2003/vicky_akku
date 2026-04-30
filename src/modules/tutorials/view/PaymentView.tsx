@@ -22,7 +22,7 @@ function PaymentView({ id }: { id: string }) {
 
       <div className="h-full  py-24">
         <div className="w-[85%] flex items-center flex-col mx-auto">
-          <h1 className="font-borscha font-bold text-center  text-[#C77F90] text-4xl  lg:text-8xl uppercase">
+          <h1 className="font-borscha font-bold text-center  text-[#C77F90] text-4xl  lg:text-8xl capitalize">
             Pay To book your class
           </h1>
           <div className="w-full h-full">

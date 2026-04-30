@@ -35,10 +35,10 @@ function WorkshopDetails({ workshop }: { workshop: getWorkshopId }) {
     <div className="py-3 flex items-center justify-center  lg:py-7">
       <div className="w-full h-full grid grid-cols-1 gap-2   m-auto space-y-3 px-4">
         <div className="title-place flex-wrap order-1">
-          <h3 className="text-4xl wrap-break-word  text-center md:text-left font-borscha uppercase  text-[#4B4740]">
+          <h3 className="text-4xl wrap-break-word  text-center md:text-left font-borscha  capitalize  text-[#4B4740]">
             {workshop.title}
           </h3>
-          <p className="text-4xl font-borscha  uppercase text-center md:text-left text-[#827B70]">
+          <p className="text-4xl font-borscha   capitalize text-center md:text-left text-[#827B70]">
             {workshop?.location && workshop?.location.place} -{" "}
             {workshop?.location && workshop?.location?.city}
           </p>

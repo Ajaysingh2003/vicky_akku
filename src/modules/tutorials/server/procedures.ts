@@ -50,7 +50,7 @@ export const TutorialSchemaAdmin = z.object({
   isPublished: z.boolean(),
   createdAt: z.string().datetime(),
   title: z.string(),
-  duration: z.number(),
+  duration: z.number().optional(),
   thumbnail: z.string().url(),
   price: z.number(),
   description: z.string(),

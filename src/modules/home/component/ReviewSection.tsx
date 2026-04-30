@@ -17,7 +17,7 @@ type Review = {
 };
 
 function ReviewSection() {
-  const review :Review[] = [
+  const review: Review[] = [
     {
       rating: 5,
       review:
@@ -133,7 +133,7 @@ function ReviewSection() {
           viewport={{ once: true }}
         >
           <div className="space-y-3">
-            <h2 className="font-borscha text-4xl md:text-6xl text-center md:text-start max-w-136 uppercase text-[#7B9691]">
+            <h2 className="font-borscha text-4xl md:text-6xl  text-center md:text-start max-w-136 capitalize text-[#7B9691]">
               Loved by Dancers Everywhere
             </h2>
 
