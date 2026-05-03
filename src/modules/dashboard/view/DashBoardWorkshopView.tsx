@@ -18,6 +18,13 @@ import {
 } from "@/components/ui/pagination";
 import { workshopColumn } from "../component/WorkshopColumn";
 import { useRouter } from "next/navigation";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 function DashBoardWorkshopView() {
 
@@ -68,7 +75,21 @@ function DashBoardWorkshopView() {
           <div className="font-semibold text-lg md:text-3xl text-[#656565]">
             Workshops
           </div>
-          <div className="">
+          <div className="flex gap-4">
+              <Select
+              value={filters.type || "upcoming"}
+              onValueChange={(value: "upcoming" | "past") =>
+                setFilters({ type: value, page: 1 })
+              }
+            >
+              <SelectTrigger className="w-[150px]">
+                <SelectValue placeholder="Select type" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="upcoming">Upcoming</SelectItem>
+                <SelectItem value="past">Past</SelectItem>
+              </SelectContent>
+            </Select>
             <Button className="bg-primary text-xs md:text-sm capitalize px-4 lg:py-2">
               <Link href={"/dashboard/workshops/registrations"}>
                 Add Workshop

@@ -3,7 +3,8 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-
+import { LogOut } from "lucide-react";
+import { useRouter } from "next/navigation";
 import {
   Sidebar,
   SidebarContent,
@@ -28,6 +29,47 @@ import {
 } from "@/components/ui/collapsible";
 
 export function AppSidebar() {
+
+  const router = useRouter();
+const handleLogout = async () => {
+  try {
+    const res = await fetch("/api/logout", {
+      method: "POST",
+      credentials: "include", // important for cookies
+    });
+
+    // ✅ Check response status
+    if (!res.ok) {
+      const errorData = await res.json().catch(() => null);
+      throw new Error(errorData?.message || "Logout failed");
+    }
+
+    const data = await res.json();
+
+    // ✅ Optional: check backend response
+    if (!data?.success) {
+      throw new Error("Logout not successful");
+    }
+
+    // ✅ Success → redirect + refresh
+    router.push("/");
+    router.refresh();
+
+  } catch (error: any) {
+    console.error("Logout failed:", error.message);
+
+    // ⚠️ Fallback: force client-side cleanup if needed
+    // (only works if cookie is NOT httpOnly)
+    document.cookie =
+      "access_token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+
+    // Still redirect to avoid stuck UI
+   window.location.href = "/";
+
+    router.refresh();
+  }
+};
+
   const pathname = usePathname();
   const [open, setOpen] = useState<string | null>(null);
 
@@ -220,7 +262,16 @@ export function AppSidebar() {
 
       {/* FOOTER */}
       <SidebarFooter className="border-t p-4 text-xs text-muted-foreground">
-        © 2026 Vicky Akku
+        <button
+    onClick={handleLogout}
+    className="flex items-center gap-2 w-full text-sm text-red-500 hover:text-red-600 transition"
+  >
+    <LogOut size={16} />
+    Logout
+  </button>
+       <div>
+         © 2026 Vicky Akku
+       </div>
       </SidebarFooter>
     </Sidebar>
   );

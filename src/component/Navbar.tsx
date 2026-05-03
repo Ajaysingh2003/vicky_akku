@@ -138,18 +138,26 @@ function Navbar({ isUserExist = false, locations }: NavbarProps) {
                       className="py-2 text-sm capitalize border-b border-dashed border-[#82828299] last:border-none"
                     >
                       <Link href={"/signin"}>Sign in</Link>
-                    </li> : <li
-                     
-                      className="py-2 text-sm capitalize border-b border-dashed border-[#82828299] last:border-none"
-                    >
-                      <Link href={"/dashboard"}>Dashboard</Link>
-                    </li>}
+                    </li> : null}
                    {
                      user && <li
                      
                       className="py-2 text-sm capitalize border-b border-dashed border-[#82828299] last:border-none"
                     >
                       <Link href={"/profile"}>Profile</Link>
+                    </li>
+         }
+                   {
+                    user&&user.role==="ADMIN" && <li
+                     
+                      className="py-2 text-sm capitalize border-b border-dashed border-[#82828299] last:border-none"
+                    >
+                     <li
+                     
+                      className="py-2 text-sm capitalize border-b border-dashed border-[#82828299] last:border-none"
+                    >
+                      <Link href={"/dashboard"}>Dashboard</Link>
+                    </li>
                     </li>
          }
                 </ul>

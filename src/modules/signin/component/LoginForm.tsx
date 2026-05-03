@@ -37,6 +37,7 @@ function LoginForm() {
     resolver: zodResolver(loginSchema),
     defaultValues: {
       name: "",
+      email: "",
       phone: "",
     },
   });
@@ -58,10 +59,10 @@ function LoginForm() {
   const mutate = useMutation(
     trpc.user.requestOtp.mutationOptions({
       onSuccess: (data) => {
-        // console.log(data,"miss you")
-        router.push(
-          `/verify-otp?name=${data.data.name}&phone=${encodeURIComponent(data.data.phone)}`,
-        );
+        console.log(data,"miss you")
+       router.push(
+  `/verify-otp?name=${encodeURIComponent(data.data.name)}&phone=${encodeURIComponent(data.data.phone)}&email=${encodeURIComponent(data.data.email)}`
+);
         toast.success("OTP sent Successfully.");
       },
       onError: (error) => {
@@ -93,6 +94,31 @@ function LoginForm() {
                       className=" font-open-sauce font-medium text-lg md:text-xl capitalize text-[#A6A6A6]"
                     >
                       your good name
+                    </FieldLabel>
+                    <Input
+                      className="bg-white rounded-full px-6 py-6 placeholder:text-[#A6A6A6]"
+                      {...field}
+                      id="name-field"
+                      aria-invalid={fieldState.invalid}
+                      placeholder="Enter name"
+                      autoComplete="off"
+                    />
+                    {fieldState.invalid && (
+                      <FieldError errors={[fieldState.error]} />
+                    )}
+                  </Field>
+                )}
+              />
+              <Controller
+                name="email"
+                control={form.control}
+                render={({ field, fieldState }) => (
+                  <Field data-invalid={fieldState.invalid}>
+                    <FieldLabel
+                      htmlFor="name field"
+                      className=" font-open-sauce font-medium text-lg md:text-xl capitalize text-[#A6A6A6]"
+                    >
+                      email
                     </FieldLabel>
                     <Input
                       className="bg-white rounded-full px-6 py-6 placeholder:text-[#A6A6A6]"
