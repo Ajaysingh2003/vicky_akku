@@ -59,7 +59,7 @@ function LoginForm() {
   const mutate = useMutation(
     trpc.user.requestOtp.mutationOptions({
       onSuccess: (data) => {
-        console.log(data,"miss you")
+        // console.log(data,"miss you")
        router.push(
   `/verify-otp?name=${encodeURIComponent(data.data.name)}&phone=${encodeURIComponent(data.data.phone)}&email=${encodeURIComponent(data.data.email)}`
 );
@@ -123,9 +123,10 @@ function LoginForm() {
                     <Input
                       className="bg-white rounded-full px-6 py-6 placeholder:text-[#A6A6A6]"
                       {...field}
+                      type="email"
                       id="name-field"
                       aria-invalid={fieldState.invalid}
-                      placeholder="Enter name"
+                      placeholder="Enter email"
                       autoComplete="off"
                     />
                     {fieldState.invalid && (

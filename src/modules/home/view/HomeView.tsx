@@ -16,7 +16,6 @@ import CarouselAbout from "@/component/CarouselAbout";
 function HomeView() {
   const trpc = useTRPC();
   const ref = useRef<HTMLDivElement | null>(null);
-  // const inView = useInView(ref, { once: true });
   const { data: workshop } = useSuspenseQuery({
     ...trpc.workshop.upcomingWorkshop.queryOptions({
       page: 1,
