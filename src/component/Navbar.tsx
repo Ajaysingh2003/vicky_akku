@@ -7,7 +7,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Menu, User, X } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 
@@ -19,6 +19,47 @@ interface NavbarProps {
 function Navbar({ isUserExist = false, locations }: NavbarProps) {
   const [filters, setFilters] = useWorkshopFilters();
   const pathName = usePathname();
+
+    const router = useRouter();
+  const handleLogout = async () => {
+    try {
+      const res = await fetch("/api/logout", {
+        method: "POST",
+        credentials: "include", // important for cookies
+      });
+  
+      // ✅ Check response status
+      if (!res.ok) {
+        const errorData = await res.json().catch(() => null);
+        throw new Error(errorData?.message || "Logout failed");
+      }
+  
+      const data = await res.json();
+  
+      // ✅ Optional: check backend response
+      if (!data?.success) {
+        throw new Error("Logout not successful");
+      }
+  
+      // ✅ Success → redirect + refresh
+      router.push("/");
+      router.refresh();
+  
+    } catch (error: any) {
+      console.error("Logout failed:", error.message);
+  
+      // ⚠️ Fallback: force client-side cleanup if needed
+      // (only works if cookie is NOT httpOnly)
+      document.cookie =
+        "access_token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+  
+      // Still redirect to avoid stuck UI
+     window.location.href = "/";
+  
+      router.refresh();
+    }
+  };
+  
   const trpc=useTRPC()
   const {data:user}=useQuery(trpc.user.profile.queryOptions())
   console.log(pathName, 7878);
@@ -158,6 +199,15 @@ function Navbar({ isUserExist = false, locations }: NavbarProps) {
                     >
                       <Link href={"/dashboard"}>Dashboard</Link>
                     </li>
+                    </li>
+                }
+
+                 {
+                     user && <li
+                     
+                      className="py-2 text-sm capitalize border-b border-dashed border-[#82828299] last:border-none"
+                    >
+                      <button onClick={handleLogout}>Logout</button>
                     </li>
          }
                 </ul>

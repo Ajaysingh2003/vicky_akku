@@ -1,17 +1,19 @@
 "use client";
 
 import { useTRPC } from "@/trpc/client";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 // import { trpc } from "@/utils/trpc"; // Your tRPC client path
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 
 export const usePayment = () => {
   const router = useRouter();
+  const queryClient = useQueryClient();
   const trpc = useTRPC();
   // Define Mutations
   const createOrder = useMutation(
     trpc.order.create.mutationOptions({
+
       onError: (err) => {
         console.log(err, "sdfsd");
         const message =
@@ -22,7 +24,10 @@ export const usePayment = () => {
   );
   const verifyPayment = useMutation(
     trpc.order.verify.mutationOptions({
-      onSuccess: () => {
+      onSuccess: async() => {
+        await queryClient.invalidateQueries(
+          trpc.user.profile.queryOptions()
+        )
         toast.success("Purchased Sucessfully");
       },
       onError: (err) => {
