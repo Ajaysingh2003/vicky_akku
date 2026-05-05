@@ -42,8 +42,9 @@ function Navbar({ isUserExist = false, locations }: NavbarProps) {
       }
   
       // ✅ Success → redirect + refresh
-      router.push("/");
-      router.refresh();
+      window.location.href="/"
+      // router.push("/");
+      // router.refresh();
   
     } catch (error: any) {
       console.error("Logout failed:", error.message);
