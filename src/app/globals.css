@@ -394,3 +394,17 @@ body {
 .font-passion-one{
   font-family: var(--font-passion-one);
 }
+
+.swiper-button-next,.swiper-button-prev{
+  /* top:55% !important; */
+  background-color: rgba(66, 62, 62, 0.824);
+  color: white !important ;
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  transition: 0.3;
+}
+.swiper-navigation-icon{
+  height:15px !important;
+  width:25px !important;
+}
