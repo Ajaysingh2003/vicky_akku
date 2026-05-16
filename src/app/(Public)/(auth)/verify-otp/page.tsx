@@ -7,13 +7,14 @@ type PageProps = {
   searchParams: {
     phone?: string;
     name?: string;
+    email?:string;
   };
 };
 
 async function Page({ searchParams }: PageProps) {
-  const { phone, name } =await searchParams;
+  const { phone, name ,email } =await searchParams;
   console.log(phone,name)
- if(!phone||!name) return <div>
+ if(!phone||!name|| !email) return <div>
     Not found
  </div>
 
@@ -21,7 +22,7 @@ async function Page({ searchParams }: PageProps) {
     <div className="w-full h-full">
       
             <Suspense fallback={<VerifyOtpSkeleton/>}>
-              <VerifyOtpView phone={phone} name={name} />
+              <VerifyOtpView phone={phone} name={name} email={email} />
             </Suspense>
     </div>  
   );
