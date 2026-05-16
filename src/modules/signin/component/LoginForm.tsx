@@ -63,7 +63,7 @@ function LoginForm() {
        router.push(
   `/verify-otp?name=${encodeURIComponent(data.data.name)}&phone=${encodeURIComponent(data.data.phone)}&email=${encodeURIComponent(data.data.email)}`
 );
-        toast.success("OTP sent Successfully.");
+        toast.success("OTP sent to your Email");
       },
       onError: (error) => {
         console.log(error);
