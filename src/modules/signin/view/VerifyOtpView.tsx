@@ -2,7 +2,7 @@
 import React from "react";
 import VerifyOtpForm from "../component/VerifyOtpForm";
 
-function VerifyOtpView({phone,name}:{phone:string,name:string}) {
+function VerifyOtpView({phone,name,email}:{phone:string,name:string,email:string}) {
 
   return (
     <div className="flex w-full  md:items-center h-full justify-center">
@@ -19,7 +19,7 @@ function VerifyOtpView({phone,name}:{phone:string,name:string}) {
           <div className="rounded-full bg-[#F2E9F9]">
             <p className="px-4 py-2 flex gap-2 font-open-sauce text-regular text-md md:text-lg font-medium">
               {/* <span>+91</span> */}
-              <span className=" tracking-wider">{phone}</span>
+              <span className=" tracking-wider">{email}</span>
             </p>
           </div>
         </div>
