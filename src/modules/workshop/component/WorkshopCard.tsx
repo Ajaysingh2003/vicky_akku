@@ -37,17 +37,16 @@ function WorkshopCard({ workshop }: { workshop: getWorkshopCard }) {
       className="w-full"
     >
       <div className="card flex flex-col gap-4">
-        <div className=" relative rounded-3xl  overflow-hidden">
-          <Image
-            className=" object-cover max-h-56 md:max-h-64 w-full h-full object-[40%_35%]"
-            src={workshop.thumbnail}
-            alt={workshop.title}
-            quality={100}
-            sizes="100vw"
-            height={100}
-            width={100}
-          />
-        </div>
+       <div className="relative w-full aspect-[4/5] overflow-hidden rounded-2xl">
+  <Image
+    className="object-cover object-center"
+    src={workshop.thumbnail}
+    alt={workshop.title}
+    fill
+    quality={100}
+    sizes="(max-width: 768px) 100vw, 50vw"
+  />
+</div>
         <div className="card flex flex-col items-center md:items-start gap-3">
           <div className="title-place">
             <h3
