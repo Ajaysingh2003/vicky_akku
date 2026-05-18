@@ -54,7 +54,10 @@ function UpcomingWorkshop({ workshops }: { workshops: getWorkshopType }) {
       transition={{ duration: 0.6 }}
       viewport={{ once: true }}
     >
-      <div className="w-[90%] space-y-4 px-6 md:px-12 py-8 md:w-[90%] rounded-3xl bg-[#FFFBF4] mx-auto">
+     
+
+      <div className="flex items-center justify-center flex-col">
+         <div className="w-[90%] space-y-4 px-6 md:px-12 py-8 md:w-[90%] rounded-3xl bg-[#FFFBF4] mx-auto">
         <div className="flex gap-4 flex-col md:flex-row justify-center items-center md:justify-between">
           <motion.div
             className="font-p flex md:block items-center gap-3 justify-center flex-col"
@@ -98,7 +101,10 @@ function UpcomingWorkshop({ workshops }: { workshops: getWorkshopType }) {
             <WorkshopsHome data={workshops} />
              
           </motion.div>
-            <div className="w-full flex items-center justify-center mt-6">
+            
+        </motion.section>
+      </div>
+        <div className="w-full flex items-center justify-center mt-6">
                 <Button
               onClick={() => router.push("/workshop")}
               className="border  block bg-transparent text-[#736e4e] uppercase cursor-pointer transition-all duration-300 rounded-full font-open-sauce  border-[#736E4E] hover:bg-[#736E4E] hover:text-white"
@@ -106,7 +112,6 @@ function UpcomingWorkshop({ workshops }: { workshops: getWorkshopType }) {
               View more
             </Button>
              </div>
-        </motion.section>
       </div>
     </motion.div>
   );

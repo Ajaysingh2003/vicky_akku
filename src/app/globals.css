@@ -397,14 +397,23 @@ body {
 
 .swiper-button-next,.swiper-button-prev{
   /* top:55% !important; */
-  background-color: rgba(66, 62, 62, 0.824);
-  color: white !important ;
-  width: 55px;
-  height: 55px;
+  background-color: white;
+  color: black !important ;
+  width: 35px !important;
+  height: 35px !important;
+  border: 1px solid black;
   border-radius: 50%;
+  /* top:1rem !important; */
   transition: 0.3;
 }
 .swiper-navigation-icon{
   height:15px !important;
   width:25px !important;
+}
+
+.swiper-button-next{
+  right: 0 !important;
+}
+.swiper-button-prev{
+  left: 0 !important;
 }

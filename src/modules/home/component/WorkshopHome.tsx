@@ -139,7 +139,7 @@ const SwiperFunc = ({
                 1024: { slidesPerView: 3 },
               }}
             >
-              {filteredData.map((e) => (
+              {[...filteredData,...filteredData].map((e) => (
                 <SwiperSlide key={e.id}>
                   <motion.div
                     initial={{ opacity: 0, y: 40 }}
