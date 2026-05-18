@@ -24,7 +24,7 @@ function ReviewSection() {
         "They are literally the best choreographers ever I enjoy dancing with them alotttttt they are so energetic sooo beautiful at their work their moves and steps are so perfect so clear they even made me perfect and they are so friendly they are my personal fav people thank you so much Aakansha Mam and Vicky sir for making me perfect in every moves….. They always pay personal attention on every single person ❤️👀I lovers you guysss alottttt🫶🏻🤍👀🙈",
       user: {
         name: "Pratiksha",
-        image: "https://randomuser.me/api/portraits/women/32.jpg",
+        image: "/girls/1.jpg",
         place: "Delhi, India",
       },
     },
@@ -34,7 +34,7 @@ function ReviewSection() {
         "I have gone to various different dance classes, but their classes is one of the best according to me. They work on the basic and foundation of Dance .The moves , the  flexibility, technique & take you from non-dancer to a dancer.The charges are also decentand its value for money.4.5 star for sure .",
       user: {
         name: "Sonali",
-        image: "https://randomuser.me/api/portraits/women/45.jpg",
+        image: "/girls/2.jpg",
         place: "Delhi, India",
       },
     },
@@ -44,7 +44,7 @@ function ReviewSection() {
         "Aakansha maam and Vickey sir have the perfect swag, they will transfer all their energy to you and teach dance technics to make you enjoy every style. It's all about music, expressions and being in the character with them. Love the classes MWF are the best days of the week for me 😍 ",
       user: {
         name: "Devika",
-        image: "https://randomuser.me/api/portraits/women/67.jpg",
+        image: "/girls/3.jpg",
         place: "Pune, India",
       },
     },
@@ -54,7 +54,7 @@ function ReviewSection() {
         "One of the great place to learn dancing! The place itself has a vibe. Vicky Sir and Aakansha Ma’am is the best. They pays attention to each and every student and can make you learn any dance form. And it’s not just dancing but they help you focus on ur expressions as well. The best part about the class is the positive vibe they creates",
       user: {
         name: "Rahul Hazra",
-        image: "https://randomuser.me/api/portraits/men/67.jpg",
+        image: "/girls/4.jpg",
         place: "Pune, India",
       },
     },
@@ -64,7 +64,7 @@ function ReviewSection() {
         "I always used to see videos of Vicky Sir and Aakansha Ma’am on Instagram and their choreography on different songs and dance styles just made me join the class . The way they teach and are patient with all their students throughout the process is commendable !! The overall atmosphere of the class is so good and positive! The best part is they shoot videos for all their students once the choreography is done.There's so much to learn from both of them ! I highly recommend their class :♥️",
       user: {
         name: "Neetu Upadhaya",
-        image: "https://randomuser.me/api/portraits/women/21.jpg",
+        image: "/girls/5.jpg",
         place: "Mumbai, India",
       },
     },
@@ -74,7 +74,7 @@ function ReviewSection() {
         "This dance class has my heart. Have been attending this class since 2022 and can clearly see the improvement. All thanks to the great teachers Vicky Sir and Aakanksha Ma’am for being so encouraging and kind with all the students. Dance class is definitely my favourite part of the day ♥️",
       user: {
         name: "Tara",
-        image: "https://randomuser.me/api/portraits/women/89.jpg",
+        image: "/girls/6.jpg",
         place: "Mumbai, India",
       },
     },
@@ -84,7 +84,7 @@ function ReviewSection() {
         "I've been loving my time at Boombox Dance Classes! The instructors are really good at breaking things down, which makes it a lot easier to pick up choreography—even if it’s a new style. They also teach a mix of styles, so it never gets boring. Plus, the end-of-class shoots are such a cool way to see your progress and get comfortable in front of the camera. It’s a really fun, encouraging space to grow as a dancer.",
       user: {
         name: "Sriyal",
-        image: "https://randomuser.me/api/portraits/women/8.jpg",
+        image:"/girls/7.jpg",
         place: "Mumbai, India",
       },
     },
@@ -94,7 +94,7 @@ function ReviewSection() {
         "Highly recommend. Akanksha Maam and Vicky sir are the best at breaking down complex choreographies into simple learnable steps. I was someone who hated dancing all my life and now I really enjoy it because of them. Definitely book a session if you want to go beyond the limits of your body. ✅",
       user: {
         name: "Aditi",
-        image: "https://randomuser.me/api/portraits/women/18.jpg",
+        image: "/girls/8.jpg",
         place: "Mumbai, India",
       },
     },
@@ -196,7 +196,7 @@ function ReviewSection() {
                   </div>
 
                   <div className="flex items-center gap-4">
-                    <div className="size-10">
+                    <div className="size-10 rounded-full  overflow-hidden">
                       <Image
                         className="rounded-full object-cover"
                         src={e.user.image}

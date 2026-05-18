@@ -20,6 +20,11 @@ const nextConfig: NextConfig = {
         hostname: "media.vickyakku.com",
         pathname: "/**",
       },
+      {
+      protocol: "https",
+      hostname: "images.unsplash.com",
+      pathname: "/**",
+    },
     ],
   },
 };

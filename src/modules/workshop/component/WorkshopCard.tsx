@@ -37,7 +37,7 @@ function WorkshopCard({ workshop }: { workshop: getWorkshopCard }) {
       className="w-full"
     >
       <div className="card flex flex-col gap-4">
-       <div className="relative w-full aspect-[4/5] overflow-hidden rounded-2xl">
+       <div className="relative w-full lg:aspect-[5/5] aspect-[4/5]  overflow-hidden rounded-2xl">
   <Image
     className="object-cover object-center"
     src={workshop.thumbnail}
@@ -54,7 +54,7 @@ function WorkshopCard({ workshop }: { workshop: getWorkshopCard }) {
                max-w-sm sm:max-w-md md:max-w-lg 
                break-words line-clamp-2 
                font-borscha  capitalize 
-               text-[#4B4740]"
+               text-[#4B4740] text-center"
             >
               {workshop.title}
             </h3>
@@ -78,8 +78,8 @@ function WorkshopCard({ workshop }: { workshop: getWorkshopCard }) {
               </h4>
             </div>
 
-            <div className="w-full">
-              <Button className=" w-full md:w-fit  rounded-full bg-transparent uppercase border-[1px] border-[#656565] duration-500 text-regular transition-colors cursor-pointer hover:text-white">
+            <div className="w-full flex md:block items-center justify-center">
+              <Button className="w-fit  rounded-full bg-transparent uppercase border-[1px] border-[#656565] duration-500 text-regular transition-colors cursor-pointer hover:text-white">
                 <Link href={`/workshop/${workshop.id}`}>Book</Link>
               </Button>
             </div>
