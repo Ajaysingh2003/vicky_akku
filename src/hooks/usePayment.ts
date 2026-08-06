@@ -64,7 +64,7 @@ export const usePayment = () => {
           });
 
           if (isVerified.success) {
-            router.push("/profile");
+            router.push("/completePayment");
           }
         },
         theme: { color: "#000000" },
